@@ -34,7 +34,6 @@ this.altoCalle =altoMV*dimCelda;
 this.setSize(anchoCalle,altoCalle);
 
 }
-
 @Override
 public void paintComponent(Graphics g) {
 for(int i=0; i < anchoMV; i++)

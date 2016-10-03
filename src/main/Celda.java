@@ -37,7 +37,7 @@ catch (IOException e) {
     }
 
 }
-
+/**/
 @Override
     public void paintComponent(Graphics g) {
     switch(tipo) {

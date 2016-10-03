@@ -39,7 +39,7 @@ public void keyPressed(KeyEvent e) {
 public void paint(Graphics g) {
 calle.paintComponent(g);
 }
-
+ 
 private void activarCelda(MouseEvent evt) {
     int aX=evt.getX();
     int aY=evt.getY();
@@ -62,7 +62,7 @@ private void activarCelda(MouseEvent evt) {
            }
         }
     }
-/*
+    /*
 calle.celdas[2][2].tipo ='J';
 */
 }

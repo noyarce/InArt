@@ -1,7 +1,7 @@
 package main;
 
 public interface Constantes {
-
+/**/
     public final int dimCelda = 32;
     public final int anchoMV = 30;
     public final int altoMV = 20;
