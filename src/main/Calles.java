@@ -25,6 +25,8 @@ celdas=new Celda[anchoMV][altoMV];
     }
 celdas[1][1]= new Celda(1+(1*dimCelda),1+(1*dimCelda),'J');
  
+celdas[5][5]= new Celda(5+(5*dimCelda),5+(5*dimCelda),'X');
+
 celdaMovimiento=new Celda(1,1,'J');
 
 /*se preparan las imenciones y se entregan para definir los tamaños de las calles */
@@ -60,35 +62,82 @@ switch( evento.getKeyCode() ) {
 
 
 private void moverCeldaArriba(){
-    if (celdaMovimiento.y > 0 || celdas[celdaMovimiento.x][celdaMovimiento.y].tipo != 'C' ) {
+//    celdaMovimiento.y > 0 &&
+
+    if ( celdas[celdaMovimiento.x][celdaMovimiento.y-1].tipo == 'C' ) {
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo ='C';
         celdaMovimiento.y=celdaMovimiento.y-1;
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
         System.out.println("Mover Arriba: "+ celdaMovimiento.y+" - "+celdaMovimiento.x);
     }
+    
+    if ( celdas[celdaMovimiento.x][celdaMovimiento.y-1].tipo == 'X' ) {
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo ='C';
+        celdaMovimiento.y=celdaMovimiento.y-1;
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+        System.out.println("Mover Arriba: "+ celdaMovimiento.y+" - "+celdaMovimiento.x + " Portal Capturado! ");
+    }
+    if ( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'C'&& celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'X'){
+        System.out.println("Choque! No se puede mover mas hacia Arriba");
+    }
+    
 }
 private void moverCeldaAbajo(){
-    if ( celdaMovimiento.y< altoMV-1 ) {
+//    celdaMovimiento.y< altoMV-1 &&
+    if (  celdas[celdaMovimiento.x][celdaMovimiento.y+1].tipo == 'C') {
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
         celdaMovimiento.y=celdaMovimiento.y+1;
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
         System.out.println("Mover Abajo: " +celdaMovimiento.y+" - "+celdaMovimiento.x);
     }
+    if (  celdas[celdaMovimiento.x][celdaMovimiento.y+1].tipo == 'X') {
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
+        celdaMovimiento.y=celdaMovimiento.y+1;
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+        System.out.println("Mover Abajo: " +celdaMovimiento.y+" - "+celdaMovimiento.x+ " Portal Capturado! ");
+    }
+
+    if( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'C' &&  celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'X'){
+               System.out.println("Choque! No se puede mover mas hacia Abajo!");
+
+    }
 }
 private void moverCeldaIzquierda(){
-    if (celdaMovimiento.x > 0 ) {
+//    celdaMovimiento.x > 0 &&
+    if ( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo == 'C') {
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
         celdaMovimiento.x=celdaMovimiento.x-1;
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
         System.out.println("Mover Izquierda: "+celdaMovimiento.y+" - "+celdaMovimiento.x);
     }
+    if ( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo == 'X') {
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
+        celdaMovimiento.x=celdaMovimiento.x-1;
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+        System.out.println("Mover Izquierda: "+celdaMovimiento.y+" - "+celdaMovimiento.x+ " Portal Capturado! ");
+    }
+    
+        if( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'C' && ( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'X')){
+               System.out.println("Choque! No se puede mover mas a la Izquierda!");
+
+    }
 }
 private void moverCeldaDerecha(){
-    if ( celdaMovimiento.x < anchoMV-1 ){
+//    celdaMovimiento.x < anchoMV-1 &&
+    if (  celdas[celdaMovimiento.x+1][celdaMovimiento.y].tipo == 'C'){
        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
        celdaMovimiento.x=celdaMovimiento.x+1;
        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
        System.out.println("Mover Derecha: "+celdaMovimiento.y+" - "+celdaMovimiento.x);
+    }
+    if(celdas[celdaMovimiento.x+1][celdaMovimiento.y].tipo == 'X'){
+        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
+       celdaMovimiento.x=celdaMovimiento.x+1;
+       celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+       System.out.println("Mover Derecha: "+celdaMovimiento.y+" - "+celdaMovimiento.x + " Portal Capturado! ");
+    }
+    if( celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'C'&&  celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo != 'X'){
+               System.out.println("Choque! No se puede mover mas a la Derecha!");
     }
 }
 

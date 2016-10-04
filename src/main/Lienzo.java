@@ -43,37 +43,30 @@ calle.paintComponent(g);
 private void activarCelda(MouseEvent evt) {
     int aX=evt.getX();
     int aY=evt.getY();
-    for(int i=0; i < anchoMV; i++){
-        for ( int j=0 ; j < altoMV ; j++){
-            if (calle.celdas[i][j].celdaSeleccionada(aX,aY)){
-                if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-                    System.out.println("Boton derecho - Poner Pared");
-                    calle.celdas[i][j].tipo='M';
-                }
-                else {
-                System.out.println("Boton izquierdo - Poner Peaton");
-                calle.celdas[i][j].tipo='P';
-                }
+        for(int i=0; i < anchoMV; i++){
+            for ( int j=0 ; j < altoMV ; j++){
+               if (calle.celdas[i][j].celdaSeleccionada(aX,aY)){
+                    if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
+                        if(calle.celdas[i][j].tipo!='J'){
+                            System.out.println("Boton Izquierdo - Poner Pared");
+                            calle.celdas[i][j].tipo='M';
+                        }
+                    }
+                    else {
+                        if(calle.celdas[i][j].tipo!='J' 
+                                // && calle.celdas[i][j].celdaSeleccionada(aX,aY)== 
+                                ){
+                           System.out.println("Boton Derecho - Poner Peaton");
+                           calle.celdas[i][j].tipo='P';
+                        }
+                    }    
              /*   
             calle.celdas[i][j].celdaSeleccionada(aX,aY);                       
             calle.celdaMovimiento.x=aX/dimCelda;
             calle.celdaMovimiento.y=aY/dimCelda;
             */
-           }
+                }
+            }
         }
     }
-    /*
-calle.celdas[2][2].tipo ='J';
-*/
 }
-}
-
-/*
-
-if ( laberinto.celdas[i][j].celdaSeleccionada(evt.getX(),evt.getY()) ) {
-//Para saber si se pulso
-}
-}
-}
-}
-*/

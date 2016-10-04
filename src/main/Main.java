@@ -9,5 +9,4 @@ public class Main {
         vp.setVisible(true);
         vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
 }

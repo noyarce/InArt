@@ -1,7 +1,8 @@
-package main;
+    package main;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +21,7 @@ public BufferedImage cartero,pared,camino, peaton, portal;
 public Celda(int x,int y, char tipo) {
 this.x=x;
 this.y=y;
-/*
-rectCelda= new Rectangle (x,y,dimCelda,dimCelda);
-*/
+// rectCelda= new Rectangle (x,y,dimCelda,dimCelda);
 
 this.tipo=tipo;
 try {
@@ -49,9 +48,17 @@ catch (IOException e) {
          }
     }
 
-    public boolean celdaSeleccionada(int xp,int yp) {
-//        return rectanguloCelda.contains(new Point(xp,yp)); 
-    return true;
+    public boolean celdaSeleccionada(int xp,int yp) { 
+//    boolean x = rectCelda.contains(new Point(xp,yp));   
+//    return rectCelda.contains(new Point(xp,yp));   
+        return true;
+  /*
+  if (x==false){
+  return true;
+  }else{
+  return false;
+  }
+  */
     }
 
 }   
