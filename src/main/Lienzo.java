@@ -45,7 +45,7 @@ private void activarCelda(MouseEvent evt) {
     int aY=evt.getY();
         for(int i=0; i < anchoMV; i++){
             for ( int j=0 ; j < altoMV ; j++){
-               if (calle.celdas[i][j].celdaSeleccionada(aX,aY)){
+               if (calle.celdas[i][j].celdaSeleccionada(aX,aY)){               
                     if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
                         if(calle.celdas[i][j].tipo!='J'){
                             System.out.println("Boton Izquierdo - Poner Pared");
