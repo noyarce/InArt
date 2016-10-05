@@ -8,7 +8,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Lienzo extends Canvas implements Constantes{
-
 //para pintar el lienzo
 public Calles calle;
 public Lienzo(){
@@ -43,23 +42,23 @@ calle.paintComponent(g);
 private void activarCelda(MouseEvent evt) {
     int aX=evt.getX();
     int aY=evt.getY();
-        for(int i=0; i < anchoMV; i++){
+    /*  
+    for(int i=0; i < anchoMV; i++){
             for ( int j=0 ; j < altoMV ; j++){
                if (calle.celdas[i][j].celdaSeleccionada(aX,aY)){               
-                    if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-                        if(calle.celdas[i][j].tipo!='J'){
-                            System.out.println("Boton Izquierdo - Poner Pared");
-                            calle.celdas[i][j].tipo='M';
+      
+                    }
+            }*/
+               if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
+                        if(calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='J' && calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='X' ){
+                            System.out.println("Boton Izquierdo - Poner Obstaculo");
+                            calle.celdas[aX/dimCelda][aY/dimCelda].tipo='O';
                         }
                     }
                     else {
-                        if(calle.celdas[i][j].tipo!='J' 
-                                // && calle.celdas[i][j].celdaSeleccionada(aX,aY)== 
-                                ){
                            System.out.println("Boton Derecho - Poner Peaton");
-                           calle.celdas[i][j].tipo='P';
-                        }
-                    }    
+                           calle.celdas[aX/dimCelda][aY/dimCelda].tipo='P';
+                        }       
              /*   
             calle.celdas[i][j].celdaSeleccionada(aX,aY);                       
             calle.celdaMovimiento.x=aX/dimCelda;
@@ -67,6 +66,5 @@ private void activarCelda(MouseEvent evt) {
             */
                 }
             }
-        }
-    }
-}
+        
+    

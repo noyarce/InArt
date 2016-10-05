@@ -9,11 +9,12 @@ public interface Constantes {
     public final char CARTERO ='J';
     public final char CAMINO ='C';
     public final char PEATONES ='P';
-    public final char PARED ='M';
+    public final char CASA ='M';
     public final char PORTAL = 'X';
+    public final char OBSTACULO = 'O';
 
     public final int prt = 10;  /*portal*/
     public final int pyr = 2; /*player*/
-
+    public final int car = 6; 
 
 }

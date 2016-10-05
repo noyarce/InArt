@@ -11,6 +11,7 @@ public class Calles extends JComponent implements Constantes {
 public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
 public Celda[][] celdas;            /* define las casillas n x m */
 public Celda celdaMovimiento;      /* declarada a celda a mover */
+public Celda celdaMovimiento2;
 public Lienzo lienzo;             
 
 public Calles(Lienzo lienzo) {
@@ -23,13 +24,11 @@ celdas=new Celda[anchoMV][altoMV];
                     celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M');  
                     }
             
-                if ((j==1||j==3||j==5||j==7||j==9||j==11||j==13||j==15||j==17||j==19||j==21)
-                        ||(i==1||i==3||i==5||i==7||i==9||i==11||i==13||i==15||i==17||i==19||i==21||
-                        i==23||i==25||i==27||i==29||i==31||i==33||i==35)){
+                if ((j%2!=0 || i%2!=0)){
                     celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'A');  
                 }
-            
-                if((j==2||j==6||j==10||j==14||j==18||j==22)||(i==2|i==6||i==10||i==14||i==18||i==22||i==26||i==30||i==34)){
+            /*(j==2||j==6||j==10||j==14||j==18||j==22)||(i==2||i==6||i==10||i==14||i==18||i==22||i==26||i==30||i==34)*/
+                if((j%2==0)&&(j%4!=0)||(i%2==0)&&(i%4!=0)){
                     celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'C');
                     }
         }
@@ -39,8 +38,11 @@ celdas=new Celda[anchoMV][altoMV];
 celdas[pyr][pyr]= new Celda(pyr+(pyr*dimCelda),pyr+(pyr*dimCelda),'J');
 celdas[prt][prt]= new Celda(prt+(prt*dimCelda),prt+(prt*dimCelda),'X');
 
-celdaMovimiento=new Celda(pyr,pyr,'J');
+celdas[0][car]= new Celda(0+(0*dimCelda),car+(car*dimCelda),'T');
 
+
+celdaMovimiento=new Celda(pyr,pyr,'J');
+celdaMovimiento2=new Celda (0,car,'T');
 
 /*se preparan las imenciones y se entregan para definir los tamaños de las calles */
 this.anchoCalle =anchoMV*dimCelda;
@@ -55,33 +57,44 @@ for(int i=0; i < anchoMV; i++){
         celdas[i][j].paintComponent(g);
         }
     }
-
 }
 
+public void auto (){
+//    while(true){
+        if(celdaMovimiento2.x>anchoMV-1){
+         celdaMovimiento2.x=0;   
+        }
+        else{
+        celdas[celdaMovimiento2.x][celdaMovimiento2.y].tipo ='C';
+        celdaMovimiento2.x=celdaMovimiento2.x+1;
+        celdas[celdaMovimiento2.x][celdaMovimiento2.y].tipo='T';
+        System.out.println("Auto Avanza "+ celdaMovimiento2.x+" - "+celdaMovimiento2.y);
+        }
+    }
+//}
+
 public void moverCelda( KeyEvent evento ) {
+
 switch( evento.getKeyCode() ) {
     case 38:
+        auto();
         moverCeldaArriba();
         break;
     case 40 :
+        auto();
         moverCeldaAbajo();
         break;
     case 37:
+        auto();
         moverCeldaIzquierda();
         break;
     case 39:
+        auto();
         moverCeldaDerecha();
         break;
     }
 }
-/*
-private void ultraPaint(Graphics g){
-    int fontSize = 20;
-    g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));   
-    g.setColor(Color.white);
-    g.drawString("Portal Capturado! ", 10, 20);
-}
-*/
+
 
 private void moverCeldaArriba(){
 if(celdaMovimiento.y>0){   
@@ -109,9 +122,9 @@ if(celdaMovimiento.y>0){
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo ='C';
         celdaMovimiento.y=celdaMovimiento.y-1;
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
-        System.out.println("Mover Arriba: "+ celdaMovimiento.y+" - "+celdaMovimiento.x + " Portal Capturado! ");
+        System.out.println("Mover Arriba: "+ celdaMovimiento.y+" - "+celdaMovimiento.x + " Carteron en Portal ");
         
-        JOptionPane.showMessageDialog(null,"Portal Capturado!");
+        JOptionPane.showMessageDialog(null,"Carteron en Portal ");
         
         break;
     }
@@ -123,7 +136,12 @@ if(celdaMovimiento.y>0){
        System.out.println("Choque! No se puede mover mas hacia Arriba");
        break;
     }
-}
+    case ('T'):{
+       System.out.println("Atropello! No se puede mover mas hacia Arriba");
+       break;
+    }
+
+    }
 }
 }
 private void moverCeldaAbajo(){
@@ -142,8 +160,9 @@ private void moverCeldaAbajo(){
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
         celdaMovimiento.y=celdaMovimiento.y+1;
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
-        System.out.println("Mover Abajo: " +celdaMovimiento.y+" - "+celdaMovimiento.x+ " Portal Capturado! ");
-        JOptionPane.showMessageDialog(null,"Portal Capturado!");
+        System.out.println("Mover Abajo: " +celdaMovimiento.y+" - "+celdaMovimiento.x+ " Carteron en Portal  ");
+        
+        JOptionPane.showMessageDialog(null," Carteron en Portal");
         break;
         }
     case('P'):{
@@ -164,7 +183,11 @@ private void moverCeldaAbajo(){
     */    
         System.out.println("Choque! No se puede mover mas hacia Abajo!");
         }
-    
+        case ('T'):{
+       System.out.println("Atropello! No se puede mover mas hacia Abajo");
+       break;
+    }
+
     
     }
 }
@@ -184,8 +207,9 @@ private void moverCeldaIzquierda(){
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
         celdaMovimiento.x=celdaMovimiento.x-1;
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
-        System.out.println("Mover Izquierda: "+celdaMovimiento.y+" - "+celdaMovimiento.x+ " Portal Capturado! ");
-        JOptionPane.showMessageDialog(null,"Portal Capturado!");
+        System.out.println("Mover Izquierda: "+celdaMovimiento.y+" - "+celdaMovimiento.x+ " Carteron en Portal ");
+        
+        JOptionPane.showMessageDialog(null,"Carteron en Portal");
      break;   
     }
     case ('M'):{
@@ -205,6 +229,11 @@ private void moverCeldaIzquierda(){
         System.out.println("Choque! No se puede mover mas a la Izquierda!");
         break;
         }
+        case ('T'):{
+       System.out.println("Atropello! No se puede mover mas hacia a la Izquierda");
+       break;
+    }
+
     }
 }
 }
@@ -223,8 +252,8 @@ switch (op){
         celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
        celdaMovimiento.x=celdaMovimiento.x+1;
        celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
-       System.out.println("Mover Derecha: "+celdaMovimiento.y+" - "+celdaMovimiento.x + " Portal Capturado! ");
-       JOptionPane.showMessageDialog(null,"Portal Capturado!");
+       System.out.println("Mover Derecha: "+celdaMovimiento.y+" - "+celdaMovimiento.x + " Carteron en Portal ");
+       JOptionPane.showMessageDialog(null,"Cartero en Portal ");
     break;
     }
     case ('M'):{
@@ -244,6 +273,11 @@ switch (op){
     System.out.println("Choque! No se puede mover mas a la Derecha!");
     break;
     }
+    case ('T'):{
+       System.out.println("Atropello! No se puede mover mas hacia la Derecha");
+       break;
+    }
+
     }
 }
 }
