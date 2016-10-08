@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Random;
+
 public interface Constantes {
 /**/
     public final int dimCelda = 32;
@@ -17,4 +19,9 @@ public interface Constantes {
     public final int pyr = 2; /*player*/
     public final int car = 6; 
 
+default int numeroAleatorio(int minimo, int maximo) {
+Random random = new Random();
+int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;
+return numero_aleatorio;  
+}
 }

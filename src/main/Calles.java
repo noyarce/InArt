@@ -12,9 +12,11 @@ public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
 public Celda[][] celdas;            /* define las casillas n x m */
 public Celda celdaMovimiento;      /* declarada a celda a mover */
 public Celda celdaMovimiento2;
-public Lienzo lienzo;             
+public Lienzo lienzoPadre;             
 
-public Calles(Lienzo lienzo) {
+public Calles(Lienzo lienzoPadre) {
+    this.lienzoPadre=lienzoPadre;
+
 celdas=new Celda[anchoMV][altoMV];
 
     for(int i=0; i < anchoMV; i++){
@@ -27,7 +29,6 @@ celdas=new Celda[anchoMV][altoMV];
                 if ((j%2!=0 || i%2!=0)){
                     celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'A');  
                 }
-            /*(j==2||j==6||j==10||j==14||j==18||j==22)||(i==2||i==6||i==10||i==14||i==18||i==22||i==26||i==30||i==34)*/
                 if((j%2==0)&&(j%4!=0)||(i%2==0)&&(i%4!=0)){
                     celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'C');
                     }
@@ -50,50 +51,39 @@ this.altoCalle =altoMV*dimCelda;
 this.setSize(anchoCalle,altoCalle);
 
 }
+
 @Override
 public void paintComponent(Graphics g) {
-for(int i=0; i < anchoMV; i++){
+update(g);
+}
+@Override
+public void update(Graphics g){
+    for(int i=0; i < anchoMV; i++){
     for ( int j=0 ; j < altoMV; j++){
         celdas[i][j].paintComponent(g);
         }
     }
 }
 
-public void auto (){
-//    while(true){
-        if(celdaMovimiento2.x>anchoMV-1){
-         celdaMovimiento2.x=0;   
-        }
-        else{
-        celdas[celdaMovimiento2.x][celdaMovimiento2.y].tipo ='C';
-        celdaMovimiento2.x=celdaMovimiento2.x+1;
-        celdas[celdaMovimiento2.x][celdaMovimiento2.y].tipo='T';
-        System.out.println("Auto Avanza "+ celdaMovimiento2.x+" - "+celdaMovimiento2.y);
+public void moverCelda( KeyEvent evento ) {
+//while (true){
+//    auto();
+        switch( evento.getKeyCode() ) {
+            case 38:   
+                moverCeldaArriba();
+                break;
+            case 40 :
+                moverCeldaAbajo();
+                break;
+            case 37:
+                moverCeldaIzquierda();
+                break;
+            case 39:
+                moverCeldaDerecha();
+                break;
         }
     }
 //}
-
-public void moverCelda( KeyEvent evento ) {
-
-switch( evento.getKeyCode() ) {
-    case 38:
-        auto();
-        moverCeldaArriba();
-        break;
-    case 40 :
-        auto();
-        moverCeldaAbajo();
-        break;
-    case 37:
-        auto();
-        moverCeldaIzquierda();
-        break;
-    case 39:
-        auto();
-        moverCeldaDerecha();
-        break;
-    }
-}
 
 
 private void moverCeldaArriba(){
@@ -264,14 +254,21 @@ switch (op){
         System.out.println("Choque! No se puede mover mas a la Derecha!");
         break;
     }
-     case('A'):{
-  /* celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
-       celdaMovimiento.x=celdaMovimiento.x+1;
-       celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
-       System.out.println("Mover Derecha: "+celdaMovimiento.y+" - "+celdaMovimiento.x);    
-*/    
-    System.out.println("Choque! No se puede mover mas a la Derecha!");
-    break;
+     case('A'):{/*
+         if(celdas[celdaMovimiento.x-1][celdaMovimiento.y].tipo=='C'){
+            celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='C';
+            celdaMovimiento.x=celdaMovimiento.x+1;
+            celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+         }
+         else{
+            celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='A';
+            celdaMovimiento.x=celdaMovimiento.x+1;
+            celdas[celdaMovimiento.x][celdaMovimiento.y].tipo='J';
+            }
+            System.out.println("Mover Derecha: "+celdaMovimiento.y+" - "+celdaMovimiento.x);    
+*/
+        System.out.println("Choque! No se puede mover mas a la Derecha!");
+        break;
     }
     case ('T'):{
        System.out.println("Atropello! No se puede mover mas hacia la Derecha");

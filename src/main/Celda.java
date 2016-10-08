@@ -1,8 +1,7 @@
     package main;
 
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +41,7 @@ catch (IOException e) {
 }
 /**/
 @Override
-    public void paintComponent(Graphics g) {
+    public void update(Graphics g) {
     switch(tipo) {
         case 'T': g.drawImage(automovil,x,y, null); break;
         case 'O': g.drawImage(obstaculo,x,y, null); break;
@@ -52,21 +51,12 @@ catch (IOException e) {
         case 'M': g.drawImage(casa,x,y, this); break;
         case 'X': g.drawImage(portal,x,y, this); break;
         case 'A': g.drawImage(acera,x,y, this); break;
-         
-    }
-    }
-
-    public boolean celdaSeleccionada(int xp,int yp) { 
-//    boolean x = rectCelda.contains(new Point(xp,yp));   
-//    return rectCelda.contains(new Point(xp,yp));   
-        return true;
-  /*
-  if (x==false){
-  return true;
-  }else{
-  return false;
-  }
-  */
+        }
     }
 
-}   
+    @Override
+    public void paintComponent (Graphics g){
+        update (g);
+        }
+    }
+
