@@ -8,8 +8,8 @@ public Calles calle;
 public Celda automovil;
 public Automovil(Calles calle) {
     this.calle=calle;
-    automovil=new Celda(anchoMV-1,numeroAleatorio(0,altoMV-1),'C');
-    calle.celdas[automovil.x][automovil.y].tipo='C';
+    automovil=new Celda(0,car,'T');   
+    calle.celdas[automovil.x][automovil.y].tipo='T';
 }
 public void moverAutomovil(){
 if (automovil.x > 0 ) {
@@ -29,10 +29,18 @@ if (automovil.x > 0 ) {
     automovil.x=automovil.x-1;
     calle.celdas[automovil.x][automovil.y].tipo='T';
     }
-else{
+else{   
+    boolean flag = false;
+    int y = 0;
+    while (flag == false){
+        y = numeroAleatorio(0,altoMV-1);
+            if ((y%2==0)&&(y%4!=0)){
+                flag = true;
+            }
+    }
     calle.celdas[automovil.x][automovil.y].tipo='C';
     automovil.x=anchoMV-1;
-    automovil.y=numeroAleatorio(0,altoMV-1);
+    automovil.y=y;
     calle.celdas[automovil.x][automovil.y].tipo='T';
     }
 }

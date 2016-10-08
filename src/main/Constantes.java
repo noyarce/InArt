@@ -24,4 +24,14 @@ Random random = new Random();
 int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;
 return numero_aleatorio;  
 }
+/*
+ boolean flag = false;
+    int y = 0;
+    while (flag == false){
+        y = numeroAleatorio(0,altoMV-1);
+            if ((y%2==0)&&(y%4!=0)){
+                flag = true;
+            }
+*/
+
 }

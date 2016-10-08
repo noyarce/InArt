@@ -6,7 +6,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.Timer;
+import java.util.Timer;
 import java.util.*;
 
 public class Lienzo extends Canvas implements Constantes{
@@ -21,12 +21,11 @@ public Lienzo(){
     auto2=new Automovil(calle);
     this.setSize(calle.anchoCalle, calle.altoCalle);
 
-//    Timer temporizador = new Timer(); 
-           
-//    temporizador.scheduleAtFixedRate( auto , 0 , 1000);
-//    temporizador.scheduleAtFixedRate( auto2 ,0 , 500);
-    
-    
+    temporizador = new Timer(); 
+    temporizador.scheduleAtFixedRate( auto , 0 , 500);
+    temporizador.scheduleAtFixedRate( auto2 ,0 , 500);
+
+        
 
 addMouseListener(new MouseAdapter() {
 @Override

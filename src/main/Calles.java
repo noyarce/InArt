@@ -39,11 +39,9 @@ celdas=new Celda[anchoMV][altoMV];
 celdas[pyr][pyr]= new Celda(pyr+(pyr*dimCelda),pyr+(pyr*dimCelda),'J');
 celdas[prt][prt]= new Celda(prt+(prt*dimCelda),prt+(prt*dimCelda),'X');
 
-celdas[0][car]= new Celda(0+(0*dimCelda),car+(car*dimCelda),'T');
 
 
 celdaMovimiento=new Celda(pyr,pyr,'J');
-celdaMovimiento2=new Celda (0,car,'T');
 
 /*se preparan las imenciones y se entregan para definir los tamaños de las calles */
 this.anchoCalle =anchoMV*dimCelda;
