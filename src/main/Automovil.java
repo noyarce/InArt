@@ -1,4 +1,3 @@
-
 package main;
 
 import java.util.TimerTask;
@@ -6,11 +5,13 @@ import java.util.TimerTask;
 public class Automovil extends TimerTask implements Constantes{
 public Calles calle;
 public Celda automovil;
+
 public Automovil(Calles calle) {
     this.calle=calle;
     automovil=new Celda(0,car,'T');   
     calle.celdas[automovil.x][automovil.y].tipo='T';
 }
+
 public void moverAutomovil(){
 if (automovil.x > 0 ) {
     /*
@@ -51,3 +52,13 @@ public void run() {
     calle.lienzoPadre.repaint();
     }
 }
+/*
+if
+((y%2==0)&&(y%4!=0))&& ((x%2==0)&&(x%4!=0))
+mov= random (1-4) 
+switch (mov)
+case 1 :
+case 2 : 
+case 3 : 
+case 4 :
+*/

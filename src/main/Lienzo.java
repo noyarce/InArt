@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
-import java.util.*;
 
 public class Lienzo extends Canvas implements Constantes{
 
@@ -29,22 +28,19 @@ public Lienzo(){
 
 addMouseListener(new MouseAdapter() {
 @Override
-
-public void mouseClicked(MouseEvent evt) {
-activarCelda(evt);
-repaint();
-}
+    public void mouseClicked(MouseEvent evt) {
+        activarCelda(evt);
+        repaint();
+        }
 });
 
 addKeyListener(new java.awt.event.KeyAdapter() {
 @Override
-public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         calle.moverCelda(e);
         repaint();
         }
-    });
-
-
+});
 
 }
 
@@ -53,6 +49,7 @@ public void update(Graphics g) {
 calle.paintComponent(g);
 }
 
+@Override
 public void paint(Graphics g) {
 update(g);
 }

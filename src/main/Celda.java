@@ -20,7 +20,6 @@ public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, autom
 public Celda(int x,int y, char tipo) {
 this.x=x;
 this.y=y;
-// rectCelda= new Rectangle (x,y,dimCelda,dimCelda);
 
 this.tipo=tipo;
 try {
