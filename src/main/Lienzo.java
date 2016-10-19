@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.Timer;
 
 public class Lienzo extends Canvas implements Constantes{
-
+public Cartero cartero;
 public Calles calle;
 public Automovil auto, auto2;
 public Timer temporizador;
@@ -18,6 +18,9 @@ public Lienzo(){
     calle =new Calles(this);
     auto=new Automovil(calle);
     auto2=new Automovil(calle);
+
+    cartero=new Cartero(calle);
+    
     this.setSize(calle.anchoCalle, calle.altoCalle);
 
     temporizador = new Timer(); 
@@ -37,7 +40,7 @@ addMouseListener(new MouseAdapter() {
 addKeyListener(new java.awt.event.KeyAdapter() {
 @Override
     public void keyPressed(KeyEvent e) {
-        calle.moverCelda(e);
+        cartero.moverCartero(e);
         repaint();
         }
 });

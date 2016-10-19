@@ -72,6 +72,7 @@ public void moverAutoDwn(){
 @Override
 public void run() {
     int direccion;
+    
     direccion=numeroAleatorio(1,4);
     switch (direccion){
         case 1:  moverAutoIzq(); break;
