@@ -11,28 +11,30 @@ import java.util.Timer;
 public class Lienzo extends Canvas implements Constantes{
 public Cartero cartero;
 public Calles calle;
+public Peaton peaton;
 public Automovil auto, auto2;
 public Timer temporizador;
 
 public Lienzo(){
+    
     calle =new Calles(this);
     auto=new Automovil(calle);
     auto2=new Automovil(calle);
-
+    peaton = new Peaton(calle);
     cartero=new Cartero(calle);
     
     this.setSize(calle.anchoCalle, calle.altoCalle);
 
     temporizador = new Timer(); 
+    
     temporizador.scheduleAtFixedRate( auto , 0 , 400);
     temporizador.scheduleAtFixedRate( auto2 ,0 , 300);
-
+    temporizador.scheduleAtFixedRate( peaton , 0 ,900);
         
-
 addMouseListener(new MouseAdapter() {
 @Override
     public void mouseClicked(MouseEvent evt) {
-        activarCelda(evt);
+        agregarObstaculo(evt);
         repaint();
         }
 });
@@ -56,7 +58,7 @@ calle.paintComponent(g);
 public void paint(Graphics g) {
 update(g);
 }
- private void activarCelda(MouseEvent evt) {
+ private void agregarObstaculo(MouseEvent evt) {
     int aX=evt.getX();
     int aY=evt.getY();
     if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
