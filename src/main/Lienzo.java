@@ -21,8 +21,8 @@ public Lienzo(){
     this.setSize(calle.anchoCalle, calle.altoCalle);
 
     temporizador = new Timer(); 
-    temporizador.scheduleAtFixedRate( auto , 0 , 500);
-    temporizador.scheduleAtFixedRate( auto2 ,0 , 500);
+    temporizador.scheduleAtFixedRate( auto , 0 , 400);
+    temporizador.scheduleAtFixedRate( auto2 ,0 , 300);
 
         
 
@@ -57,9 +57,12 @@ update(g);
     int aX=evt.getX();
     int aY=evt.getY();
     if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-        if(calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='J' && calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='X' ){
-            System.out.println("Boton Izquierdo - Poner Obstaculo");
-            calle.celdas[aX/dimCelda][aY/dimCelda].tipo='O';
+        if(calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='J'
+           && calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='X' 
+           && calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='T' 
+           &&calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='M' ){
+                            System.out.println("Boton Izquierdo - Poner Obstaculo");
+                             calle.celdas[aX/dimCelda][aY/dimCelda].tipo='O';
             }
         }
     else {

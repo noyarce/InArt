@@ -36,12 +36,12 @@ celdas=new Celda[anchoMV][altoMV];
     }
 
     /* iniciacion de celdas especiales Jugador y Portal */
-celdas[pyr][pyr]= new Celda(pyr+(pyr*dimCelda),pyr+(pyr*dimCelda),'J');
-celdas[prt][prt]= new Celda(prt+(prt*dimCelda),prt+(prt*dimCelda),'X');
+celdas[pyr_x][pyr_y]= new Celda(pyr_x+(pyr_x*dimCelda),pyr_y+(pyr_y*dimCelda),'J');
+celdas[prt_x][prt_y]= new Celda(prt_x+(prt_x*dimCelda),prt_y+(prt_y*dimCelda),'X');
 
 
 
-celdaMovimiento=new Celda(pyr,pyr,'J');
+celdaMovimiento=new Celda(pyr_x,pyr_y,'J');
 
 /*se preparan las imenciones y se entregan para definir los tamaños de las calles */
 this.anchoCalle =anchoMV*dimCelda;
