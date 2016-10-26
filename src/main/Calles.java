@@ -19,21 +19,23 @@ public Calles(Lienzo lienzoPadre) {
 
 celdas=new Celda[anchoMV][altoMV];
 
-    for(int i=0; i < anchoMV; i++){
+for(int i=0; i < anchoMV; i++){
         for ( int j=0 ; j < altoMV ; j++){
             celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M');
-                if ((j==0 || i ==0 || i == anchoMV-1 || j == altoMV-1)){
-                    celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M');  
-                    }
-            
-                if ((j%2!=0 || i%2!=0)){
-                    celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'A');  
-                }
-                if((j%2==0)&&(j%4!=0)||(i%2==0)&&(i%4!=0)){
-                    celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'C');
-                    }
+        }
+}
+
+for(int i=0; i < anchoMV; i++){
+        for ( int j=0 ; j < altoMV ; j++){       
+            if (((j%2==0)&&(j%6!=0))||((i%2==0)&&(i%6!=0))){
+                celdas[i][j].tipo= 'A';  
+            }
+            if(((j%3==0)&&(j%6!=0))||((i%3==0)&&(i%6!=0))){
+                celdas[i][j].tipo= 'C';
+            }
         }
     }
+   celdas[0][6].tipo= 'M';
 
     /* iniciacion de celdas especiales Jugador y Portal */
 celdas[pyr_x][pyr_y]= new Celda(pyr_x+(pyr_x*dimCelda),pyr_y+(pyr_y*dimCelda),'J');

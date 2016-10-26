@@ -9,11 +9,12 @@ public Celda peaton;
 
     public Peaton(Calles calle){
         this.calle=calle;
-        int ptn_x= numeroAleatorio(0,altoMV);
-        int ptn_y= numeroAleatorio(0,anchoMV);
+        int ptn_x= randomPeaton();
+        int ptn_y= randomPeaton();
     peaton=new Celda(ptn_x, ptn_y,'P');   
     calle.celdas[peaton.x][peaton.y].tipo='P';
     }
+    
 @Override
     public void run() {
     }
