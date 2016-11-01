@@ -13,13 +13,18 @@ public class Celda extends JComponent implements Constantes {
 public int x;
 public int y;
 
+public int i;
+public int j;
+
 public boolean rectCelda;
 public char tipo;
-public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil;
+public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil, zebra;
 
-public Celda(int x,int y, char tipo) {
+public Celda(int x,int y, int i, int j,char tipo) {
 this.x=x;
 this.y=y;
+this.i=i;
+this.j=j;
 
 this.tipo=tipo;
 try {
@@ -31,7 +36,7 @@ try {
     portal   = ImageIO.read(new File("src/imagenes/portalx.png"));
     peaton   = ImageIO.read(new File("src/imagenes/peaton.png"));
     acera   = ImageIO.read(new File("src/imagenes/acera.png"));
-
+    zebra   = ImageIO.read(new File("src/imagenes/paso peatonal.png"));
     }
 catch (IOException e) {
     System.out.println(e.toString());
@@ -50,6 +55,7 @@ catch (IOException e) {
         case 'M': g.drawImage(casa,x,y, this); break;
         case 'X': g.drawImage(portal,x,y, this); break;
         case 'A': g.drawImage(acera,x,y, this); break;
+        case 'Z': g.drawImage(zebra,x,y, this); break;
         }
     }
 
@@ -57,5 +63,6 @@ catch (IOException e) {
     public void paintComponent (Graphics g){
         update (g);
         }
-    }
+    
+}
 

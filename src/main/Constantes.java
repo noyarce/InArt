@@ -14,6 +14,7 @@ public interface Constantes {
     public final char CASA ='M';
     public final char PORTAL = 'X';
     public final char OBSTACULO = 'O';
+    public final char ZEBRA = 'Z';
 
     public final int prt_x = 31;  /*portal horizontal*/
     public final int prt_y = 20; /* portal vertical */
