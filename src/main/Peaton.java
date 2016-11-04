@@ -16,31 +16,68 @@ public Celda peaton;
     }
     
 public void moverPeatonIzq(){
-            if (peaton.x > 0 && (calle.celdas[peaton.x-1][peaton.y].tipo=='A'||calle.celdas[peaton.x-1][peaton.y].tipo=='Z')) {
-                if ((peaton.x%3==0)&&(peaton.x%6!=0)){
-                    calle.celdas[peaton.x][peaton.y].tipo='Z';
+            if (peaton.x > 0 ){
+                if (calle.celdas[peaton.x-1][peaton.y].tipo=='A'||
+                    calle.celdas[peaton.x-1][peaton.y].tipo=='Z') {
+                    if ((peaton.x%3==0)&&(peaton.x%6!=0)){
+                        calle.celdas[peaton.x][peaton.y].tipo='Z';
+                    }
+                    else{
+                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
+                    }
+                peaton.x=peaton.x-1;
+                peaton.i=peaton.x;    
+                peaton.j=peaton.y;
+                calle.celdas[peaton.x][peaton.y].tipo='P';
                 }
-                else{
-                   calle.celdas[peaton.x][peaton.y].tipo='A'; 
-                }
-            peaton.x=peaton.x-1;
-            calle.celdas[peaton.x][peaton.y].tipo='P';
             }
+            else{
+                if ((peaton.x%3==0)&&(peaton.x%6!=0)){
+                        calle.celdas[peaton.x][peaton.y].tipo='Z';
+                    }
+                    else{
+                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
+                    }
+                
+                peaton.x=anchoMV-1;
+                    peaton.i=peaton.x;    
+                    peaton.j=peaton.y;
+                    calle.celdas[peaton.x][peaton.y].tipo='P';
+                }
 }
 public void moverPeatonDer(){
-         if (peaton.x > anchoMV-1 && (calle.celdas[peaton.x+1][peaton.y].tipo=='A'||calle.celdas[peaton.x+1][peaton.y].tipo=='Z')) {
+    if (peaton.x < anchoMV-1 ){
+                if (calle.celdas[peaton.x+1][peaton.y].tipo=='A'||
+                    calle.celdas[peaton.x+1][peaton.y].tipo=='Z') {
+                    if ((peaton.x%3==0)&&(peaton.x%6!=0)){
+                        calle.celdas[peaton.x][peaton.y].tipo='Z';
+                    }
+                    else{
+                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
+                    }
+                peaton.x=peaton.x+1;
+                peaton.i=peaton.x;    
+                peaton.j=peaton.y;
+                calle.celdas[peaton.x][peaton.y].tipo='P';
+                }
+            }
+            else{
                 if ((peaton.x%3==0)&&(peaton.x%6!=0)){
                     calle.celdas[peaton.x][peaton.y].tipo='Z';
-                }
-                else{
-                   calle.celdas[peaton.x][peaton.y].tipo='A';
-                }
-            peaton.x=peaton.x+1;
-            calle.celdas[peaton.x][peaton.y].tipo='P';
-            }    
+                    }
+                    else{
+                    calle.celdas[peaton.x][peaton.y].tipo='A'; 
+                }        
+                peaton.x=0;
+                peaton.i=peaton.x;    
+                peaton.j=peaton.y;
+                calle.celdas[peaton.x][peaton.y].tipo='P';
+                }    
 }
 public void moverPeatonUp(){
-           if (peaton.y > 0 && (calle.celdas[peaton.x][peaton.y-1].tipo=='A'||calle.celdas[peaton.x][peaton.y-1].tipo=='Z')) {
+           if (peaton.y > 0){
+               if(calle.celdas[peaton.x][peaton.y-1].tipo=='A'||
+                calle.celdas[peaton.x][peaton.y-1].tipo=='Z') {
                 if ((peaton.y%3==0)&&(peaton.y%6!=0)){
                     calle.celdas[peaton.x][peaton.y].tipo='Z';
                 }
@@ -50,18 +87,48 @@ public void moverPeatonUp(){
                 peaton.y=peaton.y-1;
                 calle.celdas[peaton.x][peaton.y].tipo='P';
             }
+           }
+           else{
+              if ((peaton.y%3==0)&&(peaton.y%6!=0)){
+                        calle.celdas[peaton.x][peaton.y].tipo='Z';
+                    }
+                    else{
+                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
+                    }
+                peaton.y=altoMV-1;
+                    peaton.i=peaton.x;    
+                    peaton.j=peaton.y;
+                 calle.celdas[peaton.x][peaton.y].tipo='P';
+                }
 }
 public void moverPeatonDwn(){
-            if (peaton.y > altoMV-1 && (calle.celdas[peaton.x][peaton.y+1].tipo=='A'||calle.celdas[peaton.x][peaton.y+1].tipo=='Z')) {
-                if ((peaton.y%3==0)&&(peaton.y%6!=0)){
-                    calle.celdas[peaton.x][peaton.y].tipo='Z';
-                }
-                else{
-                   calle.celdas[peaton.x][peaton.y].tipo='A';
-                }
-            peaton.y=peaton.y+1;
-            calle.celdas[peaton.x][peaton.y].tipo='P';    
-            } 
+            if (peaton.y != altoMV-1){
+                    if(calle.celdas[peaton.x][peaton.y+1].tipo=='A'||
+                       calle.celdas[peaton.x][peaton.y+1].tipo=='Z') {
+                            if ((peaton.y%3==0)&&(peaton.y%6!=0)){
+                                calle.celdas[peaton.x][peaton.y].tipo='Z';
+                            }
+                            else{
+                            calle.celdas[peaton.x][peaton.y].tipo='A';
+                            }
+                    peaton.y=peaton.y+1;
+                    calle.celdas[peaton.x][peaton.y].tipo='P';    
+                    }
+            }
+            else{
+                 if ((peaton.y%3!=0)&&(peaton.y%6==0)){
+                        calle.celdas[peaton.x][peaton.y].tipo='Z';
+                    }
+                    else{
+                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
+                    }                    
+                    calle.celdas[peaton.x][peaton.y].tipo='A';
+                    peaton.x=randomPeaton();
+                    peaton.y=0;
+                    peaton.i=peaton.x;    
+                    peaton.j=peaton.y;
+                    calle.celdas[peaton.x][peaton.y].tipo='P';
+                }            
 }
 
 @Override

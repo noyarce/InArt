@@ -5,7 +5,7 @@ import java.util.Random;
 public interface Constantes {
 /**/
     public final int dimCelda = 32;
-    public final int anchoMV = 35;
+    public final int anchoMV = 34;
     public final int altoMV = 21;
     
     public final char CARTERO ='J';
@@ -39,11 +39,11 @@ boolean flag = false;
 return y;
 }
 
-default int randomInit(){
+default int randomAuto(){
         boolean flag = false;
         int y = 0;
         while (flag == false){
-        y = numeroAleatorio(0,altoMV-1);
+        y = numeroAleatorio(0,anchoMV-1);
             if ((y%3==0)&&(y%6!=0)){
                 flag = true;
             }

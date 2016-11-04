@@ -42,30 +42,7 @@ for(int i=0; i < anchoMV; i++){
             }
         }
     }
-   celdas[0][6].tipo= 'M';
-/*
-   celdas[3][2].tipo= 'Z';
-   celdas[3][4].tipo= 'Z';
-   celdas[3][8].tipo= 'Z';
-   celdas[3][10].tipo= 'Z';
-   celdas[3][14].tipo= 'Z';
-   celdas[3][16].tipo= 'Z';
 
-    celdas[9][2].tipo= 'Z';
-   celdas[9][4].tipo= 'Z';
-   celdas[9][8].tipo= 'Z';
-   celdas[9][10].tipo= 'Z';
-   celdas[9][14].tipo= 'Z';
-   celdas[9][16].tipo= 'Z';
-
-   celdas[15][2].tipo= 'Z';
-   celdas[15][4].tipo= 'Z';
-   celdas[15][8].tipo= 'Z';
-   celdas[15][10].tipo= 'Z';
-   celdas[15][14].tipo= 'Z';
-   celdas[15][16].tipo= 'Z';
-*/
-   
     /* iniciacion de celdas especiales Jugador y Portal */
 celdas[pyr_x][pyr_y].tipo= 'J';
 celdas[prt_x][prt_y].tipo= 'X';
