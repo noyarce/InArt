@@ -10,7 +10,7 @@ public Celda automovil;
 
 public Automovil(Calles calle) {
     this.calle=calle;
-    automovil=new Celda(0,car,0,0,'T');   
+    automovil=new Celda(27,altoMV-1,0,0,'T');   
     calle.celdas[automovil.x][automovil.y].tipo='T';
 }
 
@@ -37,8 +37,7 @@ public void moverAutoIzq(){
                 else{
                     calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
-                automovil.x=randomAuto();
-//              automovil.x=anchoMV-1;
+                automovil.x = anchoMV-1;
                 automovil.i=automovil.x;    
                 automovil.j=automovil.y;
                 calle.celdas[automovil.x][automovil.y].tipo='T';
@@ -54,7 +53,7 @@ public void moverAutoDer(){
                     else{
                         calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
-                automovil.x=automovil.x+1;
+                automovil.x=anchoMV-1;
                 automovil.i=automovil.x;    
                 automovil.j=automovil.y;
                 calle.celdas[automovil.x][automovil.y].tipo='T';

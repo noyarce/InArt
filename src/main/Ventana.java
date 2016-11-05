@@ -3,7 +3,6 @@ package main;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
-/**/
 public class Ventana extends JFrame {
 public Lienzo lienzo;
 

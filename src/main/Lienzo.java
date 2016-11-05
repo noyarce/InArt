@@ -28,8 +28,8 @@ public Lienzo(){
     temporizador = new Timer(); 
     
     
-  temporizador.scheduleAtFixedRate( auto , 0 , 400);
-//    temporizador.scheduleAtFixedRate( auto2 ,0 , 300);
+  temporizador.scheduleAtFixedRate( auto , 0 , 200);
+  temporizador.scheduleAtFixedRate( auto2 ,0 , 300);
        
     temporizador.scheduleAtFixedRate( peaton , 0 ,800);
        

@@ -18,7 +18,7 @@ public int j;
 
 public boolean rectCelda;
 public char tipo;
-public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil, zebra;
+public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil, cebra;
 
 public Celda(int x,int y, int i, int j,char tipo) {
 this.x=x;
@@ -36,7 +36,7 @@ try {
     portal   = ImageIO.read(new File("src/imagenes/portalx.png"));
     peaton   = ImageIO.read(new File("src/imagenes/peaton.png"));
     acera   = ImageIO.read(new File("src/imagenes/acera.png"));
-    zebra   = ImageIO.read(new File("src/imagenes/paso peatonal.png"));
+    cebra   = ImageIO.read(new File("src/imagenes/paso peatonal.png"));
     }
 catch (IOException e) {
     System.out.println(e.toString());
@@ -55,7 +55,7 @@ catch (IOException e) {
         case 'M': g.drawImage(casa,x,y, this); break;
         case 'X': g.drawImage(portal,x,y, this); break;
         case 'A': g.drawImage(acera,x,y, this); break;
-        case 'Z': g.drawImage(zebra,x,y, this); break;
+        case 'Z': g.drawImage(cebra,x,y, this); break;
         }
     }
 

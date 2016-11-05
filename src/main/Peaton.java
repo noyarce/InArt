@@ -122,7 +122,6 @@ public void moverPeatonDwn(){
                     else{
                         calle.celdas[peaton.x][peaton.y].tipo='A'; 
                     }                    
-                    calle.celdas[peaton.x][peaton.y].tipo='A';
                     peaton.x=randomPeaton();
                     peaton.y=0;
                     peaton.i=peaton.x;    

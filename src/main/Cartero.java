@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class Cartero extends TimerTask implements Constantes {
     public Calles calle;
-public Celda cartero;
+    public Celda cartero;
 
 public Cartero(Calles calle) {
     this.calle=calle;
@@ -53,13 +53,17 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         
     }
     case('Z'): {
-        calle.celdas[cartero.x][cartero.y].tipo ='A';
-        cartero.y=cartero.y-1;
-        calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
-   
-        break;
-    }   
+        if(vieneAuto(calle,cartero)==false){
+            calle.celdas[cartero.x][cartero.y].tipo ='A';
+            cartero.y=cartero.y-1;
+            calle.celdas[cartero.x][cartero.y].tipo='J';
+            System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
+            break;
+        }
+        else{
+            break;
+        }
+    }
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
@@ -79,7 +83,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
        break;
     }
     case ('T'):{
-       System.out.println("Atropello! No se puede mover mas hacia Arriba");
        break;
     }
     }
@@ -125,30 +128,27 @@ private void moverCrtAbajo(){
         
     }
     case('Z'): {
-        calle.celdas[cartero.x][cartero.y].tipo ='A';
-        cartero.y=cartero.y+1;
-        calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
-   
-        break;
+         if(vieneAuto(calle,cartero)==false){
+            calle.celdas[cartero.x][cartero.y].tipo ='A';
+            cartero.y=cartero.y+1;
+            calle.celdas[cartero.x][cartero.y].tipo='J';
+            System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);   
+            break;
+         }
+         else{
+            break;
+         }
     }  
-        case ('T'):{
-       System.out.println("Atropello! No se puede mover mas hacia Abajo");
+    case ('T'):{
        break;
-    }
-
-    
-    }
-}
+     }  
+   }
+ }
 }
 private void moverCrtIzquierda(){
  if(cartero.x>0){
     char op = calle.celdas[cartero.x-1][cartero.y].tipo ;
     switch (op){      
-    case ('C'): {
-       
-        break;
-    }
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;
@@ -176,20 +176,23 @@ private void moverCrtIzquierda(){
                 
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
+        System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
     break;
         
     }
     case('Z'): {
-        calle.celdas[cartero.x][cartero.y].tipo ='A';
-        cartero.x=cartero.x-1;
-        calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
-   
-        break;
+        if(vieneAuto(calle,cartero)==false){
+            calle.celdas[cartero.x][cartero.y].tipo ='A';
+            cartero.x=cartero.x-1;
+            calle.celdas[cartero.x][cartero.y].tipo='J';
+            System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
+            break;
+        }
+        else{
+            break;
+        }
     }  
         case ('T'):{
-       System.out.println("Atropello! No se puede mover mas hacia a la Izquierda");
        break;
     }
 
@@ -225,35 +228,41 @@ private void moverCrtDerecha(){
                 }   
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-            System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
+            System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
             break;
             }
         case('Z'): {
-            calle.celdas[cartero.x][cartero.y].tipo ='A';
-            cartero.x=cartero.x+1;
-            calle.celdas[cartero.x][cartero.y].tipo='J';
-            System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
-            break;
-            }  
+            if(vieneAuto(calle,cartero)==false){
+                calle.celdas[cartero.x][cartero.y].tipo ='A';
+                cartero.x=cartero.x+1;
+                calle.celdas[cartero.x][cartero.y].tipo='J';
+                System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
+                break;
+            }
+            else{
+                break;
+            }
+        }
         case ('T'):{
-            System.out.println("Atropello! No se puede mover mas hacia la Derecha");
             break;
             }
         }
     }
 }
-   
+
 
 private boolean vieneAuto(Calles calle , Celda cartero){
-        return !(calle.celdas[cartero.x][cartero.y-1].tipo!= 'T'||
-                calle.celdas[cartero.x][cartero.y-2].tipo!='T'||
-                calle.celdas[cartero.x][cartero.y+1].tipo!='T'||
-                calle.celdas[cartero.x][cartero.y+2].tipo!='T'||
-                calle.celdas[cartero.x][cartero.y].tipo != 'T'||
-                calle.celdas[cartero.x-1][cartero.y].tipo!='T'||
-                calle.celdas[cartero.x-2][cartero.y].tipo!='T'||
-                calle.celdas[cartero.x+1][cartero.y].tipo!='T'||
-                calle.celdas[cartero.x+2][cartero.y].tipo!='T');
+    if(calle.celdas[cartero.x][cartero.y-1].tipo== 'T'||
+       calle.celdas[cartero.x][cartero.y-2].tipo=='T'||
+       calle.celdas[cartero.x][cartero.y+1].tipo=='T'||
+       calle.celdas[cartero.x][cartero.y+2].tipo=='T'||
+       calle.celdas[cartero.x-1][cartero.y].tipo=='T'||
+       calle.celdas[cartero.x-2][cartero.y].tipo=='T'||
+       calle.celdas[cartero.x+1][cartero.y].tipo=='T'||
+       calle.celdas[cartero.x+2][cartero.y].tipo=='T')
+        return true;
+    else
+        return false;
 }
 
 @Override
