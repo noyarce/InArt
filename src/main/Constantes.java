@@ -3,9 +3,8 @@ package main;
 import java.util.Random;
 
 public interface Constantes {
-/**/
     public final int dimCelda = 32;
-    public final int anchoMV = 32;
+    public final int anchoMV = 36;
     public final int altoMV = 21;
     
     public final char CARTERO ='J';
@@ -49,6 +48,6 @@ default int randomAuto(){
                 flag = true;
             }
     }
-return y;
-}
+    return y;
+ }
 }
