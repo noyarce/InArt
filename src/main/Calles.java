@@ -11,7 +11,6 @@ public class Calles extends JComponent implements Constantes {
 public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
 public Celda[][] celdas;            /* define las casillas n x m */
 public Celda celdaMovimiento;      /* declarada a celda a mover */
-public Celda celdaMovimiento2;
 public Lienzo lienzoPadre;             
 
 public Calles(Lienzo lienzoPadre) {

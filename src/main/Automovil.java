@@ -133,7 +133,7 @@ if (automovil.y != altoMV-1){
 public void run() {
     int direccion;
 //    if(){
-    direccion=numeroAleatorio(1,4);
+    direccion=numeroAleatorio(1,2);
 //    }
 //    else{
 //    direccion=numeroAleatorio(3,4);
@@ -141,7 +141,7 @@ public void run() {
     switch (direccion){
             case 1:  moverAutoIzq(); break;
 //            case 2:  moverAutoDer(); break;
-            case 3:  moverAutoUp(); break;
+            case 2:  moverAutoUp(); break;
 //            case 4:  moverAutoDwn(); break;
         }
         calle.lienzoPadre.repaint();

@@ -37,7 +37,19 @@ private void moverCrtArriba(){
 if(cartero.y>0 ){
 char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     switch (op){
-        
+    
+        case('C'): {
+        if(vieneAuto(calle,cartero)==false){
+            calle.celdas[cartero.x][cartero.y].tipo=vcozv(cartero);
+            cartero.y=cartero.y-1;
+            calle.celdas[cartero.x][cartero.y].tipo='J';
+            break;
+            }
+        else{
+            break;
+            }
+        }
+
     case('A'):{
         if ((cartero.y%3==0)&&(cartero.y%6!=0)){
                     calle.celdas[cartero.x][cartero.y].tipo='Z';
@@ -83,6 +95,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
        break;
     }
     case ('T'):{
+       System.out.println("Auto! No se puede mover mas hacia Arriba");
        break;
     }
     }
@@ -94,9 +107,17 @@ private void moverCrtAbajo(){
     switch(op){
         
     case('C'): {
-  
-        break;
+        if(vieneAuto(calle,cartero)==false){
+            calle.celdas[cartero.x][cartero.y].tipo=vcozv(cartero);
+            cartero.y=cartero.y+1;
+            calle.celdas[cartero.x][cartero.y].tipo='J';
+            break;
         }
+        else{
+            break;
+        }
+    }
+        
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.y=cartero.y+1;
@@ -148,7 +169,16 @@ private void moverCrtAbajo(){
 private void moverCrtIzquierda(){
  if(cartero.x>0){
     char op = calle.celdas[cartero.x-1][cartero.y].tipo ;
-    switch (op){      
+    switch (op){    
+ 
+    case('C'):{
+            if(vieneAuto(calle,cartero)==false){
+            calle.celdas[cartero.x][cartero.y].tipo=vcozh(cartero);
+            cartero.x=cartero.x-1;
+            calle.celdas[cartero.x][cartero.y].tipo='J';
+            break;
+            }    
+  }
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;
@@ -246,24 +276,72 @@ private void moverCrtDerecha(){
         case ('T'):{
             break;
             }
+        
+        case('C'): {
+            if(vieneAuto(calle,cartero)==false){
+                calle.celdas[cartero.x][cartero.y].tipo=vcozh(cartero);
+                cartero.x=cartero.x+1;
+                calle.celdas[cartero.x][cartero.y].tipo='J';
+                break;
+            }
+            else{
+                break;
+            }
         }
+      }
     }
 }
 
 
 private boolean vieneAuto(Calles calle , Celda cartero){
-    if(calle.celdas[cartero.x][cartero.y-1].tipo== 'T'||
-       calle.celdas[cartero.x][cartero.y-2].tipo=='T'||
-       calle.celdas[cartero.x][cartero.y+1].tipo=='T'||
-       calle.celdas[cartero.x][cartero.y+2].tipo=='T'||
-       calle.celdas[cartero.x-1][cartero.y].tipo=='T'||
-       calle.celdas[cartero.x-2][cartero.y].tipo=='T'||
-       calle.celdas[cartero.x+1][cartero.y].tipo=='T'||
-       calle.celdas[cartero.x+2][cartero.y].tipo=='T')
-        return true;
-    else
-        return false;
+    boolean flag=false;
+    for(int i=0; i<5; i++){
+        for (int j=0; j<5;j++){
+           if(calle.celdas[cartero.x+i][cartero.y+j].tipo== 'T')
+               flag=true;
+                break;
+               }
+    }
+    return flag;
 }
+
+/*vereda, calle o p. cebra vertical */
+public char vcozv(Celda cartero){
+char op='C';
+
+    if(((cartero.j%2==0)&&(cartero.j%6!=0))||((cartero.i%2==0)&&(cartero.i%6!=0))){
+    op = 'A';
+    }
+    if(((cartero.j%3==0)&&(cartero.j%6!=0))||((cartero.i%3==0)&&(cartero.i%6!=0))){
+    op = 'C';
+    }
+    
+    if(((cartero.i%3==0)&&(cartero.i%6!=0))&&((cartero.j%2==0)&&(cartero.j%6!=0))){
+    op = 'Z';
+     }
+    return op;
+    
+}
+/*vereda, calle o p. cebra horizontal */
+
+public char vcozh(Celda cartero){
+char op='C';
+
+    if(((cartero.j%2==0)&&(cartero.j%6!=0))||((cartero.i%2==0)&&(cartero.i%6!=0))){
+    op = 'A';
+    }
+    if(((cartero.j%3==0)&&(cartero.j%6!=0))||((cartero.i%3==0)&&(cartero.i%6!=0))){
+    op = 'C';
+    }
+    if (((cartero.j%3==0)&&(cartero.j%6!=0))&&((cartero.i%2==0)&&(cartero.i%6!=0))){
+    op = 'Z';
+     }
+    return op;
+    
+}
+
+
+
 
 @Override
     public void run() {
