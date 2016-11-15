@@ -295,13 +295,16 @@ private void moverCrtDerecha(){
 
 private boolean vieneAuto(Calles calle , Celda cartero){
     boolean flag=false;
-    for(int i=0; i<5; i++){
-        for (int j=0; j<5;j++){
-           if(calle.celdas[cartero.x+i][cartero.y+j].tipo== 'T')
-               flag=true;
-                break;
-               }
-    }
+    for(int i=-4; i<4; i++){
+        for (int j=-4; j<4;j++){
+                if(((cartero.x+i>0)&&(cartero.y+j>0))&&((cartero.x+i<anchoMV-1)&&(cartero.y+j<altoMV-1))){
+                    if((calle.celdas[cartero.x+i][cartero.y+j].tipo== 'T')){
+                        flag=true;
+                        break;
+                    }
+                }
+        }
+    }    
     return flag;
 }
 
