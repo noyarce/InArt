@@ -10,7 +10,7 @@ public Celda automovil;
 
 public Automovil(Calles calle) {
     this.calle=calle;
-    automovil=new Celda(27,altoMV-1,0,0,'T');   
+    automovil=new Celda(randomAuto(),altoMV-1,'T');   
     calle.celdas[automovil.x][automovil.y].tipo='T';
 }
 
@@ -25,8 +25,6 @@ public void moverAutoIzq(){
                             calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
                 automovil.x=automovil.x-1;
-                automovil.i=automovil.x;    
-                automovil.j=automovil.y;
                 calle.celdas[automovil.x][automovil.y].tipo='T';
                 }
             }
@@ -38,8 +36,7 @@ public void moverAutoIzq(){
                     calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
                 automovil.x = anchoMV-1;
-                automovil.i=automovil.x;    
-                automovil.j=automovil.y;
+                
                 calle.celdas[automovil.x][automovil.y].tipo='T';
                 }    
 }
@@ -54,8 +51,7 @@ public void moverAutoDer(){
                         calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
                 automovil.x=anchoMV-1;
-                automovil.i=automovil.x;    
-                automovil.j=automovil.y;
+                
                 calle.celdas[automovil.x][automovil.y].tipo='T';
                 }
             }
@@ -67,8 +63,7 @@ public void moverAutoDer(){
                     calle.celdas[automovil.x][automovil.y].tipo='C'; 
                 }        
                 automovil.x=0;
-                automovil.i=automovil.x;    
-                automovil.j=automovil.y;
+               
                 calle.celdas[automovil.x][automovil.y].tipo='T';
                 }     
 }
@@ -94,8 +89,6 @@ public void moverAutoUp(){
                         calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
                 automovil.y=altoMV-1;
-                    automovil.i=automovil.x;    
-                    automovil.j=automovil.y;
                  calle.celdas[automovil.x][automovil.y].tipo='T';
                 }    
 }
@@ -123,8 +116,7 @@ if (automovil.y != altoMV-1){
                     calle.celdas[automovil.x][automovil.y].tipo='C';
                     automovil.x=randomAuto();
                     automovil.y=0;
-                    automovil.i=automovil.x;    
-                    automovil.j=automovil.y;
+                   
                     calle.celdas[automovil.x][automovil.y].tipo='T';
                 }
 }

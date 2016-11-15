@@ -1,12 +1,14 @@
 package main;
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public interface Constantes {
     public final int dimCelda = 32;
     public final int anchoMV = 36;
     public final int altoMV = 21;
     
+    public final char CARTA = 'G';
     public final char CARTERO ='J';
     public final char CAMINO ='C';
     public final char PEATONES ='P';
@@ -22,6 +24,8 @@ public interface Constantes {
     public final int pyr_x = 1; /* cartero vertical */
     public final int pyr_y = 0;  /*cartero horizontal*/
   
+    public int cartas = 8 ;
+    
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();
 int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;
@@ -50,4 +54,8 @@ default int randomAuto(){
     }
     return y;
  }
+
+
+
+
 }

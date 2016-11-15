@@ -8,12 +8,17 @@ import javax.swing.JOptionPane;
 public class Cartero extends TimerTask implements Constantes {
     public Calles calle;
     public Celda cartero;
-
+    public Celda cartitas;
+    public int cartax ;
+    
 public Cartero(Calles calle) {
     this.calle=calle;
-    cartero=new Celda(pyr_x, pyr_y,pyr_x, pyr_y,'J');   
+    cartero=new Celda(pyr_x, pyr_y,'J');
     calle.celdas[cartero.x][cartero.y].tipo='J';
-    }
+    cartax = cartas;
+    
+    cartitas = new Celda(0,0,'Q');
+}
      
 public void moverCartero( KeyEvent evento ) {
 
@@ -74,11 +79,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x + " Carteron en Portal ");
-//        carteroEnPortal(cartero.x*dimCelda, cartero.y*dimCelda);
-        
-        
-        
+        cartax= entregarCarta(cartax);
         break;
     }
     case ('M'):{
@@ -117,9 +118,8 @@ private void moverCrtAbajo(){
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Carteron en Portal  ");
-        
-        JOptionPane.showMessageDialog(null," Carteron en Portal");
+        System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
+        cartax=entregarCarta(cartax);         
         break;
         }
     case('P'):{
@@ -178,9 +178,8 @@ private void moverCrtIzquierda(){
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Carteron en Portal ");
-        
-        JOptionPane.showMessageDialog(null,"Carteron en Portal");
+        System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
+        cartax=entregarCarta(cartax);
      break;   
     }
     case ('M'):{
@@ -224,9 +223,11 @@ private void moverCrtDerecha(){
         case ('X'):{
             calle.celdas[cartero.x][cartero.y].tipo='A';
             cartero.x=cartero.x+1;
+            
             calle.celdas[cartero.x][cartero.y].tipo='J';
-            System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Carteron en Portal ");
-            JOptionPane.showMessageDialog(null,"Cartero en Portal ");
+            pintarCartas(cartax, calle, cartero );
+            System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
+            cartax=entregarCarta(cartax);
             break;
             }
         case ('M'):{
@@ -275,11 +276,10 @@ private void moverCrtDerecha(){
     }
 }
 
-
 private boolean vieneAuto(Calles calle , Celda cartero){
     boolean flag=false;
-    for(int i=-4; i<4; i++){
-        for (int j=-4; j<4;j++){
+    for(int i=-3; i<3; i++){
+        for (int j=-3; j<3;j++){
                 if(((cartero.x+i>0)&&(cartero.y+j>0))&&((cartero.x+i<anchoMV-1)&&(cartero.y+j<altoMV-1))){
                     if((calle.celdas[cartero.x+i][cartero.y+j].tipo== 'T')){
                         flag=true;
@@ -291,10 +291,7 @@ private boolean vieneAuto(Calles calle , Celda cartero){
     return flag;
 }
 
-/*vereda, calle o p. cebra vertical */
-
-
-
+/*acera zebra o calle vertical */
 public char azocv(Celda cartero){
 char op='A';
     if(((cartero.x%3==0)&&(cartero.x%6!=0))||((cartero.y%3==0)&&(cartero.y%6!=0))){
@@ -305,8 +302,8 @@ char op='A';
     }    
     return op;
 }
-/*vereda, calle o p. cebra horizontal */
 
+/* acera, zebra, o calle  horizontal */
 public char azoch(Celda cartero){
 char op='A';
     if(((cartero.x%3==0)&&(cartero.x%6!=0))||((cartero.y%3==0)&&(cartero.y%6!=0))){
@@ -318,12 +315,26 @@ char op='A';
     return op;
 }
 
+public int entregarCarta(int cartax){
+    if (cartax > 0){
+        cartax = cartax -1;
+        JOptionPane.showMessageDialog(null," Carteron en Portal, quedan " +cartax +" cartas");
+    }
+    else{
+        JOptionPane.showMessageDialog(null,"No quedan Cartas por Entregar");
+    }
+    return cartax;
+}
+public void pintarCartas(int cartax ,Calles calle , Celda cartero){
+    for (int i =0; i< cartax; i++){
+        calle.celdas[cartero.x][cartero.y].tipo='Q';
+    }
+    
+}
+
+
 @Override
     public void run() {
             calle.lienzoPadre.repaint();
-
     }
-
-    
-   
 }

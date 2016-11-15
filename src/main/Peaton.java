@@ -11,7 +11,7 @@ public Celda peaton;
         this.calle=calle;
         int ptn_x= randomPeaton();
         int ptn_y= randomPeaton();
-    peaton=new Celda(ptn_x, ptn_y,ptn_x, ptn_y,'P');   
+    peaton=new Celda(ptn_x, ptn_y,'P');   
     calle.celdas[peaton.x][peaton.y].tipo='P';
     }
     
@@ -26,8 +26,6 @@ public void moverPeatonIzq(){
                         calle.celdas[peaton.x][peaton.y].tipo='A'; 
                     }
                 peaton.x=peaton.x-1;
-                peaton.i=peaton.x;    
-                peaton.j=peaton.y;
                 calle.celdas[peaton.x][peaton.y].tipo='P';
                 }
             }
@@ -40,8 +38,6 @@ public void moverPeatonIzq(){
                     }
                 
                 peaton.x=anchoMV-1;
-                    peaton.i=peaton.x;    
-                    peaton.j=peaton.y;
                     calle.celdas[peaton.x][peaton.y].tipo='P';
                 }
 }
@@ -56,8 +52,6 @@ public void moverPeatonDer(){
                         calle.celdas[peaton.x][peaton.y].tipo='A'; 
                     }
                 peaton.x=peaton.x+1;
-                peaton.i=peaton.x;    
-                peaton.j=peaton.y;
                 calle.celdas[peaton.x][peaton.y].tipo='P';
                 }
             }
@@ -69,8 +63,6 @@ public void moverPeatonDer(){
                     calle.celdas[peaton.x][peaton.y].tipo='A'; 
                 }        
                 peaton.x=0;
-                peaton.i=peaton.x;    
-                peaton.j=peaton.y;
                 calle.celdas[peaton.x][peaton.y].tipo='P';
                 }    
 }
@@ -96,8 +88,6 @@ public void moverPeatonUp(){
                         calle.celdas[peaton.x][peaton.y].tipo='A'; 
                     }
                 peaton.y=altoMV-1;
-                    peaton.i=peaton.x;    
-                    peaton.j=peaton.y;
                  calle.celdas[peaton.x][peaton.y].tipo='P';
                 }
 }
@@ -124,8 +114,6 @@ public void moverPeatonDwn(){
                     }                    
                     peaton.x=randomPeaton();
                     peaton.y=0;
-                    peaton.i=peaton.x;    
-                    peaton.j=peaton.y;
                     calle.celdas[peaton.x][peaton.y].tipo='P';
                 }            
 }
