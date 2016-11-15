@@ -177,8 +177,13 @@ private void moverCrtIzquierda(){
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
-            }    
-  }
+            }
+            else{
+                 
+            break;
+            }
+    }
+  
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;
@@ -203,7 +208,6 @@ private void moverCrtIzquierda(){
                 else{
                    calle.celdas[cartero.x][cartero.y].tipo='A';
                 }
-                
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
@@ -223,9 +227,8 @@ private void moverCrtIzquierda(){
         }
     }  
         case ('T'):{
-       break;
-    }
-
+            break;
+        }
     }
 }
 }
@@ -312,7 +315,7 @@ private boolean vieneAuto(Calles calle , Celda cartero){
 public char vcozv(Celda cartero){
 char op='C';
 
-    if(((cartero.j%2==0)&&(cartero.j%6!=0))||((cartero.i%2==0)&&(cartero.i%6!=0))){
+    if(((cartero.x%2==0)&&(cartero.x%6!=0))||((cartero.y%2==0)&&(cartero.y%6!=0))){
     op = 'A';
     }
     if(((cartero.j%3==0)&&(cartero.j%6!=0))||((cartero.i%3==0)&&(cartero.i%6!=0))){
@@ -326,17 +329,15 @@ char op='C';
     
 }
 /*vereda, calle o p. cebra horizontal */
-
 public char vcozh(Celda cartero){
 char op='C';
-
-    if(((cartero.j%2==0)&&(cartero.j%6!=0))||((cartero.i%2==0)&&(cartero.i%6!=0))){
+    if(((cartero.x%2==0)&&(cartero.x%6!=0))&&((cartero.y%2==0)&&(cartero.y%6!=0))){
     op = 'A';
     }
-    if(((cartero.j%3==0)&&(cartero.j%6!=0))||((cartero.i%3==0)&&(cartero.i%6!=0))){
+    if(((cartero.x%3==0)&&(cartero.x%6!=0))&&((cartero.y%3==0)&&(cartero.y%6!=0))){
     op = 'C';
     }
-    if (((cartero.j%3==0)&&(cartero.j%6!=0))&&((cartero.i%2==0)&&(cartero.i%6!=0))){
+    if (((cartero.x%3==0)&&(cartero.x%6!=0))&&((cartero.y%2==0)&&(cartero.y%6!=0))){
     op = 'Z';
      }
     return op;
