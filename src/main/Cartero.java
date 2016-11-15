@@ -40,7 +40,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     
         case('C'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo=vcozv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
@@ -51,13 +51,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         }
 
     case('A'):{
-        if ((cartero.y%3==0)&&(cartero.y%6!=0)){
-                    calle.celdas[cartero.x][cartero.y].tipo='Z';
-                }
-                else{
-                   calle.celdas[cartero.x][cartero.y].tipo='A';
-                }
-                
+        calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);               
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
@@ -66,7 +60,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     }
     case('Z'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo ='A';
+            calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
@@ -81,8 +75,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x + " Carteron en Portal ");
+//        carteroEnPortal(cartero.x*dimCelda, cartero.y*dimCelda);
         
-        JOptionPane.showMessageDialog(null,"Carteron en Portal ");
+        
         
         break;
     }
@@ -108,7 +103,7 @@ private void moverCrtAbajo(){
         
     case('C'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo=vcozv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
@@ -136,12 +131,7 @@ private void moverCrtAbajo(){
         break;
         }
    case('A'):{
-        if ((cartero.y%3==0)&&(cartero.y%6!=0)){
-            calle.celdas[cartero.x][cartero.y].tipo='Z';
-        }
-       else{
-             calle.celdas[cartero.x][cartero.y].tipo='A';
-        }
+        calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
@@ -150,7 +140,7 @@ private void moverCrtAbajo(){
     }
     case('Z'): {
          if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo ='A';
+            calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);   
@@ -173,7 +163,7 @@ private void moverCrtIzquierda(){
  
     case('C'):{
             if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo=vcozh(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
@@ -202,12 +192,7 @@ private void moverCrtIzquierda(){
         break;
         }
     case('A'):{
-        if ((cartero.x%3==0)&&(cartero.x%6!=0)){
-                    calle.celdas[cartero.x][cartero.y].tipo='Z';
-                }
-                else{
-                   calle.celdas[cartero.x][cartero.y].tipo='A';
-                }
+         calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
@@ -216,7 +201,7 @@ private void moverCrtIzquierda(){
     }
     case('Z'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo ='A';
+            calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
@@ -253,12 +238,7 @@ private void moverCrtDerecha(){
             break;
             }
         case('A'):{
-            if ((cartero.x%3==0)&&(cartero.x%6!=0)){
-                calle.celdas[cartero.x][cartero.y].tipo='Z';
-                }
-            else{
-                calle.celdas[cartero.x][cartero.y].tipo='A';
-                }   
+            calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
@@ -266,7 +246,7 @@ private void moverCrtDerecha(){
             }
         case('Z'): {
             if(vieneAuto(calle,cartero)==false){
-                calle.celdas[cartero.x][cartero.y].tipo ='A';
+                calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
                 cartero.x=cartero.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
@@ -282,7 +262,7 @@ private void moverCrtDerecha(){
         
         case('C'): {
             if(vieneAuto(calle,cartero)==false){
-                calle.celdas[cartero.x][cartero.y].tipo=vcozh(cartero);
+                calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
                 cartero.x=cartero.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 break;
@@ -312,40 +292,31 @@ private boolean vieneAuto(Calles calle , Celda cartero){
 }
 
 /*vereda, calle o p. cebra vertical */
-public char vcozv(Celda cartero){
-char op='C';
 
-    if(((cartero.x%2==0)&&(cartero.x%6!=0))||((cartero.y%2==0)&&(cartero.y%6!=0))){
-    op = 'A';
-    }
-    if(((cartero.j%3==0)&&(cartero.j%6!=0))||((cartero.i%3==0)&&(cartero.i%6!=0))){
-    op = 'C';
-    }
-    
-    if(((cartero.i%3==0)&&(cartero.i%6!=0))&&((cartero.j%2==0)&&(cartero.j%6!=0))){
-    op = 'Z';
-     }
-    return op;
-    
-}
-/*vereda, calle o p. cebra horizontal */
-public char vcozh(Celda cartero){
-char op='C';
-    if(((cartero.x%2==0)&&(cartero.x%6!=0))&&((cartero.y%2==0)&&(cartero.y%6!=0))){
-    op = 'A';
-    }
-    if(((cartero.x%3==0)&&(cartero.x%6!=0))&&((cartero.y%3==0)&&(cartero.y%6!=0))){
-    op = 'C';
+
+
+public char azocv(Celda cartero){
+char op='A';
+    if(((cartero.x%3==0)&&(cartero.x%6!=0))||((cartero.y%3==0)&&(cartero.y%6!=0))){
+        op='C';
     }
     if (((cartero.x%3==0)&&(cartero.x%6!=0))&&((cartero.y%2==0)&&(cartero.y%6!=0))){
-    op = 'Z';
-     }
+       op='Z';  
+    }    
     return op;
-    
 }
+/*vereda, calle o p. cebra horizontal */
 
-
-
+public char azoch(Celda cartero){
+char op='A';
+    if(((cartero.x%3==0)&&(cartero.x%6!=0))||((cartero.y%3==0)&&(cartero.y%6!=0))){
+        op='C';
+    }
+    if (((cartero.y%3==0)&&(cartero.y%6!=0))&&((cartero.x%2==0)&&(cartero.x%6!=0))){
+       op='Z';  
+    }    
+    return op;
+}
 
 @Override
     public void run() {

@@ -58,6 +58,7 @@ calle.paintComponent(g);
 public void paint(Graphics g) {
 update(g);
 }
+
  private void agregarObstaculo(MouseEvent evt) {
     int aX=evt.getX();
     int aY=evt.getY();

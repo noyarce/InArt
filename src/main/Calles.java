@@ -56,10 +56,18 @@ this.setSize(anchoCalle,altoCalle);
 
 }
 
+public void carteroEnPortal (Graphics g, int x , int y) {
+    int fontSize = 20;
+    g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));   
+    g.setColor(Color.red);
+    g.drawString("Cartero en el Portal", x, y);
+  }
+
 @Override
 public void paintComponent(Graphics g) {
 update(g);
 }
+
 @Override
 public void update(Graphics g){
     for(int i=0; i < anchoMV; i++){
