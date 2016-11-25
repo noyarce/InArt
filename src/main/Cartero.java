@@ -1,5 +1,9 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
@@ -17,7 +21,7 @@ public Cartero(Calles calle) {
     calle.celdas[cartero.x][cartero.y].tipo='J';
     cartax = cartas;
     
-    cartitas = new Celda(0,0,'Q');
+    cartitas = new Celda(pyr_x,pyr_y,'Q');
 }
      
 public void moverCartero( KeyEvent evento ) {
@@ -47,7 +51,10 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y-1;
+            cartitas.y=cartitas.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+//            pintarCartas( calle, cartero, cartax);
+
             break;
             }
         else{
@@ -58,7 +65,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     case('A'):{
         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);               
         cartero.y=cartero.y-1;
+        cartitas.y=cartitas.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
+//        pintarCartas(calle, cartero, cartax);
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
     break;
         
@@ -67,7 +76,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y-1;
+            cartitas.y=cartitas.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+//            pintarCartas(calle, cartero, cartax);
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
             break;
         }
@@ -78,7 +89,10 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
-        calle.celdas[cartero.x][cartero.y].tipo='J';
+        cartitas.y=cartitas.y-1;
+        calle.celdas[cartero.x][cartero.y].tipo='J';            
+//        pintarCartas(calle, cartero, cartax);
+
         cartax= entregarCarta(cartax);
         break;
     }
@@ -106,7 +120,9 @@ private void moverCrtAbajo(){
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y+1;
+            cartitas.y=cartitas.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+//            pintarCartas(calle, cartero, cartax);
             break;
         }
         else{
@@ -117,10 +133,12 @@ private void moverCrtAbajo(){
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.y=cartero.y+1;
+        cartitas.y=cartitas.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
         cartax=entregarCarta(cartax);         
-        break;
+//        pintarCartas(calle, cartero, cartax);
+break;
         }
     case('P'):{
         System.out.println("Choque! No se puede mover mas hacia Abajo!");
@@ -133,8 +151,10 @@ private void moverCrtAbajo(){
    case('A'):{
         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
         cartero.y=cartero.y+1;
+        cartitas.y=cartitas.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
+//        pintarCartas(calle, cartero, cartax);
+System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
     break;
         
     }
@@ -142,7 +162,9 @@ private void moverCrtAbajo(){
          if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y+1;
+            cartitas.y=cartitas.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+//            pintarCartas(calle, cartero, cartax);
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);   
             break;
          }
@@ -165,7 +187,9 @@ private void moverCrtIzquierda(){
             if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x-1;
+            cartitas.x= cartitas.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+//            pintarCartas(calle, cartero, cartax);
             break;
             }
             else{
@@ -176,11 +200,13 @@ private void moverCrtIzquierda(){
   
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
-        cartero.x=cartero.x-1;
+        cartero.x=cartero.x-1;            
+        cartitas.x= cartitas.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
         cartax=entregarCarta(cartax);
-     break;   
+//        pintarCartas(calle, cartero, cartax);
+break;   
     }
     case ('M'):{
         System.out.println("Choque! No se puede mover mas a la Izquierda!");
@@ -193,8 +219,10 @@ private void moverCrtIzquierda(){
     case('A'):{
          calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
         cartero.x=cartero.x-1;
+        cartitas.x= cartitas.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-        System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
+//        pintarCartas(calle, cartero, cartax);
+System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
     break;
         
     }
@@ -202,8 +230,10 @@ private void moverCrtIzquierda(){
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
             cartero.x=cartero.x-1;
+            cartitas.x= cartitas.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-            System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
+//            pintarCartas(calle, cartero, cartax);
+ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
             break;
         }
         else{
@@ -223,11 +253,12 @@ private void moverCrtDerecha(){
         case ('X'):{
             calle.celdas[cartero.x][cartero.y].tipo='A';
             cartero.x=cartero.x+1;
-            
+            cartitas.x= cartitas.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-            pintarCartas(cartax, calle, cartero );
+//            pintarCartas(calle, cartero, cartax );
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
             cartax=entregarCarta(cartax);
+//            pintarCartas(calle, cartero, cartax);
             break;
             }
         case ('M'):{
@@ -241,16 +272,20 @@ private void moverCrtDerecha(){
         case('A'):{
             calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x+1;
+            cartitas.x= cartitas.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
-            break;
+//            pintarCartas(calle, cartero, cartax);
+             break;
             }
         case('Z'): {
             if(vieneAuto(calle,cartero)==false){
                 calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
                 cartero.x=cartero.x+1;
+                cartitas.x= cartitas.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
+//                pintarCartas(calle, cartero, cartax);
                 break;
             }
             else{
@@ -265,7 +300,9 @@ private void moverCrtDerecha(){
             if(vieneAuto(calle,cartero)==false){
                 calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
                 cartero.x=cartero.x+1;
+                cartitas.x= cartitas.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
+//                pintarCartas(calle, cartero, cartax);
                 break;
             }
             else{
@@ -325,11 +362,16 @@ public int entregarCarta(int cartax){
     }
     return cartax;
 }
-public void pintarCartas(int cartax ,Calles calle , Celda cartero){
-    for (int i =0; i< cartax; i++){
-        calle.celdas[cartero.x][cartero.y].tipo='Q';
-    }
-    
+
+public void pintarCartas(Graphics g, Calles calle, Celda cartitas, int cartax){
+    int x= cartitas.x;
+    int y = cartitas.y;
+    int i = cartax;
+    int tmf = 12;
+
+    g.setFont(new Font("TimesRoman", Font.PLAIN, tmf));
+    g.setColor(Color.white);
+    g.drawString("cartas= "+i,x/dimCelda,y/dimCelda);
 }
 
 

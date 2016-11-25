@@ -1,11 +1,7 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 
 public class Calles extends JComponent implements Constantes {
 public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
@@ -50,6 +46,8 @@ celdas [5][4].tipo='P';
 celdas [14][6].tipo='P';
 celdas [8][12].tipo='P';
 celdas [22][2].tipo='P';
+
+celdas [0][3].tipo='B';
 
 for (int z=0; z<anchoMV-1;z++ ){
     for (int w=0; w<altoMV-1; w++ ){

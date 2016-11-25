@@ -16,27 +16,30 @@ public Automovil(Calles calle) {
 
 public void moverAutoIzq(){
                if (automovil.x > 0 ){
-                if (calle.celdas[automovil.x-1][automovil.y].tipo=='C'||
-                    calle.celdas[automovil.x-1][automovil.y].tipo=='Z') {
-                        if ((automovil.x%2==0)&&(automovil.x%6!=0)){
-                            calle.celdas[automovil.x][automovil.y].tipo='Z';
+                    if (automovil.x%3==0 && automovil.x%9!=0){
+                        moverAutoUp();
+                    }
+                    else{
+                        if (calle.celdas[automovil.x-1][automovil.y].tipo=='C'||calle.celdas[automovil.x-1][automovil.y].tipo=='Z') {
+                                if ((automovil.x%2==0)&&(automovil.x%6!=0)){
+                                    calle.celdas[automovil.x][automovil.y].tipo='Z';
+                                }
+                                else{
+                                    calle.celdas[automovil.x][automovil.y].tipo='C'; 
+                                }
+                                automovil.x=automovil.x-1;
+                                calle.celdas[automovil.x][automovil.y].tipo='T';
                         }
-                        else{
-                            calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
-                automovil.x=automovil.x-1;
-                calle.celdas[automovil.x][automovil.y].tipo='T';
-                }
-            }
-            else{
-                if ((automovil.x%2==0)&&(automovil.x%6!=0)){
-                    calle.celdas[automovil.x][automovil.y].tipo='Z';
-                    }
+               }
                 else{
-                    calle.celdas[automovil.x][automovil.y].tipo='C'; 
+                    if ((automovil.x%2==0)&&(automovil.x%6!=0)){
+                        calle.celdas[automovil.x][automovil.y].tipo='Z';
+                    }
+                    else{
+                        calle.celdas[automovil.x][automovil.y].tipo='C'; 
                     }
                 automovil.x = anchoMV-1;
-                
                 calle.celdas[automovil.x][automovil.y].tipo='T';
                 }    
 }
@@ -69,6 +72,9 @@ public void moverAutoDer(){
 }
 public void moverAutoUp(){
             if (automovil.y > 0){
+//                 if (automovil.y%3==0 && automovil.y%9!=0){
+//                        moverAutoIzq();
+//                    }
                if(calle.celdas[automovil.x][automovil.y-1].tipo=='C'||
                 calle.celdas[automovil.x][automovil.y-1].tipo=='Z') {
                 if ((automovil.y%2==0)&&(automovil.y%6!=0)){
