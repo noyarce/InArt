@@ -34,13 +34,6 @@ public Lienzo(){
 
     temporizador = new Timer(); 
     
-    /*
-        BusquedaRutaAmp buscador=new BusquedaRutaAmp(this);
-        buscador.buscar();
-        buscador.calcularRuta();
-        temporizador.scheduleAtFixedRate(buscador, 0, 500); 
-      */   
-    
     /*declaracion de automoviles*/
     temporizador.scheduleAtFixedRate( auto , 0 , 200);
     temporizador.scheduleAtFixedRate( auto2 , 0 , 100);
@@ -54,8 +47,21 @@ public Lienzo(){
     temporizador.scheduleAtFixedRate( peaton , 0 ,800);
     temporizador.scheduleAtFixedRate( peaton2 , 0 ,800);
     temporizador.scheduleAtFixedRate( peaton3 , 0 ,800);
+
+    /* Iniciacion de la busqueda */
+      
+    /*
+        BusquedaRutaProf buscador=new BusquedaRutaProf(this);
+        buscador.buscar();
+        buscador.calcularRuta();
+        temporizador.scheduleAtFixedRate(buscador, 0, 500); 
     
     
+    BusquedaRutaAmp buscador=new BusquedaRutaAmp(this);
+    buscador.buscar();
+    buscador.calcularRuta();
+    temporizador.scheduleAtFixedRate(buscador, 0, 500); 
+    */
     
     
 addMouseListener(new MouseAdapter() {

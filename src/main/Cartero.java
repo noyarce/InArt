@@ -42,7 +42,7 @@ public void moverCartero( KeyEvent evento ) {
         }
     }
 
-private void moverCrtArriba(){
+public void moverCrtArriba(){
 if(cartero.y>0 ){
 char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     switch (op){
@@ -111,7 +111,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     }
 }
 }
-private void moverCrtAbajo(){
+public void moverCrtAbajo(){
     if(cartero.y<altoMV-1){
     char op = calle.celdas[cartero.x][cartero.y+1].tipo;
     switch(op){
@@ -178,7 +178,7 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
    }
  }
 }
-private void moverCrtIzquierda(){
+public void moverCrtIzquierda(){
  if(cartero.x>0){
     char op = calle.celdas[cartero.x-1][cartero.y].tipo ;
     switch (op){    
@@ -246,7 +246,7 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
     }
 }
 }
-private void moverCrtDerecha(){
+public void moverCrtDerecha(){
     if((cartero.x<anchoMV-1)){
     char op = calle.celdas[cartero.x+1][cartero.y].tipo;
         switch (op){  

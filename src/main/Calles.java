@@ -39,7 +39,6 @@ for(int i=0; i < anchoMV; i++){
         }
     }
 
-    /* iniciacion de celdas especiales Jugador y Portal */
 celdas[pyr_x][pyr_y].tipo= 'J';
 
 celdas [5][4].tipo='P';
@@ -60,7 +59,7 @@ for (int z=0; z<anchoMV-1;z++ ){
 
 celdaMovimiento=new Celda(pyr_x,pyr_y,'J');
 cartas= new Celda(pyr_x,pyr_y,'Q');
-/*se preparan las imenciones y se entregan para definir los tamaños de las calles */
+
 this.anchoCalle =anchoMV*dimCelda;
 this.altoCalle =altoMV*dimCelda;
 this.setSize(anchoCalle,altoCalle);

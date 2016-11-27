@@ -22,12 +22,12 @@ class BusquedaRutaAmp extends TimerTask implements Constantes{
         historial=new ArrayList<>();
         pasos=new ArrayList<>();
         index_pasos=0;
-        //digo cual es el estado inicial y el final
-        inicial=new Estado(2,2,'N',null);
+        
+        inicial=new Estado(0,1,'N',null);
         colaEstados.add(inicial);
         historial.add(inicial);
         
-        objetivo=new Estado(1,1,'N',null);
+        objetivo=new Estado(11,6,'N',null);
         exito=false;
     }
     
@@ -140,11 +140,11 @@ class BusquedaRutaAmp extends TimerTask implements Constantes{
     public void run() {
        if ( index_pasos >= 0 ) {
           switch(pasos.get(index_pasos)) {
-   /*          case 'D': lienzo.calle.mover_abajo();break;
-             case 'U': lienzo.calle.mover_arriba(); break;
-             case 'R': lienzo.calle.mover_derecha();break;
-             case 'L': lienzo.calle.mover_izquierda();break;
-     */     }
+             case 'D': lienzo.cartero.moverCrtAbajo();break;
+             case 'U': lienzo.cartero.moverCrtArriba(); break;
+             case 'R': lienzo.cartero.moverCrtDerecha();break;
+             case 'L': lienzo.cartero.moverCrtIzquierda();break;
+        }
           lienzo.repaint();  
           index_pasos--;
        }else {
