@@ -24,6 +24,8 @@ public interface Constantes {
     public final int pyr_x = 1; /* cartero vertical */
     public final int pyr_y = 0;  /*cartero horizontal*/
   
+    
+    
     public int cartas = 8 ;
     
 default int numeroAleatorio(int minimo, int maximo) {

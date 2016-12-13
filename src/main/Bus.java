@@ -44,11 +44,7 @@ public void moverBusIzq(){
 }
 public void moverBusDer(){
             if (bus.x < anchoMV-1 ){
-                if (bus.x%3==0 && bus.y%15!=0){
-                    moverBusDwn();
-                }
-                else{
-                    if (calle.celdas[bus.x+1][bus.y].tipo=='C'||
+             if (calle.celdas[bus.x+1][bus.y].tipo=='C'||
                         calle.celdas[bus.x+1][bus.y].tipo=='Z') {
                         if ((bus.x%2==0)&&(bus.x%6!=0)){
                           calle.celdas[bus.x][bus.y].tipo='Z';
@@ -59,7 +55,7 @@ public void moverBusDer(){
                 bus.x=bus.x+1;
                 calle.celdas[bus.x][bus.y].tipo='B';
                 }
-            }
+            
         }
             else{
                 if ((bus.x%2==0)&&(bus.x%6!=0)){
