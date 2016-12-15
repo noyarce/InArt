@@ -6,7 +6,8 @@ class Estado {
     public char oper; //'N'=nada, 'L': izquierda, 'R': derecha
     //'U': Arriba, 'D': abajo
     public Estado predecesor;
-    
+    public double prioridad;
+
     public Estado(int x, int y, char oper,Estado predecesor) {
         this.x=x;
         this.y=y;

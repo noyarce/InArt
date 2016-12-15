@@ -9,59 +9,15 @@ import java.awt.event.MouseEvent;
 import java.util.Timer;
 
 public class Lienzo extends Canvas implements Constantes{
-public Cartero cartero;
 public Calles calle;
-public Bus bus;
-public Peaton peaton, peaton2, peaton3;
-public Automovil auto, auto2, auto3, auto4, auto5;
-public Timer temporizador;
 
 public Lienzo(){
     
     calle =new Calles(this);
-    auto=new Automovil(calle);
-    auto2=new Automovil(calle);
-    auto3=new Automovil(calle);
-    auto4=new Automovil(calle);
     
-    peaton = new Peaton(calle);
-    peaton2 = new Peaton(calle);
-    peaton3 = new Peaton(calle);
-    bus = new Bus (calle);
-    cartero=new Cartero(calle);
     
     this.setSize(calle.anchoCalle, calle.altoCalle);
 
-    temporizador = new Timer(); 
-    
-    /*declaracion de automoviles*/
-    temporizador.scheduleAtFixedRate( auto , 0 , 200);
-    temporizador.scheduleAtFixedRate( auto2 , 0 , 100);
-    temporizador.scheduleAtFixedRate( auto3 , 0 , 500);
-    temporizador.scheduleAtFixedRate( auto4 ,0 , 300);
-    
-    temporizador.scheduleAtFixedRate( bus, 0 , 400);
-
-    
-    /*iniciacion de peatones*/
-    temporizador.scheduleAtFixedRate( peaton , 0 ,800);
-    temporizador.scheduleAtFixedRate( peaton2 , 0 ,800);
-    temporizador.scheduleAtFixedRate( peaton3 , 0 ,800);
-
-    /* Iniciacion de la busqueda */
-      
-    /*
-        BusquedaRutaProf buscador=new BusquedaRutaProf(this);
-        buscador.buscar();
-        buscador.calcularRuta();
-        temporizador.scheduleAtFixedRate(buscador, 0, 500); 
-    
-    
-    BusquedaRutaAmp buscador=new BusquedaRutaAmp(this);
-    buscador.buscar();
-    buscador.calcularRuta();
-    temporizador.scheduleAtFixedRate(buscador, 0, 500); 
-    */
     
     
 addMouseListener(new MouseAdapter() {
@@ -75,7 +31,7 @@ addMouseListener(new MouseAdapter() {
 addKeyListener(new java.awt.event.KeyAdapter() {
 @Override
     public void keyPressed(KeyEvent e) {
-        cartero.moverCartero(e);
+        calle.cartero.moverCartero(e);
         repaint();
         }
 });

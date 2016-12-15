@@ -1,20 +1,75 @@
 package main;
 
 import java.awt.Graphics;
+import java.util.Timer;
 import javax.swing.JComponent;
 
 public class Calles extends JComponent implements Constantes {
 public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
 public Celda[][] celdas;            /* define las casillas n x m */
 public Celda celdaMovimiento;      /* declarada a celda a mover */
-public Celda cartas;
-public Lienzo lienzoPadre;             
+public Celda[] cartas;
+public Lienzo lienzoPadre;    
+public Cartero cartero;
+public Bus bus;
+
+public Peaton peaton, peaton2, peaton3;
+public Automovil auto, auto2, auto3, auto4, auto5;
+public Timer temporizador;
+
 
 public Calles(Lienzo lienzoPadre) {
-    this.lienzoPadre=lienzoPadre;
+ celdas=new Celda[anchoMV][altoMV];
+ generarMapa();
+ this.lienzoPadre=lienzoPadre;
 
-celdas=new Celda[anchoMV][altoMV];
+    cartero= new Cartero(this);
+     bus= new Bus(this);
+ 
+    auto=new Automovil(this);
+    auto2=new Automovil(this);
+    auto3=new Automovil(this);
+    auto4=new Automovil(this);
+    
+    peaton = new Peaton(this);
+    peaton2 = new Peaton(this);
+    peaton3 = new Peaton(this);
+     
+    temporizador = new Timer(); 
+    
+    /*declaracion de automoviles*/
+    temporizador.scheduleAtFixedRate( auto , 0 , 200);
+    temporizador.scheduleAtFixedRate( auto2 , 0 , 100);
+    temporizador.scheduleAtFixedRate( auto3 , 0 , 500);
+    temporizador.scheduleAtFixedRate( auto4 ,0 , 300);
+    
+    temporizador.scheduleAtFixedRate( bus, 0 , 400);
 
+    
+    /*iniciacion de peatones*/
+    temporizador.scheduleAtFixedRate( peaton , 0 ,800);
+    temporizador.scheduleAtFixedRate( peaton2 , 0 ,800);
+    temporizador.scheduleAtFixedRate( peaton3 , 0 ,800);
+
+    /* Iniciacion de la busqueda */
+      
+    /*
+        BusquedaRutaProf buscador=new BusquedaRutaProf(this);
+        buscador.buscar();
+        buscador.calcularRuta();
+        temporizador.scheduleAtFixedRate(buscador, 0, 500); 
+    
+    
+    BusquedaRutaAmp buscador=new BusquedaRutaAmp(this);
+    buscador.buscar();
+    buscador.calcularRuta();
+    temporizador.scheduleAtFixedRate(buscador, 0, 500); 
+    */
+ 
+ 
+}
+
+public void generarMapa(){
 for(int i=0; i < anchoMV; i++){
         for ( int j=0 ; j < altoMV ; j++){
             celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M');
@@ -46,19 +101,19 @@ celdas [14][6].tipo='P';
 celdas [8][12].tipo='P';
 celdas [22][2].tipo='P';
 
-celdas [0][3].tipo='B';
-
 for (int z=0; z<anchoMV-1;z++ ){
     for (int w=0; w<altoMV-1; w++ ){
         if ((z%6==0) && ((w==1)||(w==5)||(w==11)|| w==17)){
         celdas[z][w].tipo= 'X';
         }
+        if((z%12==0) && ((w==5)||(w==11)|| w==17)){
+                celdas[z][w].tipo= 'S';
+        }
+        
     }
 }
 
-
 celdaMovimiento=new Celda(pyr_x,pyr_y,'J');
-cartas= new Celda(pyr_x,pyr_y,'Q');
 
 this.anchoCalle =anchoMV*dimCelda;
 this.altoCalle =altoMV*dimCelda;
@@ -79,5 +134,41 @@ public void update(Graphics g){
         celdas[i][j].paintComponent(g);
         }
     }
+    
+    /*
+            
+        // Si el jugador tiene cartas
+        if(cartero.cartax >0){
+            
+            // Se pintan las cartas
+            for (int i = 0; i < cartero.cartax; i++) {
+                cartero.cartas[i].update(g);
+            }
+            
+            // Si el cartero esta en el portal, se pinta mensaje
+            if( ){
+                int fontSize = 60;
+                g.setFont(new Font("Arial", Font.PLAIN, fontSize));
+                g.setColor(Color.blue);
+                g.drawString("El cartero en el Portal", 50, 50);
+            }   
+        } else { // Si no hay cartas, se pinta mensaje
+            int fontSize = 50;
+            g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
+            g.setColor(Color.red);
+            g.drawString("No hay más cartas!", cartero.x*dimCelda,cartero.y*dimCelda);
+        }
+        
+        if(bus.pasajeros>0){
+            for (int i = 0; i < bus.pasajeros; i++) {
+                bus.peatones[i].update(g);
+            }
+        } 
+    }
+    
+}
+    
+    
+ */   
 }
 }

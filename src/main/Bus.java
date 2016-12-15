@@ -7,12 +7,15 @@ import java.util.TimerTask;
 public class Bus extends TimerTask implements Constantes{
 public Calles calle;
 public Celda bus;
+public Celda[] pasajeros;
 
 public Bus(Calles calle) {
     this.calle=calle;
-    bus=new Celda(0,3,'B');   
+    bus=new Celda(bus_x,bus_y,'B');   
     calle.celdas[bus.x][bus.y].tipo='B';
 
+//    for (int i = 0; i < ;i++){}
+    
 
 }
 
@@ -94,7 +97,7 @@ public void moverBusUp(){
                 }    
 }
 public void moverBusDwn(){   
-if (bus.y != altoMV-1){
+if (bus.y < altoMV-1){
                     if(calle.celdas[bus.x][bus.y+1].tipo=='C'||
                        calle.celdas[bus.x][bus.y+1].tipo=='Z') {
                             if ((bus.y%2==0)&&(bus.y%6!=0)){

@@ -24,7 +24,8 @@ public interface Constantes {
     public final int pyr_x = 1; /* cartero vertical */
     public final int pyr_y = 0;  /*cartero horizontal*/
   
-    
+    public final int bus_x = 0;
+    public final int bus_y = 3;
     
     public int cartas = 8 ;
     

@@ -22,6 +22,7 @@ public Cartero(Calles calle) {
     cartax = cartas;
     
     cartitas = new Celda(pyr_x,pyr_y,'Q');
+    
 }
      
 public void moverCartero( KeyEvent evento ) {
@@ -53,8 +54,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
             cartero.y=cartero.y-1;
             cartitas.y=cartitas.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas( calle, cartero, cartax);
-
             break;
             }
         else{
@@ -67,7 +66,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         cartero.y=cartero.y-1;
         cartitas.y=cartitas.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-//        pintarCartas(calle, cartero, cartax);
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
     break;
         
@@ -78,7 +76,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
             cartero.y=cartero.y-1;
             cartitas.y=cartitas.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas(calle, cartero, cartax);
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
             break;
         }
@@ -91,8 +88,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         cartero.y=cartero.y-1;
         cartitas.y=cartitas.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';            
-//        pintarCartas(calle, cartero, cartax);
-
         cartax= entregarCarta(cartax);
         break;
     }
@@ -122,7 +117,6 @@ public void moverCrtAbajo(){
             cartero.y=cartero.y+1;
             cartitas.y=cartitas.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas(calle, cartero, cartax);
             break;
         }
         else{
@@ -137,7 +131,6 @@ public void moverCrtAbajo(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
         cartax=entregarCarta(cartax);         
-//        pintarCartas(calle, cartero, cartax);
 break;
         }
     case('P'):{
@@ -153,7 +146,6 @@ break;
         cartero.y=cartero.y+1;
         cartitas.y=cartitas.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-//        pintarCartas(calle, cartero, cartax);
 System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
     break;
         
@@ -164,7 +156,6 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
             cartero.y=cartero.y+1;
             cartitas.y=cartitas.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas(calle, cartero, cartax);
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);   
             break;
          }
@@ -189,7 +180,6 @@ public void moverCrtIzquierda(){
             cartero.x=cartero.x-1;
             cartitas.x= cartitas.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas(calle, cartero, cartax);
             break;
             }
             else{
@@ -205,7 +195,6 @@ public void moverCrtIzquierda(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
         cartax=entregarCarta(cartax);
-//        pintarCartas(calle, cartero, cartax);
 break;   
     }
     case ('M'):{
@@ -221,7 +210,6 @@ break;
         cartero.x=cartero.x-1;
         cartitas.x= cartitas.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-//        pintarCartas(calle, cartero, cartax);
 System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
     break;
         
@@ -232,7 +220,6 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
             cartero.x=cartero.x-1;
             cartitas.x= cartitas.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas(calle, cartero, cartax);
  System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
             break;
         }
@@ -255,10 +242,8 @@ public void moverCrtDerecha(){
             cartero.x=cartero.x+1;
             cartitas.x= cartitas.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-//            pintarCartas(calle, cartero, cartax );
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
             cartax=entregarCarta(cartax);
-//            pintarCartas(calle, cartero, cartax);
             break;
             }
         case ('M'):{
@@ -275,7 +260,6 @@ public void moverCrtDerecha(){
             cartitas.x= cartitas.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
-//            pintarCartas(calle, cartero, cartax);
              break;
             }
         case('Z'): {
@@ -285,7 +269,6 @@ public void moverCrtDerecha(){
                 cartitas.x= cartitas.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
-//                pintarCartas(calle, cartero, cartax);
                 break;
             }
             else{
@@ -302,7 +285,6 @@ public void moverCrtDerecha(){
                 cartero.x=cartero.x+1;
                 cartitas.x= cartitas.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
-//                pintarCartas(calle, cartero, cartax);
                 break;
             }
             else{
