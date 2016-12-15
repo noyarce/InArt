@@ -1,6 +1,6 @@
 package main;
 
-class Estado {
+class Estado implements Constantes{
     public int x;
     public int y;
     public char oper; //'N'=nada, 'L': izquierda, 'R': derecha
@@ -13,6 +13,7 @@ class Estado {
         this.y=y;
         this.oper=oper;
         this.predecesor=predecesor;
+        this.prioridad=numeroAleatorio(1,100);
         
     }
     

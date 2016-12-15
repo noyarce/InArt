@@ -11,7 +11,8 @@ public class Cartero extends TimerTask implements Constantes {
     public Celda cartitas;
     public int cartax ;
     public Cartas[] mCartas;
-    
+    SuperBusqueda inteligencia;
+
 public Cartero(Calles calle) {
     this.calle=calle;
     cartero=new Celda(pyr_x, pyr_y,'J');
@@ -22,7 +23,8 @@ public Cartero(Calles calle) {
     for (int i = 0; i < cartax; i++){
     mCartas[i]= new Cartas((cartero.x+i+1) *dimCelda  ,( cartero.y+i+1)*dimCelda);
     }
-    
+        inteligencia=new SuperBusqueda(calle,this);
+
     
 }
      

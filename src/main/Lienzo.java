@@ -10,12 +10,14 @@ import java.util.Timer;
 
 public class Lienzo extends Canvas implements Constantes{
 public Calles calle;
+public Timer lanzadorTareas;
 
 public Lienzo(){
     
     calle =new Calles(this);
     this.setSize(calle.anchoCalle, calle.altoCalle);
-
+    lanzadorTareas=new Timer();
+    lanzadorTareas.scheduleAtFixedRate(calle.cartero.inteligencia,0,500);
     
     
 addMouseListener(new MouseAdapter() {
