@@ -14,8 +14,6 @@ public Calles calle;
 public Lienzo(){
     
     calle =new Calles(this);
-    
-    
     this.setSize(calle.anchoCalle, calle.altoCalle);
 
     
@@ -52,7 +50,7 @@ update(g);
     int aX=evt.getX();
     int aY=evt.getY();
     if((evt.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK) {
-        if(calle.celdas[aX/dimCelda][aY/dimCelda].tipo!='A'){
+        if(calle.celdas[aX/dimCelda][aY/dimCelda].tipo=='A'){
                             System.out.println("Boton Izquierdo - Poner Obstaculo");
                              calle.celdas[aX/dimCelda][aY/dimCelda].tipo='O';
             }

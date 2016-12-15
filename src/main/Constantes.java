@@ -28,6 +28,7 @@ public interface Constantes {
     public final int bus_y = 3;
     
     public int cartas = 8 ;
+    public int nPasajeros = 5; 
     
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();

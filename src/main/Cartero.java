@@ -1,9 +1,5 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
@@ -14,14 +10,19 @@ public class Cartero extends TimerTask implements Constantes {
     public Celda cartero;
     public Celda cartitas;
     public int cartax ;
+    public Cartas[] mCartas;
     
 public Cartero(Calles calle) {
     this.calle=calle;
     cartero=new Celda(pyr_x, pyr_y,'J');
     calle.celdas[cartero.x][cartero.y].tipo='J';
     cartax = cartas;
+    this.mCartas= new Cartas[cartas]; 
     
-    cartitas = new Celda(pyr_x,pyr_y,'Q');
+    for (int i = 0; i < cartax; i++){
+    mCartas[i]= new Cartas((cartero.x+i+1) *dimCelda  ,( cartero.y+i+1)*dimCelda);
+    }
+    
     
 }
      
@@ -52,7 +53,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y-1;
-            cartitas.y=cartitas.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
             }
@@ -64,7 +64,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     case('A'):{
         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);               
         cartero.y=cartero.y-1;
-        cartitas.y=cartitas.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
     break;
@@ -74,7 +73,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y-1;
-            cartitas.y=cartitas.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
             break;
@@ -86,7 +84,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
-        cartitas.y=cartitas.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';            
         cartax= entregarCarta(cartax);
         break;
@@ -105,6 +102,10 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     }
     }
 }
+        for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y-dimCelda);
+                }
+
 }
 public void moverCrtAbajo(){
     if(cartero.y<altoMV-1){
@@ -115,7 +116,6 @@ public void moverCrtAbajo(){
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y+1;
-            cartitas.y=cartitas.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
         }
@@ -127,7 +127,6 @@ public void moverCrtAbajo(){
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.y=cartero.y+1;
-        cartitas.y=cartitas.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
         cartax=entregarCarta(cartax);         
@@ -144,7 +143,6 @@ break;
    case('A'):{
         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
         cartero.y=cartero.y+1;
-        cartitas.y=cartitas.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
 System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
     break;
@@ -154,7 +152,6 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
          if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y+1;
-            cartitas.y=cartitas.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);   
             break;
@@ -168,6 +165,10 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
      }  
    }
  }
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y+dimCelda);
+                }
+
 }
 public void moverCrtIzquierda(){
  if(cartero.x>0){
@@ -178,7 +179,6 @@ public void moverCrtIzquierda(){
             if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x-1;
-            cartitas.x= cartitas.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             break;
             }
@@ -191,7 +191,6 @@ public void moverCrtIzquierda(){
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;            
-        cartitas.x= cartitas.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
         cartax=entregarCarta(cartax);
@@ -208,7 +207,6 @@ break;
     case('A'):{
          calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
         cartero.x=cartero.x-1;
-        cartitas.x= cartitas.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
 System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
     break;
@@ -218,7 +216,6 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
             cartero.x=cartero.x-1;
-            cartitas.x= cartitas.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
  System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
             break;
@@ -232,6 +229,10 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
         }
     }
 }
+         for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x-dimCelda);
+                }
+
 }
 public void moverCrtDerecha(){
     if((cartero.x<anchoMV-1)){
@@ -240,7 +241,6 @@ public void moverCrtDerecha(){
         case ('X'):{
             calle.celdas[cartero.x][cartero.y].tipo='A';
             cartero.x=cartero.x+1;
-            cartitas.x= cartitas.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
             cartax=entregarCarta(cartax);
@@ -257,7 +257,6 @@ public void moverCrtDerecha(){
         case('A'):{
             calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x+1;
-            cartitas.x= cartitas.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
              break;
@@ -266,7 +265,6 @@ public void moverCrtDerecha(){
             if(vieneAuto(calle,cartero)==false){
                 calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
                 cartero.x=cartero.x+1;
-                cartitas.x= cartitas.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
                 break;
@@ -283,7 +281,6 @@ public void moverCrtDerecha(){
             if(vieneAuto(calle,cartero)==false){
                 calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
                 cartero.x=cartero.x+1;
-                cartitas.x= cartitas.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 break;
             }
@@ -293,6 +290,10 @@ public void moverCrtDerecha(){
         }
       }
     }
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x+dimCelda);
+                }
+
 }
 
 private boolean vieneAuto(Calles calle , Celda cartero){
@@ -344,18 +345,6 @@ public int entregarCarta(int cartax){
     }
     return cartax;
 }
-
-public void pintarCartas(Graphics g, Calles calle, Celda cartitas, int cartax){
-    int x= cartitas.x;
-    int y = cartitas.y;
-    int i = cartax;
-    int tmf = 12;
-
-    g.setFont(new Font("TimesRoman", Font.PLAIN, tmf));
-    g.setColor(Color.white);
-    g.drawString("cartas= "+i,x/dimCelda,y/dimCelda);
-}
-
 
 @Override
     public void run() {

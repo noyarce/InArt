@@ -8,7 +8,6 @@ public class Calles extends JComponent implements Constantes {
 public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
 public Celda[][] celdas;            /* define las casillas n x m */
 public Celda celdaMovimiento;      /* declarada a celda a mover */
-public Celda[] cartas;
 public Lienzo lienzoPadre;    
 public Cartero cartero;
 public Bus bus;
@@ -24,7 +23,7 @@ public Calles(Lienzo lienzoPadre) {
  this.lienzoPadre=lienzoPadre;
 
     cartero= new Cartero(this);
-     bus= new Bus(this);
+    bus= new Bus(this);
  
     auto=new Automovil(this);
     auto2=new Automovil(this);
@@ -69,7 +68,7 @@ public Calles(Lienzo lienzoPadre) {
  
 }
 
-public void generarMapa(){
+public final void generarMapa(){
 for(int i=0; i < anchoMV; i++){
         for ( int j=0 ; j < altoMV ; j++){
             celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M');
