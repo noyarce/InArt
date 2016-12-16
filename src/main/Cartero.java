@@ -12,6 +12,7 @@ public class Cartero extends TimerTask implements Constantes {
     public int cartax ;
     public Cartas[] mCartas;
     SuperBusqueda inteligencia;
+    public boolean portal;
 
 public Cartero(Calles calle) {
     this.calle=calle;
@@ -21,9 +22,9 @@ public Cartero(Calles calle) {
     this.mCartas= new Cartas[cartas]; 
     
     for (int i = 0; i < cartax; i++){
-    mCartas[i]= new Cartas((cartero.x+i+1) *dimCelda  ,( cartero.y+i+1)*dimCelda);
+    mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4));
     }
-    
+    this.portal = false;
     inteligencia=new SuperBusqueda(calle,this);  
 }
      
@@ -106,7 +107,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
                 }
-
+portal= false;
 }
 public void moverCrtAbajo(){
     if(cartero.y<altoMV-1){
@@ -130,7 +131,8 @@ public void moverCrtAbajo(){
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
-        cartax=entregarCarta(cartax);         
+        cartax=entregarCarta(cartax); 
+        portal= true;        
 break;
         }
     case('P'):{
@@ -169,7 +171,7 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
             for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
                 }
-
+portal= false;
 }
 public void moverCrtIzquierda(){
  if(cartero.x>0){
@@ -233,7 +235,7 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
          for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
-
+portal= false;
 }
 public void moverCrtDerecha(){
     if((cartero.x<anchoMV-1)){
@@ -339,12 +341,14 @@ char op='A';
 public int entregarCarta(int cartax){
     if (cartax > 0){
         cartax = cartax -1;
-        JOptionPane.showMessageDialog(null," Carteron en Portal, quedan " +cartax +" cartas");
+        if (cartax!=0){
+
+        }else{ 
+ 
     }
-    else{
-        JOptionPane.showMessageDialog(null,"No quedan Cartas por Entregar");
-    }
+}
     return cartax;
+
 }
 
 @Override

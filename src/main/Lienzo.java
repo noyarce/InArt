@@ -7,18 +7,28 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Lienzo extends Canvas implements Constantes{
 public Calles calle;
 public Timer lanzadorTareas;
-
+public Graphics graficoBuffer;
+public Image imagenBuffer;
+public Image fondo;
 public Lienzo(){
-    
     calle =new Calles(this);
     this.setSize(calle.anchoCalle, calle.altoCalle);
     lanzadorTareas=new Timer();
     lanzadorTareas.scheduleAtFixedRate(calle.cartero.inteligencia,0,500);
     
+    try {
+        fondo = ImageIO.read(new File("src/imagenes/Fondo.jpg"));
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
     
 addMouseListener(new MouseAdapter() {
 @Override
@@ -40,7 +50,16 @@ addKeyListener(new java.awt.event.KeyAdapter() {
 
 @Override
 public void update(Graphics g) {
-calle.paintComponent(g);
+calle.paintComponent(g); 
+    if(graficoBuffer==null){
+        imagenBuffer=createImage(this.getWidth(),this.getHeight());
+        graficoBuffer=imagenBuffer.getGraphics();
+    }
+    graficoBuffer.setColor(getBackground());
+    graficoBuffer.fillRect(0,0,this.getWidth(),this.getHeight());
+    graficoBuffer.drawImage(fondo, 0, 0, null);
+    calle.update(graficoBuffer);
+    g.drawImage(imagenBuffer, 0, 0, null);
 }
 
 @Override

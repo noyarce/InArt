@@ -7,17 +7,17 @@ import java.util.TimerTask;
 public class Bus extends TimerTask implements Constantes{
 public Calles calle;
 public Celda bus;
-public Celda[] pasajeros;
+public Pasajero[] pasajeros;
 public int pasajerosInt;
 
 public Bus(Calles calle) {
     this.calle=calle;
     bus=new Celda(bus_x,bus_y,'B');   
     calle.celdas[bus.x][bus.y].tipo='B';
-    pasajeros = new Celda[nPasajeros];
+    this.pasajeros = new Pasajero[nPasajeros]; 
     pasajerosInt = nPasajeros;
   for (int i = 0; i < nPasajeros ;i++){
-  pasajeros [i]= new Celda ((i+bus.x)*(dimCelda/2), (bus.y+i)*(dimCelda/2),'Q');
+  pasajeros [i]= new Pasajero(((bus.x*dimCelda+i)-nPasajeros)*8, (bus.y*dimCelda)-(dimCelda/4));
   }
     
 }
@@ -47,9 +47,9 @@ public void moverBusIzq(){
                 
                 calle.celdas[bus.x][bus.y].tipo='B';
                 }    
-   for (int i = 0; i < nPasajeros ;i++){
-  pasajeros [i]= new Celda ((i*dimCelda+bus.x)*(dimCelda/2), (bus.y+i*dimCelda)*(dimCelda/2),'Q');
-  }        
+ for (int i =0 ; i< pasajerosInt; i++){
+     pasajeros [i].x = pasajeros [i].x + dimCelda; 
+   }   
 }
 public void moverBusDer(){
             if (bus.x < anchoMV-1 ){
@@ -81,9 +81,9 @@ public void moverBusDer(){
                 bus.x=0;
                 calle.celdas[bus.x][bus.y].tipo='B';
                 }
-   for (int i = 0; i < nPasajeros ;i++){
-  pasajeros [i]= new Celda ((i*dimCelda+bus.x)*(dimCelda/2), (bus.y+i*dimCelda)*(dimCelda/2),'Q');
-  }     
+ for (int i =0 ; i< pasajerosInt; i++){
+     pasajeros [i].x = pasajeros [i].x + dimCelda; 
+   }    
 }
 public void moverBusUp(){
             if (bus.y > 0){
@@ -109,7 +109,9 @@ public void moverBusUp(){
                 bus.y=altoMV-1;
                  calle.celdas[bus.x][bus.y].tipo='B';
                 }  
-
+ for (int i =0 ; i< pasajerosInt; i++){
+     pasajeros [i].y = pasajeros [i].y + dimCelda; 
+   }
 }
 public void moverBusDwn(){   
 if (bus.y < altoMV-1){  
@@ -137,9 +139,9 @@ if (bus.y < altoMV-1){
                    
                     calle.celdas[bus.x][bus.y].tipo='B';
                 }
-  for (int i = 0; i < nPasajeros ;i++){
-  pasajeros [i]= new Celda ((i*dimCelda+bus.x)*(dimCelda/2), (bus.y+i*dimCelda)*(dimCelda/2),'Q');
-  }
+  for (int i =0 ; i< pasajerosInt; i++){
+   pasajeros [i].y = pasajeros [i].y + dimCelda; 
+   }
 }
 
 @Override

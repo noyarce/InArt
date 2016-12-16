@@ -34,8 +34,6 @@ try {
     acera   = ImageIO.read(new File("src/imagenes/acera.png"));
     cebra   = ImageIO.read(new File("src/imagenes/paso peatonal.png"));
     bus  = ImageIO.read(new File("src/imagenes/bus.png"));
-    pasajero = ImageIO.read(new File("src/imagenes/pasajero.png"));
-
     }
 catch (IOException e) {
     System.out.println(e.toString());
@@ -57,7 +55,6 @@ catch (IOException e) {
         case 'Z': g.drawImage(cebra,x,y, this); break;
         case 'B': g.drawImage(bus,x,y,this); break;
         case 'S': g.drawImage(paradero,x,y,this); break;
-        case 'Q': g.drawImage(pasajero,x,y,this); break;
         }
     }
 

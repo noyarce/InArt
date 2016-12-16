@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Timer;
 import javax.swing.JComponent;
@@ -118,41 +120,27 @@ public void update(Graphics g){
         celdas[i][j].paintComponent(g);
         }
     }
-    
-    /*
-            
-        // Si el jugador tiene cartas
         if(cartero.cartax >0){
-            
-            // Se pintan las cartas
-            for (int i = 0; i < cartero.cartax; i++) {
-                cartero.cartas[i].update(g);
+                for (int i = 0; i < cartero.cartax; i++) {
+                cartero.mCartas[i].update(g);
             }
+        }
             
             // Si el cartero esta en el portal, se pinta mensaje
-            if( ){
-                int fontSize = 60;
+           if( cartero.portal == true){
+                int fontSize = 15;
                 g.setFont(new Font("Arial", Font.PLAIN, fontSize));
                 g.setColor(Color.blue);
-                g.drawString("El cartero en el Portal", 50, 50);
-            }   
-        } else { // Si no hay cartas, se pinta mensaje
-            int fontSize = 50;
-            g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-            g.setColor(Color.red);
-            g.drawString("No hay más cartas!", cartero.x*dimCelda,cartero.y*dimCelda);
-        }
+                g.drawString("El cartero en el Portal", 20, 50);
+           } 
         
-        if(bus.pasajeros>0){
-            for (int i = 0; i < bus.pasajeros; i++) {
-                bus.peatones[i].update(g);
+        
+        if(bus.pasajerosInt>0){
+            for (int i = 0; i < bus.pasajerosInt; i++) {
+                bus.pasajeros[i].update(g);
             }
         } 
     }
     
 }
     
-    
- */   
-}
-}
