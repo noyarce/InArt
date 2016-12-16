@@ -8,7 +8,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class SuperBusqueda extends TimerTask implements Constantes{
-    public Lienzo lienzo;
     public Calles calle;
     public Cartero cartero;
     
@@ -19,15 +18,18 @@ public class SuperBusqueda extends TimerTask implements Constantes{
     public Estado inicial;
     public Estado temp;
     public Estado objetivo;
+   
     public boolean exito;
     public boolean parar;
-    public Queue<Estado> colaEstados;
+    public ArrayList<Estado> colaEstados;
+//    public Queue<Estado> colaEstados;
 
     public SuperBusqueda(Calles calle, Cartero cartero) {
         
         this.calle=calle;
         this.cartero=cartero;
-        colaEstados=new PriorityQueue<>();
+        colaEstados = new ArrayList<>();
+//        colaEstados=new PriorityQueue<>();
         historial=new ArrayList<>();
         pasos=new ArrayList<>();
         destinos=new ArrayList<>();
@@ -62,11 +64,16 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         if ( inicial.equals(objetivo)) exito=true;
 
         while ( !colaEstados.isEmpty() && !exito ){           
-            temp=colaEstados.element();
-            colaEstados.poll();
+            temp=colaEstados.get(0);
+            colaEstados.remove(0);
+//            temp=colaEstados.element();
+//            colaEstados.poll();
+            
             moverArriba(temp);
-            moverDerecha(temp);
+
             moverIzquierda(temp);
+
+            moverDerecha(temp);
             moverAbajo(temp);
         }
         
@@ -121,9 +128,12 @@ public void buscar(int x1,int y1,int x2,int y2) {
 private void moverArriba(Estado e) {
        System.out.println(e.toString());
           if ( e.y > 0 ) {
-            if ( lienzo.calle.celdas[e.x][e.y-1].tipo == 'A'|| 
-                 lienzo.calle.celdas[e.x][e.y-1].tipo == 'C'||
-                 lienzo.calle.celdas[e.x][e.y-1].tipo == 'Z' ) { 
+
+            if ( calle.celdas[e.x][e.y-1].tipo == 'A'|| 
+                 calle.celdas[e.x][e.y-1].tipo == 'C'||
+                 calle.celdas[e.x][e.y-1].tipo == 'Z' ||
+                 calle.celdas[e.x][e.y-1].tipo=='X') { 
+
                  Estado arriba=new Estado(e.x,e.y-1,'U',e);
                  if ( !historial.contains(arriba)) {
                     colaEstados.add(arriba);
@@ -141,9 +151,10 @@ private void moverArriba(Estado e) {
 private void moverAbajo(Estado e) {
         System.out.println(e.toString());
         if ( e.y < altoMV-1 ) {
-            if (lienzo.calle.celdas[e.x][e.y+1].tipo=='Z'
-               ||lienzo.calle.celdas[e.x][e.y+1].tipo=='A'
-               ||lienzo.calle.celdas[e.x][e.y+1].tipo=='C'){
+            if (calle.celdas[e.x][e.y+1].tipo=='Z'
+               ||calle.celdas[e.x][e.y+1].tipo=='A'
+               ||calle.celdas[e.x][e.y+1].tipo=='C'
+               ||calle.celdas[e.x][e.y+1].tipo=='X'){
                  Estado abajo=new Estado(e.x,e.y+1,'D',e);   
                  if ( !historial.contains(abajo)) {
                     colaEstados.add(abajo);
@@ -160,10 +171,11 @@ private void moverAbajo(Estado e) {
 private void moverIzquierda(Estado e) {
     System.out.println(e.toString());
         if ( e.x > 0 ) {
-            if (lienzo.calle.celdas[e.x-1][e.y].tipo== 'C'
-                ||lienzo.calle.celdas[e.x-1][e.y].tipo=='A' 
-                ||lienzo.calle.celdas[e.x-1][e.y].tipo=='Z') {
-                Estado izquierda=new Estado(e.x-1,e.y,'L',e);
+            if (calle.celdas[e.x-1][e.y].tipo=='C'||
+                calle.celdas[e.x-1][e.y].tipo=='A'||
+                calle.celdas[e.x-1][e.y].tipo=='X'||
+                calle.celdas[e.x-1][e.y].tipo=='Z') {
+                   Estado izquierda=new Estado(e.x-1,e.y,'L',e);
                 if ( !historial.contains(izquierda)) {
                    colaEstados.add(izquierda);
                    historial.add(izquierda);
@@ -177,12 +189,14 @@ private void moverIzquierda(Estado e) {
     }    
     
 private void moverDerecha(Estado e) {
-                System.out.println(e.toString());
+System.out.println(e.toString());
+        if ( e.x < anchoMV-1 ) {                      
+            if (calle.celdas[e.x+1][e.y].tipo=='A'||
+                calle.celdas[e.x+1][e.y].tipo=='Z'||
+                calle.celdas[e.x+1][e.y].tipo=='C'||
+                calle.celdas[e.x+1][e.y].tipo=='X') {
 
-        if ( e.x < anchoMV-1 ) {
-            if ( lienzo.calle.celdas[e.x+1][e.y].tipo == 'A' ||lienzo.calle.celdas[e.x+1][e.y].tipo == 'Z' 
-                    || lienzo.calle.celdas[e.x+1][e.y].tipo == 'C' ) {
-               Estado derecha=new Estado(e.x+1,e.y,'R',e); 
+                Estado derecha=new Estado(e.x+1,e.y,'R',e); 
                if ( !historial.contains(derecha)){
                  colaEstados.add(derecha);
                  historial.add(derecha);
@@ -218,7 +232,7 @@ private void moverDerecha(Estado e) {
           boolean resultado;
          
           do{
-              subinicial=new Estado(cartero.cartero.x,cartero.cartero.y,'N',null);
+              subinicial=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null);
               subobjetivo=destinos.get(0);
               resultado=this.buscar(subinicial,subobjetivo);
               if ( subinicial.equals(subobjetivo) ) 
@@ -230,8 +244,11 @@ private void moverDerecha(Estado e) {
                       pasos.clear(); 
                       destinos.remove(subobjetivo);
                   }
-              if ( destinos.isEmpty() ) {
+              if ( destinos.isEmpty()|| calle.cartero.cartax==0 ) {
                  System.out.println("Se acabo a donde ir");
+                 subinicial=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null);
+                 subobjetivo=new Estado (pyr_x, pyr_y,'N',null);
+                 resultado=this.buscar(subinicial,subobjetivo);
                  this.cancel();
               }
           }while(!resultado && !destinos.isEmpty());
@@ -241,7 +258,7 @@ private void moverDerecha(Estado e) {
                 case 'U': calle.cartero.moverCrtArriba(); break;
                 case 'R': calle.cartero.moverCrtDerecha();break;
                 case 'L': calle.cartero.moverCrtIzquierda();break;
-                }
+             }
             calle.lienzoPadre.repaint();  
           }
        }
