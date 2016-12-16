@@ -50,21 +50,6 @@ public Calles(Lienzo lienzoPadre) {
     temporizador.scheduleAtFixedRate( peaton2 , 0 ,800);
     temporizador.scheduleAtFixedRate( peaton3 , 0 ,800);
 
-    /* Iniciacion de la busqueda */
-      
-    /*
-        BusquedaRutaProf buscador=new BusquedaRutaProf(this);
-        buscador.buscar();
-        buscador.calcularRuta();
-        temporizador.scheduleAtFixedRate(buscador, 0, 500); 
-    
-    
-    BusquedaRutaAmp buscador=new BusquedaRutaAmp(this);
-    buscador.buscar();
-    buscador.calcularRuta();
-    temporizador.scheduleAtFixedRate(buscador, 0, 500); 
-    */
- 
  
 }
 

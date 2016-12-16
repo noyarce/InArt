@@ -35,10 +35,12 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         exito=false;
         parar=false;
         
+        /*define los estados objetivo*/
    for (int z=0; z<anchoMV-1;z++ ){
         for (int w=0; w<altoMV-1; w++ ){
             if (((z%6==0)&& (z%12!=0)) && ((w==1)||(w==5)||(w==11)|| w==17)){
                 temp = new Estado (z,w,'N',null);
+                System.out.println(temp.toString());
                 destinos.add(temp);
             }
         }
@@ -58,16 +60,14 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         exito=false;
         
         if ( inicial.equals(objetivo)) exito=true;
-        
-        while ( !colaEstados.isEmpty() && !exito ){
-            
+
+        while ( !colaEstados.isEmpty() && !exito ){           
             temp=colaEstados.element();
-        
-            colaEstados.remove(0);
+            colaEstados.poll();
             moverArriba(temp);
-            moverAbajo(temp);
-            moverIzquierda(temp);
             moverDerecha(temp);
+            moverIzquierda(temp);
+            moverAbajo(temp);
         }
         
         if ( exito ) {
@@ -120,9 +120,10 @@ public void buscar(int x1,int y1,int x2,int y2) {
 */
 private void moverArriba(Estado e) {
        System.out.println(e.toString());
-  
-        if ( e.y > 0 ) {
-            if ( lienzo.calle.celdas[e.x][e.y-1].tipo != 'M' && lienzo.calle.celdas[e.x][e.y-1].tipo != 'P' ) { 
+          if ( e.y > 0 ) {
+            if ( lienzo.calle.celdas[e.x][e.y-1].tipo == 'A'|| 
+                 lienzo.calle.celdas[e.x][e.y-1].tipo == 'C'||
+                 lienzo.calle.celdas[e.x][e.y-1].tipo == 'Z' ) { 
                  Estado arriba=new Estado(e.x,e.y-1,'U',e);
                  if ( !historial.contains(arriba)) {
                     colaEstados.add(arriba);
@@ -139,8 +140,10 @@ private void moverArriba(Estado e) {
     
 private void moverAbajo(Estado e) {
         System.out.println(e.toString());
-        if ( e.y != altoMV-1 ) {
-            if ( lienzo.calle.celdas[e.x][e.y+1].tipo != 'M' && lienzo.calle.celdas[e.x][e.y+1].tipo != 'P' ) {
+        if ( e.y < altoMV-1 ) {
+            if (lienzo.calle.celdas[e.x][e.y+1].tipo=='Z'
+               ||lienzo.calle.celdas[e.x][e.y+1].tipo=='A'
+               ||lienzo.calle.celdas[e.x][e.y+1].tipo=='C'){
                  Estado abajo=new Estado(e.x,e.y+1,'D',e);   
                  if ( !historial.contains(abajo)) {
                     colaEstados.add(abajo);
@@ -157,7 +160,9 @@ private void moverAbajo(Estado e) {
 private void moverIzquierda(Estado e) {
     System.out.println(e.toString());
         if ( e.x > 0 ) {
-            if ( lienzo.calle.celdas[e.x-1][e.y].tipo != 'M' && lienzo.calle.celdas[e.x-1][e.y].tipo != 'P' ) {
+            if (lienzo.calle.celdas[e.x-1][e.y].tipo== 'C'
+                ||lienzo.calle.celdas[e.x-1][e.y].tipo=='A' 
+                ||lienzo.calle.celdas[e.x-1][e.y].tipo=='Z') {
                 Estado izquierda=new Estado(e.x-1,e.y,'L',e);
                 if ( !historial.contains(izquierda)) {
                    colaEstados.add(izquierda);
@@ -175,7 +180,8 @@ private void moverDerecha(Estado e) {
                 System.out.println(e.toString());
 
         if ( e.x < anchoMV-1 ) {
-            if ( lienzo.calle.celdas[e.x+1][e.y].tipo != 'M' && lienzo.calle.celdas[e.x+1][e.y].tipo != 'P' ) {
+            if ( lienzo.calle.celdas[e.x+1][e.y].tipo == 'A' ||lienzo.calle.celdas[e.x+1][e.y].tipo == 'Z' 
+                    || lienzo.calle.celdas[e.x+1][e.y].tipo == 'C' ) {
                Estado derecha=new Estado(e.x+1,e.y,'R',e); 
                if ( !historial.contains(derecha)){
                  colaEstados.add(derecha);
@@ -210,7 +216,7 @@ private void moverDerecha(Estado e) {
        
           Estado subinicial,subobjetivo;
           boolean resultado;
-          
+         
           do{
               subinicial=new Estado(cartero.cartero.x,cartero.cartero.y,'N',null);
               subobjetivo=destinos.get(0);
