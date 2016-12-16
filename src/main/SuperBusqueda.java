@@ -235,6 +235,7 @@ System.out.println(e.toString());
               subinicial=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null);
               subobjetivo=destinos.get(0);
               resultado=this.buscar(subinicial,subobjetivo);
+              
               if ( subinicial.equals(subobjetivo) ) 
                   destinos.remove(subobjetivo);
               else 
@@ -244,13 +245,17 @@ System.out.println(e.toString());
                       pasos.clear(); 
                       destinos.remove(subobjetivo);
                   }
-              if ( destinos.isEmpty()|| calle.cartero.cartax==0 ) {
+              if ( destinos.isEmpty()) {
                  System.out.println("Se acabo a donde ir");
-                 subinicial=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null);
-                 subobjetivo=new Estado (pyr_x, pyr_y,'N',null);
-                 resultado=this.buscar(subinicial,subobjetivo);
                  this.cancel();
               }
+              if (calle.cartero.cartax==0){
+                  destinos.clear();
+                  temp= new Estado (pyr_x, pyr_y,'N',null);
+                  destinos.add(temp);
+                }
+              
+              
           }while(!resultado && !destinos.isEmpty());
           if ( pasos.size() > 1 ) {
              switch(pasos.get(1)) {
