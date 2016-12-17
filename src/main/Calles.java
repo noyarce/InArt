@@ -98,6 +98,7 @@ for (int z=0; z<anchoMV-1;z++ ){
         
     }
 }
+celdas [0][0].tipo='G';
 
 celdaMovimiento=new Celda(pyr_x,pyr_y,'J');
 
