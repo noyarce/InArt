@@ -56,6 +56,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y-dimCelda);
+                }
             break;
             }
         else{
@@ -68,6 +71,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
+        for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y-dimCelda);
+                }
     break;
         
     }
@@ -77,6 +83,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
             cartero.y=cartero.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y-dimCelda);
+                }
             break;
         }
         else{
@@ -88,6 +97,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';            
         cartax= entregarCarta(cartax);
+        for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y-dimCelda);
+                }
         break;
     }
     case ('M'):{
@@ -104,10 +116,6 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     }
     }
 }
-        for(int i=0;i<cartax;i++){
-                    mCartas[i].y=(mCartas[i].y-dimCelda);
-                }
-portal= false;
 }
 public void moverCrtAbajo(){
     if(cartero.y<altoMV-1){
@@ -119,6 +127,9 @@ public void moverCrtAbajo(){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
             cartero.y=cartero.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y+dimCelda);
+                }
             break;
         }
         else{
@@ -132,8 +143,10 @@ public void moverCrtAbajo(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
         cartax=entregarCarta(cartax); 
-        portal= true;        
-break;
+        for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y+dimCelda);
+                }
+        break;
         }
     case('P'):{
         System.out.println("Choque! No se puede mover mas hacia Abajo!");
@@ -147,7 +160,10 @@ break;
         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
+System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
+for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y+dimCelda);
+                }
     break;
         
     }
@@ -156,7 +172,10 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
             calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.y=cartero.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
-            System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);   
+            System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].y=(mCartas[i].y+dimCelda);
+                }
             break;
          }
          else{
@@ -168,10 +187,7 @@ System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
      }  
    }
  }
-            for(int i=0;i<cartax;i++){
-                    mCartas[i].y=(mCartas[i].y+dimCelda);
-                }
-portal= false;
+            
 }
 public void moverCrtIzquierda(){
  if(cartero.x>0){
@@ -183,6 +199,9 @@ public void moverCrtIzquierda(){
             calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x-dimCelda);
+                }
             break;
             }
             else{
@@ -197,6 +216,9 @@ public void moverCrtIzquierda(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
         cartax=entregarCarta(cartax);
+        for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x-dimCelda);
+                }
 break;   
     }
     case ('M'):{
@@ -212,6 +234,9 @@ break;
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
 System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
+for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x-dimCelda);
+                }
     break;
         
     }
@@ -221,6 +246,9 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
  System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
+ for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x-dimCelda);
+                }
             break;
         }
         else{
@@ -232,10 +260,7 @@ System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
         }
     }
 }
-         for(int i=0;i<cartax;i++){
-                    mCartas[i].x=(mCartas[i].x-dimCelda);
-                }
-portal= false;
+         
 }
 public void moverCrtDerecha(){
     if((cartero.x<anchoMV-1)){
@@ -247,6 +272,9 @@ public void moverCrtDerecha(){
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
             cartax=entregarCarta(cartax);
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x+dimCelda);
+                }
             break;
             }
         case ('M'):{
@@ -262,6 +290,9 @@ public void moverCrtDerecha(){
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
+            for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x+dimCelda);
+                }
              break;
             }
         case('Z'): {
@@ -270,6 +301,9 @@ public void moverCrtDerecha(){
                 cartero.x=cartero.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
+                for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x+dimCelda);
+                }
                 break;
             }
             else{
@@ -285,6 +319,9 @@ public void moverCrtDerecha(){
                 calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
                 cartero.x=cartero.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
+                for(int i=0;i<cartax;i++){
+                    mCartas[i].x=(mCartas[i].x+dimCelda);
+                }
                 break;
             }
             else{
@@ -293,10 +330,6 @@ public void moverCrtDerecha(){
         }
       }
     }
-            for(int i=0;i<cartax;i++){
-                    mCartas[i].x=(mCartas[i].x+dimCelda);
-                }
-
 }
 
 private boolean vieneAuto(Calles calle , Celda cartero){
@@ -304,7 +337,7 @@ private boolean vieneAuto(Calles calle , Celda cartero){
     for(int i=-3; i<3; i++){
         for (int j=-3; j<3;j++){
                 if(((cartero.x+i>0)&&(cartero.y+j>0))&&((cartero.x+i<anchoMV-1)&&(cartero.y+j<altoMV-1))){
-                    if((calle.celdas[cartero.x+i][cartero.y+j].tipo== 'T')){
+                    if((calle.celdas[cartero.x+i][cartero.y+j].tipo== 'T'|| calle.celdas[cartero.x+i][cartero.y+j].tipo== 'B')){
                         flag=true;
                         break;
                     }

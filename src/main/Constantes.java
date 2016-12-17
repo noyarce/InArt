@@ -29,6 +29,8 @@ public interface Constantes {
     
     public int cartas = 4 ;
     public int nPasajeros = 5; 
+    public int nPeatones = 5;
+    public int nAutos = 5;
     
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();

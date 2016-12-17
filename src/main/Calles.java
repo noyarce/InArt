@@ -14,8 +14,8 @@ public Lienzo lienzoPadre;
 public Cartero cartero;
 public Bus bus;
 
-public Peaton peaton, peaton2, peaton3;
-public Automovil auto, auto2, auto3, auto4, auto5;
+public Peaton peatones[];
+public Automovil auto[];
 public Timer temporizador;
 
 
@@ -23,36 +23,21 @@ public Calles(Lienzo lienzoPadre) {
  celdas=new Celda[anchoMV][altoMV];
  generarMapa();
  this.lienzoPadre=lienzoPadre;
-
+this.peatones= new Peaton[nPeatones];
+this.auto = new Automovil [nAutos];
     cartero= new Cartero(this);
     bus= new Bus(this);
  
-    auto=new Automovil(this);
-    auto2=new Automovil(this);
-    auto3=new Automovil(this);
-    auto4=new Automovil(this);
-    
-    peaton = new Peaton(this);
-    peaton2 = new Peaton(this);
-    peaton3 = new Peaton(this);
-     
     temporizador = new Timer(); 
-    
-    /*declaracion de automoviles*/
-    temporizador.scheduleAtFixedRate( auto , 0 , 200);
-    temporizador.scheduleAtFixedRate( auto2 , 0 , 100);
-    temporizador.scheduleAtFixedRate( auto3 , 0 , 500);
-    temporizador.scheduleAtFixedRate( auto4 ,0 , 300);
-    
-    temporizador.scheduleAtFixedRate( bus, 0 , 400);
-
-    
-    /*iniciacion de peatones*/
-    temporizador.scheduleAtFixedRate( peaton , 0 ,800);
-    temporizador.scheduleAtFixedRate( peaton2 , 0 ,800);
-    temporizador.scheduleAtFixedRate( peaton3 , 0 ,800);
-
- 
+    for (int i =0; i < nPeatones; i++){
+     peatones[i] = new Peaton(this);
+     temporizador.scheduleAtFixedRate( peatones[i] , 0 ,800);
+}   
+    for (int i =0; i < nPeatones; i++){
+        auto[i]=new Automovil(this);  
+         temporizador.scheduleAtFixedRate( auto[i] , 0 , 500);
+    }
+    temporizador.scheduleAtFixedRate(bus,0,600);
 }
 
 public final void generarMapa(){
@@ -82,10 +67,6 @@ for(int i=0; i < anchoMV; i++){
 
 celdas[pyr_x][pyr_y].tipo= 'J';
 
-celdas [5][4].tipo='P';
-celdas [14][6].tipo='P';
-celdas [8][12].tipo='P';
-celdas [22][2].tipo='P';
 
 for (int z=0; z<anchoMV-1;z++ ){
     for (int w=0; w<altoMV-1; w++ ){
