@@ -51,7 +51,7 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         
 
         
-    public boolean buscar(Estado inicial,Estado objetivo) {
+ boolean buscar(Estado inicial,Estado objetivo) {
         
         System.out.println("Estado inicial"+inicial.toString());
         System.out.println("Estado objetivo"+objetivo.toString());

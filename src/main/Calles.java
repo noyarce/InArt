@@ -70,10 +70,10 @@ celdas[pyr_x][pyr_y].tipo= 'J';
 
 for (int z=0; z<anchoMV-1;z++ ){
     for (int w=0; w<altoMV-1; w++ ){
-        if ((z%6==0) && ((w==1)||(w==5)||(w==11)|| w==17)){
+        if ((z%6==0) && ((w==1)||(w==7)||(w==11)||(w==13)|| w==19 ||w==17)){
         celdas[z][w].tipo= 'X';
         }
-        if((z%12==0) && ((w==5)||(w==11)|| w==17)){
+        if((z%6==0) && ((w==5)||(w==11)|| w==17)){
                 celdas[z][w].tipo= 'S';
         }
         
@@ -110,10 +110,15 @@ public void update(Graphics g){
             
             // Si el cartero esta en el portal, se pinta mensaje
            if( cartero.portal == true){
-                int fontSize = 15;
+                int fontSize = 30;
                 g.setFont(new Font("Arial", Font.PLAIN, fontSize));
-                g.setColor(Color.blue);
-                g.drawString("El cartero en el Portal", 20, 50);
+                g.setColor(Color.red);
+                if(cartero.cartax==0){
+                    g.drawString("Cartero en el portal, se acabaron las cartas, Volviendo a la central ", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
+                }
+                else{
+                    g.drawString("Cartero en el Portal. quedan "+cartero.cartax+" cartas", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
+                }
            } 
         
         

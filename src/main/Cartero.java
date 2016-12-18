@@ -100,6 +100,12 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
                 }
+        portal= true;
+        try
+        {
+            Thread.sleep(1000);
+        portal = false;
+        }catch(InterruptedException e){}
         break;
     }
     case ('M'):{
@@ -146,6 +152,12 @@ public void moverCrtAbajo(){
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
                 }
+        portal= true;
+        try
+        {
+            Thread.sleep(1000);
+        portal = false;
+        }catch(InterruptedException e){}
         break;
         }
     case('P'):{
@@ -219,6 +231,12 @@ public void moverCrtIzquierda(){
         for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
+        portal= true;
+        try
+        {
+            Thread.sleep(1000);
+        portal = false;
+        }catch(InterruptedException e){}
 break;   
     }
     case ('M'):{
@@ -275,6 +293,12 @@ public void moverCrtDerecha(){
             for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x+dimCelda);
                 }
+            portal= true;
+        try
+        {
+            Thread.sleep(1000);
+        portal = false;
+        }catch(InterruptedException e){}
             break;
             }
         case ('M'):{

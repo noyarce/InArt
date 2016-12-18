@@ -55,7 +55,7 @@ public void moverBusIzq(){
 }
 public void moverBusDer(){
     if (bus.x < anchoMV-1 ){
-        if (calle.celdas[bus.x][bus.y+2].tipo=='S'){
+        if (calle.celdas[bus.x][bus.y+2].tipo=='S' && pasajerosInt>0){
             calle.celdas[bus.x][bus.y+2].tipo='P';
             pasajerosInt=pasajerosInt-1;
         }
