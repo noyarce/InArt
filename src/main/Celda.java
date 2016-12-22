@@ -37,7 +37,7 @@ try {
     correos= ImageIO.read(new File("src/imagenes/correos.png"));
     }
 catch (IOException e) {
-    System.out.println(e.toString());
+    System.out.println("error aca "+e.toString());
     }
 
 }

@@ -19,7 +19,7 @@ public class Pasajero extends JComponent implements Constantes {
         try {
             pasajero = ImageIO.read(new File("src/imagenes/pasajero.png"));
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println("error pasajeros"+e.toString());
         }
     }
     

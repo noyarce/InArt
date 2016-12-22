@@ -1,4 +1,4 @@
-package main;
+ package main;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -70,7 +70,7 @@ celdas[pyr_x][pyr_y].tipo= 'J';
 
 for (int z=0; z<anchoMV-1;z++ ){
     for (int w=0; w<altoMV-1; w++ ){
-        if ((z%6==0) && ((w==1)||(w==7)||(w==11)||(w==13)|| w==19 ||w==17)){
+        if ((z%6==0) && ((w==1)||(w==7)||(w==13)|| w==19)){
         celdas[z][w].tipo= 'X';
         }
         if((z%6==0) && ((w==5)||(w==11)|| w==17)){
@@ -107,8 +107,7 @@ public void update(Graphics g){
                 cartero.mCartas[i].update(g);
             }
         }
-            
-            // Si el cartero esta en el portal, se pinta mensaje
+            /*mensaje cartero en portal*/
            if( cartero.portal == true){
                 int fontSize = 30;
                 g.setFont(new Font("Arial", Font.PLAIN, fontSize));
@@ -119,8 +118,14 @@ public void update(Graphics g){
                 else{
                     g.drawString("Cartero en el Portal. quedan "+cartero.cartax+" cartas", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
                 }
-           } 
-        
+           }
+           if(cartero.cartero.x == pyr_x && cartero.cartero.y == pyr_y && cartero.cartax ==0 ){
+                int fontSize = 30;
+                g.setFont(new Font("Arial", Font.PLAIN, fontSize));
+                g.setColor(Color.red);
+               g.drawString("Cartero en correos. Todas las cartas han sido entregadas" , cartero.cartero.x+2 *dimCelda, cartero.cartero.y+2*dimCelda);
+
+           }
         
         if(bus.pasajerosInt>0){
             for (int i = 0; i < bus.pasajerosInt; i++) {

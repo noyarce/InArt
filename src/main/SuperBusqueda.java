@@ -40,7 +40,7 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         /*define los estados objetivo*/
    for (int z=0; z<anchoMV-1;z++ ){
         for (int w=0; w<altoMV-1; w++ ){
-            if (((z%6==0)&& (z%12!=0)) && ((w==1)||(w==5)||(w==11)|| w==17)){
+              if (calle.celdas[z][w].tipo== 'X'){
                 temp = new Estado (z,w,'N',null);
                 System.out.println(temp.toString());
                 destinos.add(temp);
@@ -49,10 +49,21 @@ public class SuperBusqueda extends TimerTask implements Constantes{
     }
 }  
         
-
+int recorrer(Estado e){
+int r=0;
+for (int i =0; i<5; i++){
+    for (int j=0;j<5;i++){
+            if((e.x-4+i>=0)&&(e.y-2+j>=0)){
+                if( calle.celdas[e.x-4+i][e.y-2+j].tipo=='P')
+                    r=r+1;
+             }
+    }
+    return r;
+}
+return r;
+}
         
  boolean buscar(Estado inicial,Estado objetivo) {
-        
         System.out.println("Estado inicial"+inicial.toString());
         System.out.println("Estado objetivo"+objetivo.toString());
         index_pasos=0;

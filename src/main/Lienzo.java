@@ -25,9 +25,9 @@ public Lienzo(){
     lanzadorTareas.scheduleAtFixedRate(calle.cartero.inteligencia,0,500);
     
     try {
-        fondo = ImageIO.read(new File("src/imagenes/Fondo.jpg"));
+        fondo = ImageIO.read(new File("src/imagenes/Fondo.png"));
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println("error fondo"+e.toString());
         }
     
 addMouseListener(new MouseAdapter() {

@@ -19,7 +19,7 @@ public class Cartas extends JComponent implements Constantes {
         try {
             carta = ImageIO.read(new File("src/imagenes/cartita.png"));
         } catch (IOException e) {
-            System.out.println(e.toString());
+            System.out.println("error en las cartas"+e.toString());
         }
     }
     
