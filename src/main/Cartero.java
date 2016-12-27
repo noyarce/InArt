@@ -13,6 +13,7 @@ public class Cartero extends TimerTask implements Constantes {
     public Cartas[] mCartas;
     SuperBusqueda inteligencia;
     public boolean portal;
+    public int ultima;
 
 public Cartero(Calles calle) {
     this.calle=calle;
@@ -95,8 +96,9 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     case ('X'): {
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
-        calle.celdas[cartero.x][cartero.y].tipo='J';            
-        cartax= entregarCarta(cartax,numeroAleatorio(1,cartax-1));
+        calle.celdas[cartero.x][cartero.y].tipo='J';   
+        ultima= numeroAleatorio(1,cartax-1);
+        cartax= entregarCarta(cartax,ultima);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
                 }
@@ -148,7 +150,8 @@ public void moverCrtAbajo(){
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
-        cartax=entregarCarta(cartax, numeroAleatorio(1,cartax)); 
+        ultima= numeroAleatorio(1,cartax-1);
+        cartax= entregarCarta(cartax,ultima);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
                 }
@@ -227,7 +230,8 @@ public void moverCrtIzquierda(){
         cartero.x=cartero.x-1;            
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
-        cartax=entregarCarta(cartax,numeroAleatorio(1,cartax-1));
+        ultima= numeroAleatorio(1,cartax-1);
+        cartax= entregarCarta(cartax,ultima);
         for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
@@ -289,10 +293,11 @@ public void moverCrtDerecha(){
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
-            cartax=entregarCarta(cartax,numeroAleatorio(1,cartax-1));
+            ultima= numeroAleatorio(1,cartax-1);
+            cartax= entregarCarta(cartax,ultima);
             for(int i=0;i<cartax;i++){
-                    mCartas[i].x=(mCartas[i].x+dimCelda);
-                }
+                   mCartas[i].x=(mCartas[i].x+dimCelda);
+            }
             portal= true;
         try
         {

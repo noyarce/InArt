@@ -27,12 +27,12 @@ public interface Constantes {
     public final int bus_x = 0;
     public final int bus_y = 3;
     
-    public int cartas = 5;
+    public int cartas = 12;
     public int nPasajeros = 5; 
     public int nPeatones = 5;
     public int nAutos = 5;
     
-    public int nBuzones = 15;
+    public int nBuzones = 10;
     
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();

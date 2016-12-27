@@ -13,6 +13,7 @@ public class Cartas extends JComponent implements Constantes {
     public int y;
     public BufferedImage carta;
     
+    
     public Cartas(int x, int y) {
         this.x = x;
         this.y = y;       
