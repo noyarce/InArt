@@ -27,30 +27,18 @@ public Cartero(Calles calle) {
     this.portal = false;
     inteligencia=new SuperBusqueda(calle,this);  
 }
-     
-public void moverCartero( KeyEvent evento ) {
 
-        switch( evento.getKeyCode() ) {
-            case 38:   
-                moverCrtArriba();
-                break;
-            case 40 :
-                moverCrtAbajo();
-                break;
-            case 37:
-                moverCrtIzquierda();
-                break;
-            case 39:
-                moverCrtDerecha();
-                break;
-        }
-    }
 
 public void moverCrtArriba(){
 if(cartero.y>0 ){
 char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     switch (op){
-    
+        
+        case ('L'):{
+        moverCrtAbajo();
+        break;
+        }
+        
         case('C'): {
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
@@ -129,7 +117,10 @@ public void moverCrtAbajo(){
     if(cartero.y<altoMV-1){
     char op = calle.celdas[cartero.x][cartero.y+1].tipo;
     switch(op){
-        
+         case ('L'):{
+        moverCrtArriba();
+        break;
+        }
     case('C'): {
         if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
@@ -210,7 +201,10 @@ public void moverCrtIzquierda(){
  if(cartero.x>0){
     char op = calle.celdas[cartero.x-1][cartero.y].tipo ;
     switch (op){    
- 
+  case ('L'):{
+        moverCrtDerecha();
+        break;
+        }
     case('C'):{
             if(vieneAuto(calle,cartero)==false){
             calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
@@ -292,6 +286,10 @@ public void moverCrtDerecha(){
     if((cartero.x<anchoMV-1)){
     char op = calle.celdas[cartero.x+1][cartero.y].tipo;
         switch (op){  
+        case ('L'):{
+            moverCrtIzquierda();
+            break;
+        }
         case ('X'):{
             if(cartax>0){
             calle.celdas[cartero.x][cartero.y].tipo='A';

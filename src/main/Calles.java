@@ -13,6 +13,7 @@ public Celda celdaMovimiento;      /* declarada a celda a mover */
 public Lienzo lienzoPadre;    
 public Cartero cartero;
 public Bus bus;
+public Ladron ladron;
 
 public Peaton peatones[];
 public Automovil auto[];
@@ -24,9 +25,12 @@ public Calles(Lienzo lienzoPadre) {
  generarMapa();
  this.portales = nBuzones;
  this.lienzoPadre=lienzoPadre;
+ 
 this.peatones= new Peaton[nPeatones];
 this.auto = new Automovil [nAutos];
-    cartero= new Cartero(this);
+
+ladron= new Ladron (this);    
+cartero= new Cartero(this);
     bus= new Bus(this);
  
     temporizador = new Timer(); 
@@ -108,7 +112,9 @@ public void update(Graphics g){
     int fontSize = 20;
     g.setFont(new Font("Arial", Font.PLAIN, fontSize));
     g.setColor(Color.red);
-                
+    
+    
+    
     for(int i=0; i < anchoMV; i++){
     for ( int j=0 ; j < altoMV; j++){
             celdas[i][j].paintComponent(g);

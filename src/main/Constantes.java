@@ -19,8 +19,7 @@ public interface Constantes {
     public final char AUTOMOVIL = 'T';
     public final char ACERA = 'V';
       
-    public final int prt_x = 31;  /*portal horizontal*/
-    public final int prt_y = 20; /* portal vertical */
+   
     public final int pyr_x = 1; /* cartero vertical */
     public final int pyr_y = 0;  /*cartero horizontal*/
   
