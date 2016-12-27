@@ -141,12 +141,16 @@ public void update(Graphics g){
                     g.drawString("entregadas "+cartero.ultima+" se acabaron las cartas, Volviendo a la central ", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
                 }
                 else{
-                    g.drawString("Cartero en el Portal. entregadas:"+cartero.ultima + "quedan "+cartero.cartax+" cartas", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
+                    g.drawString("Cartero en el Portal. entregadas:"+cartero.ultima + "quedan "+cartero.cartax+" cartas", cartero.cartero.x *dimCelda, (cartero.cartero.y+2)*dimCelda);
                 }
            }
            if(cartero.cartero.x == pyr_x && cartero.cartero.y == pyr_y && cartero.cartax ==0 ){
+               if (cartero.robo == false){
                 g.drawString("Cartero en correos. Todas las cartas han sido entregadas" , cartero.cartero.x+2 *dimCelda, cartero.cartero.y+2*dimCelda);
-           }
+               }else{
+               g.drawString("Cartero en correos. Todas las cartas han sido robadas" , cartero.cartero.x+2 *dimCelda, cartero.cartero.y+2*dimCelda);
+               }
+               }
     
            
         if(bus.pasajerosInt>0){

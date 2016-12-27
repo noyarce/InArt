@@ -26,8 +26,8 @@ public interface Constantes {
     public final int bus_x = 0;
     public final int bus_y = 3;
     
-    public int cartas = 12;
-    public int nPasajeros = 5; 
+    public int cartas = 8;
+    public int nPasajeros = 3; 
     public int nPeatones = 5;
     public int nAutos = 5;
     
@@ -73,8 +73,5 @@ default int randomAuto(){
     }
     return y;
  }
-
-
-
 
 }

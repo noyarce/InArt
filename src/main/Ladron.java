@@ -48,6 +48,7 @@ char op =calle.celdas[ladron.x][ladron.y-1].tipo;
     switch (op){
         case('J'): {
             calle.cartero.cartax = 0;
+            calle.cartero.robo= true;
             break;
         }
         case('C'): {
@@ -104,6 +105,7 @@ public void moverLdrAbajo(){
     switch(op){
         case('J'): {
             calle.cartero.cartax = 0;
+            calle.cartero.robo= true;
             break;
         }
     case('C'): {
@@ -157,6 +159,7 @@ public void moverLdrIzquierda(){
     switch (op){    
  case('J'): {
             calle.cartero.cartax = 0;
+            calle.cartero.robo=true;
             break;
         }
     case('C'):{
@@ -214,6 +217,7 @@ public void moverLdrDerecha(){
         switch (op){  
             case('J'): {
             calle.cartero.cartax = 0;
+            calle.cartero.robo = true;
         break;
         }
         case ('M'):{

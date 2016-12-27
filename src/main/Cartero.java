@@ -13,6 +13,7 @@ public class Cartero extends TimerTask implements Constantes {
     SuperBusqueda inteligencia;
     public boolean portal;
     public int ultima;
+    public boolean robo;
 
 public Cartero(Calles calle) {
     this.calle=calle;
@@ -26,6 +27,7 @@ public Cartero(Calles calle) {
     }
     this.portal = false;
     inteligencia=new SuperBusqueda(calle,this);  
+    robo = false;
 }
 
 

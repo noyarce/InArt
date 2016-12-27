@@ -55,15 +55,7 @@ public class SuperLadron extends TimerTask implements Constantes{
             movDerecha(temp);
         }
         
-        if ( exito ) {
-            System.out.println("Ruta calculada");
-            this.calcularRuta();
-            return true;
-        }
-        else {
-            System.out.println("La ruta no pudo calcularse");
-            return false;
-        }
+       return exito;
     }
 
 
@@ -160,7 +152,6 @@ System.out.println(e.toString());
 
     @Override
     public void run() {
-       
        if ( ! parar ) { 
           colaEstados.clear();
           historial.clear();
@@ -171,18 +162,10 @@ System.out.println(e.toString());
               subinicial=new Estado(calle.ladron.ladron.x,calle.ladron.ladron.y,'N',null,0);
               subobjetivo=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null,0);
               resultado=this.buscar(subinicial,subobjetivo);
-              
               if ( subinicial.equals(subobjetivo) ) {
                   parar=true;
                   this.cancel();
               }
-              else 
-                  if ( !resultado) {
-                      colaEstados.clear();
-                      historial.clear();
-                      pasos.clear(); 
-                  }
-             
           }while(!resultado);
           if ( pasos.size() > 1 ) {
              switch(pasos.get(1)) {
