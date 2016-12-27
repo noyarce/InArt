@@ -41,6 +41,7 @@ public class SuperBusqueda extends TimerTask implements Constantes{
               if (calle.celdas[z][w].tipo== 'X'){
                 temp = new Estado (z,w,'N',null,calle.celdas[z][w].priori);
                 destinos.add(temp);
+                temp.toString();
                 }
             }
         }
@@ -84,7 +85,7 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         double parte1=Math.pow(Math.abs(b.x-a.x),2);
         double parte2=Math.pow(Math.abs(b.y-a.y),2);
         parte1+=parte2;
-        valor=Math.sqrt(parte1);
+        valor=(int) Math.sqrt(parte1);
         return valor;
     }
 
@@ -95,7 +96,7 @@ private void moverArriba(Estado e, Estado x) {
                  calle.celdas[e.x][e.y-1].tipo == 'C'||
                  calle.celdas[e.x][e.y-1].tipo == 'Z'||
                  calle.celdas[e.x][e.y-1].tipo=='X') {
-                    double priori = distancia (e,x)+ calle.celdas[e.x][e.y-1].priori;
+                    double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
                     Estado arriba=new Estado(e.x,e.y-1,'U',e, priori);
                  if ( !historial.contains(arriba)) {
                     colaEstados.add(arriba);
@@ -116,7 +117,7 @@ private void moverAbajo(Estado e, Estado x) {
                ||calle.celdas[e.x][e.y+1].tipo=='A'
                ||calle.celdas[e.x][e.y+1].tipo=='C'
                ||calle.celdas[e.x][e.y+1].tipo=='X'){
-                double priori = distancia (e,x)+ calle.celdas[e.x][e.y+1].priori;
+                double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
                 Estado abajo=new Estado(e.x,e.y+1,'D',e,priori);
                  if ( !historial.contains(abajo)) {
                     colaEstados.add(abajo);
@@ -133,11 +134,11 @@ private void moverAbajo(Estado e, Estado x) {
 private void moverIzquierda(Estado e, Estado x) {
     System.out.println(e.toString());
         if ( e.x > 0 ) {
-            if (calle.celdas[e.x-1][e.y].tipo=='C'||
-                calle.celdas[e.x-1][e.y].tipo=='A'||
+            if (calle.celdas[e.x-1][e.y].tipo=='A'||
+                calle.celdas[e.x-1][e.y].tipo=='C'||
                 calle.celdas[e.x-1][e.y].tipo=='X'||
                 calle.celdas[e.x-1][e.y].tipo=='Z') {
-                    double priori = distancia (e,x)+ calle.celdas[e.x-1][e.y].priori;
+                    double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
                 Estado izquierda=new Estado(e.x-1,e.y,'L',e, priori);
                 if ( !historial.contains(izquierda)) {
                    colaEstados.add(izquierda);
@@ -158,7 +159,7 @@ System.out.println(e.toString());
                 calle.celdas[e.x+1][e.y].tipo=='Z'||
                 calle.celdas[e.x+1][e.y].tipo=='C'||
                 calle.celdas[e.x+1][e.y].tipo=='X') {
-                    double priori = distancia (e,x)+ calle.celdas[e.x+1][e.y].priori;
+                    double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
                 Estado derecha=new Estado(e.x+1,e.y,'R',e, priori); 
                 if ( !historial.contains(derecha)){
                  colaEstados.add(derecha);
@@ -189,10 +190,8 @@ System.out.println(e.toString());
           colaEstados.clear();
           historial.clear();
           pasos.clear(); 
-       
           Estado subinicial,subobjetivo;
           boolean resultado;
-         
           do{
               subinicial=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null,0);
               subobjetivo=destinos.get(0);
@@ -216,8 +215,6 @@ System.out.println(e.toString());
                   temp= new Estado (pyr_x, pyr_y,'N',null,0);
                   destinos.add(temp);
                 }
-              
-              
           }while(!resultado && !destinos.isEmpty());
           if ( pasos.size() > 1 ) {
              switch(pasos.get(1)) {

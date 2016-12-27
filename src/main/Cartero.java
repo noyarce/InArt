@@ -2,7 +2,6 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
 
 
 public class Cartero extends TimerTask implements Constantes {
@@ -68,7 +67,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         }
 
     case('A'):{
-        calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);               
+        calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);               
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
@@ -94,10 +93,11 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         }
     }
     case ('X'): {
+        if(cartax>0){
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';   
-        ultima= numeroAleatorio(1,cartax-1);
+        ultima= randomCarta(cartax);
         cartax= entregarCarta(cartax,ultima);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
@@ -109,7 +109,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         portal = false;
         }catch(InterruptedException e){}
         break;
-    }
+    }}
     case ('M'):{
         System.out.println("Choque! No se puede mover mas hacia Arriba");
         break;
@@ -146,11 +146,12 @@ public void moverCrtAbajo(){
     }
         
     case ('X'): {
+        if(cartax>0){
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
-        ultima= numeroAleatorio(1,cartax-1);
+        ultima= randomCarta(cartax);
         cartax= entregarCarta(cartax,ultima);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
@@ -163,6 +164,7 @@ public void moverCrtAbajo(){
         }catch(InterruptedException e){}
         break;
         }
+    }
     case('P'):{
         System.out.println("Choque! No se puede mover mas hacia Abajo!");
         break;
@@ -226,11 +228,12 @@ public void moverCrtIzquierda(){
     }
   
     case ('X'): {
+        if(cartax>0){
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;            
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
-        ultima= numeroAleatorio(1,cartax-1);
+        ultima= randomCarta(cartax);
         cartax= entregarCarta(cartax,ultima);
         for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
@@ -241,7 +244,8 @@ public void moverCrtIzquierda(){
             Thread.sleep(1000);
         portal = false;
         }catch(InterruptedException e){}
-break;   
+        break;   
+        }
     }
     case ('M'):{
         System.out.println("Choque! No se puede mover mas a la Izquierda!");
@@ -252,11 +256,11 @@ break;
         break;
         }
     case('A'):{
-         calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
+         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
-System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
-for(int i=0;i<cartax;i++){
+        System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
+        for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
     break;
@@ -289,11 +293,12 @@ public void moverCrtDerecha(){
     char op = calle.celdas[cartero.x+1][cartero.y].tipo;
         switch (op){  
         case ('X'):{
+            if(cartax>0){
             calle.celdas[cartero.x][cartero.y].tipo='A';
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
-            ultima= numeroAleatorio(1,cartax-1);
+             ultima= randomCarta(cartax);
             cartax= entregarCarta(cartax,ultima);
             for(int i=0;i<cartax;i++){
                    mCartas[i].x=(mCartas[i].x+dimCelda);
@@ -306,6 +311,7 @@ public void moverCrtDerecha(){
         }catch(InterruptedException e){}
             break;
             }
+        }
         case ('M'):{
             System.out.println("Choque! No se puede mover mas a la Derecha!");
             break;
@@ -401,11 +407,13 @@ char op='A';
 }
 
 public int entregarCarta(int cartax, int aEntregar){
-    if (cartax > aEntregar){
+    if (cartax >= aEntregar){
         cartax = cartax - aEntregar;
+        return cartax;
     }
- 
-    return cartax;
+    else{
+    return 0;
+    }
 }
 
 @Override

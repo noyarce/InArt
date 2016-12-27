@@ -1,7 +1,7 @@
 package main;
 
 
-public class Estado implements Constantes{
+public class Estado implements Comparable{
 //    implements Comparable<Estado>
     public int x;
     public int y;
@@ -18,6 +18,7 @@ public class Estado implements Constantes{
         this.prioridad= priori;
     }
     
+    @Override
     public boolean equals(Object x) {
         Estado e=(Estado)x;
         return this.x==e.x && this.y==e.y;
@@ -25,6 +26,17 @@ public class Estado implements Constantes{
         
     @Override
     public String toString() {
-        return "("+x+","+y+")";
+        return "("+x+","+y+" - Prioridad : "+ prioridad+")";
     }
+    
+    @Override
+    public int compareTo(Object o) {
+        Estado e=(Estado)o;
+        if ( this.prioridad == e.prioridad ) return 0;
+        else {
+            if ( this.prioridad > e.prioridad ) return 1;
+            else return -1;
+        }
+    }
+
 }

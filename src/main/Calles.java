@@ -75,7 +75,8 @@ for (int a=0; a<anchoMV-1;a++ ){
         if ((a%6==0 && a > 0) && ((w==7)||(w==13)|| w==19)){
             if (contador < nBuzones)
             celdas[a][w].tipo= 'X';
-        contador = contador +1;
+            celdas[a][w].priori= numeroAleatorio(1,100) + celdas[a][w].priori;
+            contador = contador +1;
         }
     }
 }
@@ -97,32 +98,6 @@ this.setSize(anchoCalle,altoCalle);
 
 }
 
-public void calcular(){  
-    for (int i =1; i< altoMV; i++){
-        for (int j=1; j<anchoMV; j++){
-            if((i == 4 && (j == 4 || j ==10 || j == 16 || j == 22 || j == 28)) || 
-                (i == 10 && (j == 4 || j ==10 || j == 16 || j == 22 || j == 28)) ||
-                  (i == 16 && (j == 4 || j ==10 || j == 16 || j == 22 || j == 28)) ||
-                   (i == 22 && (j == 4 || j ==10 || j == 16 || j == 22 || j == 28)))
-            celdas[i+3][j+2].priori=(int)recorrer(i,j);
-        }
-    }
-}
-
-public double recorrer(int x, int y){
-double r=0;
-for (int i =0; i< 6; i++){
-    for (int j=0; j< 6; j++){
-        if (celdas[i+x][j+y].tipo=='P'){
-            r = r+1;
-        }
-    }
-}
-return r;
-}
-
-
-
 @Override
 public void paintComponent(Graphics g) {
 update(g);
@@ -143,7 +118,7 @@ public void update(Graphics g){
     for(int i=0; i < anchoMV; i++){
         for ( int j=0 ; j < altoMV; j++){
              if(celdas[i][j].tipo== 'X'){
-                g.drawString(""+celdas[i][j+1].priori, (i+1)*dimCelda, j*dimCelda);
+                g.drawString(""+celdas[i][j].priori, (i+1)*dimCelda, j*dimCelda);
             } 
         }
     }

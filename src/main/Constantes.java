@@ -32,7 +32,7 @@ public interface Constantes {
     public int nPeatones = 5;
     public int nAutos = 5;
     
-    public int nBuzones = 10;
+    public int nBuzones = 15;
     
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();
@@ -49,6 +49,18 @@ boolean flag = false;
             }
     }
 return y;
+}
+
+default int randomCarta(int cartas){
+boolean flag = false;
+        int y = 0;
+        while (flag == false){
+        y = numeroAleatorio(1,3);
+            if (cartas>=y){
+                flag = true;
+            }
+    }
+    return y;
 }
 
 default int randomAuto(){
