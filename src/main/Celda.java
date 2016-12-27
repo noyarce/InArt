@@ -12,7 +12,7 @@ public class Celda extends JComponent implements Constantes {
 
 public int x;
 public int y;
-
+public int priori;
 public boolean rectCelda;
 public char tipo;
 public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil, cebra, bus, paradero, pasajero, correos;
@@ -20,6 +20,7 @@ public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, autom
 public Celda(int x,int y,char tipo) {
 this.x=x;
 this.y=y;
+this.priori=0;
 
 this.tipo=tipo;
 try {

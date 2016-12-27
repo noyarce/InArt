@@ -32,6 +32,8 @@ public interface Constantes {
     public int nPeatones = 5;
     public int nAutos = 5;
     
+    public int nBuzones = 15;
+    
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();
 int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;

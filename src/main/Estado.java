@@ -1,6 +1,8 @@
 package main;
 
-class Estado implements Constantes{
+
+public class Estado implements Constantes{
+//    implements Comparable<Estado>
     public int x;
     public int y;
     public char oper; //'N'=nada, 'L': izquierda, 'R': derecha
@@ -8,13 +10,12 @@ class Estado implements Constantes{
     public Estado predecesor;
     public double prioridad;
 
-    public Estado(int x, int y, char oper,Estado predecesor) {
+    public Estado(int x, int y, char oper,Estado predecesor, double priori) {
         this.x=x;
         this.y=y;
         this.oper=oper;
-        this.predecesor=predecesor;
-        this.prioridad=numeroAleatorio(1,100);
-        
+        this.predecesor=predecesor;    
+        this.prioridad= priori;
     }
     
     public boolean equals(Object x) {
