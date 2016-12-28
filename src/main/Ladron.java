@@ -10,16 +10,17 @@ import java.util.TimerTask;
 public class Ladron extends TimerTask implements Constantes {
     public Calles calle;
     public Celda ladron;
-
-    SuperLadron inteligencia;
-
+    SuperLadron iaRobo;
+    public Cartero cartero;
 public Ladron(Calles calle) {
     this.calle=calle;
+        this.cartero=cartero;
+
     int ldr_x= randomPeaton();
     int ldr_y= randomPeaton();
     ladron=new Celda(ldr_x, ldr_y,'L');
     calle.celdas[ladron.x][ladron.y].tipo='L';
-        inteligencia=new SuperLadron(calle,this);  
+        iaRobo=new SuperLadron(calle,this, cartero);  
 
    }
    

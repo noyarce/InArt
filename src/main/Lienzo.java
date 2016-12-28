@@ -37,15 +37,15 @@ addMouseListener(new MouseAdapter() {
         repaint();
         }
 });
-
+/*
 addKeyListener(new java.awt.event.KeyAdapter() {
 @Override
     public void keyPressed(KeyEvent e) {
-        calle.ladron.moverLadron(e);
+        calle.cartero.moverCartero(e);
         repaint();
         }
 });
-
+*/
 }
 
 @Override

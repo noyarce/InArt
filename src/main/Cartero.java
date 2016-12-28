@@ -21,15 +21,35 @@ public Cartero(Calles calle) {
     calle.celdas[cartero.x][cartero.y].tipo='J';
     cartax = cartas;
     this.mCartas= new Cartas[cartas]; 
-    
+      
     for (int i = 0; i < cartax; i++){
-    mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4));
+        int ds_x = calle.buzon.get(i).x;
+        int ds_y = calle.buzon.get(i).y;
+        mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4), ds_x, ds_y);
     }
+    
     this.portal = false;
     inteligencia=new SuperBusqueda(calle,this);  
     robo = false;
 }
 
+public void moverCartero( KeyEvent evento ) {
+
+        switch( evento.getKeyCode() ) {
+            case 38:   
+                moverCrtArriba();
+                break;
+            case 40 :
+                moverCrtAbajo();
+                break;
+            case 37:
+                moverCrtIzquierda();
+                break;
+            case 39:
+                moverCrtDerecha();
+                break;
+        }
+    }
 
 public void moverCrtArriba(){
 if(cartero.y>0 ){
@@ -87,8 +107,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';   
-        ultima= randomCarta(cartax);
-        cartax= entregarCarta(cartax,ultima);
+        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
                 }
@@ -145,7 +164,7 @@ public void moverCrtAbajo(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
         ultima= randomCarta(cartax);
-        cartax= entregarCarta(cartax,ultima);
+        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
                 }
@@ -229,8 +248,7 @@ public void moverCrtIzquierda(){
         cartero.x=cartero.x-1;            
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
-        ultima= randomCarta(cartax);
-        cartax= entregarCarta(cartax,ultima);
+        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
@@ -267,8 +285,8 @@ public void moverCrtIzquierda(){
             calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
- System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
- for(int i=0;i<cartax;i++){
+            System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
+            for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
             break;
@@ -298,8 +316,7 @@ public void moverCrtDerecha(){
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
-             ultima= randomCarta(cartax);
-            cartax= entregarCarta(cartax,ultima);
+            cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
             for(int i=0;i<cartax;i++){
                    mCartas[i].x=(mCartas[i].x+dimCelda);
             }
@@ -406,14 +423,15 @@ char op='A';
     return op;
 }
 
-public int entregarCarta(int cartax, int aEntregar){
-    if (cartax >= aEntregar){
-        cartax = cartax - aEntregar;
-        return cartax;
+public int entregarCarta(Cartas mCartas[], int cartax, int x, int y){
+    for(int i =0; i< cartax; i++){
+      if (mCartas[i].ds_x == x && mCartas[i].ds_y == y){
+      cartax = cartax - 1;  
+      mCartas[i].ds_x = -1;
+      mCartas[i].ds_y = -1;
+      }
     }
-    else{
-    return 0;
-    }
+    return cartax ;
 }
 
 @Override

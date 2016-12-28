@@ -3,6 +3,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Timer;
 import javax.swing.JComponent;
 
@@ -14,6 +15,9 @@ public Lienzo lienzoPadre;
 public Cartero cartero;
 public Bus bus;
 public Ladron ladron;
+public ArrayList<Celda> buzon;
+public Celda tmp;
+
 
 public Peaton peatones[];
 public Automovil auto[];
@@ -25,13 +29,11 @@ public Calles(Lienzo lienzoPadre) {
  generarMapa();
  this.portales = nBuzones;
  this.lienzoPadre=lienzoPadre;
- 
-this.peatones= new Peaton[nPeatones];
-this.auto = new Automovil [nAutos];
-
-ladron= new Ladron (this);    
+ buzon  =new ArrayList<>(); 
+ this.peatones= new Peaton[nPeatones];
+ this.auto = new Automovil [nAutos];
 cartero= new Cartero(this);
-    bus= new Bus(this);
+bus= new Bus(this);
  
     temporizador = new Timer(); 
     for (int i =0; i < nPeatones; i++){
@@ -79,7 +81,9 @@ for (int a=0; a<anchoMV-1;a++ ){
         if ((a%6==0 && a > 0) && ((w==7)||(w==13)|| w==19)){
             if (contador < nBuzones)
             celdas[a][w].tipo= 'X';
-            celdas[a][w].priori= numeroAleatorio(1,100) + celdas[a][w].priori;
+            celdas[a][w].priori= numeroAleatorio(1,100);
+            tmp = new Celda (a,w,'X');
+            buzon.add(tmp);
             contador = contador +1;
         }
     }
@@ -136,7 +140,6 @@ public void update(Graphics g){
         }
         
            if( cartero.portal == true){
-                fontSize = 30;
                 if(cartero.cartax==0){
                     g.drawString("entregadas "+cartero.ultima+" se acabaron las cartas, Volviendo a la central ", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
                 }

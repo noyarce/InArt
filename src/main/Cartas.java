@@ -13,10 +13,15 @@ public class Cartas extends JComponent implements Constantes {
     public int y;
     public BufferedImage carta;
     
+    public int ds_x;
+    public int ds_y;
     
-    public Cartas(int x, int y) {
+    
+    public Cartas(int x, int y, int ds_x, int ds_y ) {
         this.x = x;
-        this.y = y;       
+        this.y = y;  
+        this.ds_x = ds_x ;
+        this.ds_y = ds_y;
         try {
             carta = ImageIO.read(new File("src/imagenes/cartita.png"));
         } catch (IOException e) {

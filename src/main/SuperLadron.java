@@ -1,34 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
-
 
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-
-
 public class SuperLadron extends TimerTask implements Constantes{
     public Calles calle;
     public Ladron ladron;
-       
+    public Cartero cartero;
+           
+    public ArrayList<Estado> destinos;
     public ArrayList<Estado> colaEstados;
     public ArrayList<Estado> historial;
     public ArrayList<Character> pasos;
+    
     public int index_pasos;
+    
     public Estado inicial;
     public Estado objetivo;
     public Estado temp;
+    
     public boolean exito;
     public boolean parar;
 
- public SuperLadron(Calles calle, Ladron ladron) {
-        this.calle=calle;
+ public SuperLadron(Calles calle, Ladron ladron, Cartero cartero) {
+         this.cartero=cartero;
+         this.calle=calle;
         this.ladron=ladron;
-         colaEstados=new ArrayList<>();
+        colaEstados=new ArrayList<>();
+        destinos=new ArrayList<>();
         historial=new ArrayList<>();
         pasos=new ArrayList<>();
         index_pasos=0;
@@ -44,7 +43,6 @@ public class SuperLadron extends TimerTask implements Constantes{
         historial.add(inicial);
         this.objetivo=objetivo;
         exito=false;
-        
         if ( inicial.equals(objetivo)) exito=true;
         while ( !colaEstados.isEmpty() && !exito ){
             temp=colaEstados.get(0);
@@ -54,11 +52,10 @@ public class SuperLadron extends TimerTask implements Constantes{
             movIzquierda(temp);
             movDerecha(temp);
         }
-        
-       return exito;
+        this.calcularRuta();
+	return exito;
+		
     }
-
-
 
 private void movArriba(Estado e) {
        System.out.println(e.toString());
@@ -141,32 +138,35 @@ System.out.println(e.toString());
     }
 
     public void calcularRuta() {
-        Estado predecesor=objetivo;
-        do{
-            pasos.add(0,predecesor.oper);
-            predecesor=predecesor.predecesor;
-        }while ( predecesor != null);
-        index_pasos=pasos.size()-1;
-        
-    }
+		Estado predecesor = objetivo;
+		do {
+			pasos.add(0,predecesor.oper);
+			predecesor = predecesor.predecesor;
+		} while (predecesor != null);
+		index_pasos = pasos.size() - 1;
+	}
 
     @Override
     public void run() {
+          Estado subinicial,subobjetivo;
+          boolean resultado;
        if ( ! parar ) { 
           colaEstados.clear();
           historial.clear();
-          pasos.clear(); 
-          Estado subinicial,subobjetivo;
-          boolean resultado;
+          pasos.clear();
           do{
-              subinicial=new Estado(calle.ladron.ladron.x,calle.ladron.ladron.y,'N',null,0);
-              subobjetivo=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null,0);
+              subinicial=new Estado(calle.ladron.ladron.x,ladron.ladron.y,'N',null,0);
+              subobjetivo=destinos.get(0);
               resultado=this.buscar(subinicial,subobjetivo);
-              if ( subinicial.equals(subobjetivo) ) {
-                  parar=true;
-                  this.cancel();
-              }
-          }while(!resultado);
+              if ( !resultado) {
+                colaEstados.clear();
+                historial.clear();
+                pasos.clear(); 
+                destinos.remove(subobjetivo);
+                }
+              }while(!resultado && !destinos.isEmpty());
+              
+  
           if ( pasos.size() > 1 ) {
              switch(pasos.get(1)) {
                 case 'D': calle.ladron.moverLdrAbajo();break;
@@ -176,6 +176,13 @@ System.out.println(e.toString());
              }
             calle.lienzoPadre.repaint();  
           }
+       destinos.add(0,new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null,0));
        }
+       
     }   
 }
+          
+   
+        
+          
+          
