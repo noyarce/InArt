@@ -440,9 +440,9 @@ char op='A';
 public int entregarCarta(Cartas mCartas[], int cartax, int x, int y){
     for(int i =0; i< cartax; i++){
       if (mCartas[i].ds_x == x && mCartas[i].ds_y == y){
-      cartax = cartax - 1;  
-      mCartas[i].ds_x = 0;
-      mCartas[i].ds_y = 0;
+        cartax = cartax - 1;  
+        mCartas[i].ds_x = 0;
+        mCartas[i].ds_y = 0;
       }
     }
     return cartax ;

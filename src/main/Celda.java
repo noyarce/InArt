@@ -16,7 +16,7 @@ public int priori;
 public boolean rectCelda;
 public char tipo;
 public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil,
-        ladron,cebra, bus, paradero, pasajero, correos;
+        ladron,cebra, bus, paradero, pasajero, correos, tolis;
 
 public Celda(int x,int y,char tipo) {
 this.x=x;
@@ -38,6 +38,7 @@ try {
     bus  = ImageIO.read(new File("src/imagenes/bus.png"));
     correos= ImageIO.read(new File("src/imagenes/correos.png"));
     ladron= ImageIO.read(new File("src/imagenes/ladron.png"));
+    tolis= ImageIO.read(new File("src/imagenes/Portale.png"));
 
     }
 catch (IOException e) {
@@ -62,6 +63,7 @@ catch (IOException e) {
         case 'S': g.drawImage(paradero,x,y,this); break;
         case 'G': g.drawImage(correos,x,y,this); break;
         case 'L': g.drawImage(ladron,x,y,this); break;
+        case 'Y': g.drawImage(tolis,x,y,this); break;
 
         }
     }

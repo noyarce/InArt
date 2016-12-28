@@ -15,21 +15,21 @@ public Lienzo lienzoPadre;
 public Cartero cartero;
 public Bus bus;
 public Ladron ladron;
-public ArrayList<Celda> buzon;
 public Celda tmp;
-
 
 public Peaton peatones[];
 public Automovil auto[];
 public Timer temporizador;
 int portales;
+public ArrayList<Celda> buzon;
+
 
 public Calles(Lienzo lienzoPadre) {
  celdas=new Celda[anchoMV][altoMV];
  generarMapa();
  this.portales = nBuzones;
  this.lienzoPadre=lienzoPadre;
- buzon  =new ArrayList<>(); 
+
  this.peatones= new Peaton[nPeatones];
  this.auto = new Automovil [nAutos];
 cartero= new Cartero(this);
@@ -77,14 +77,12 @@ celdas[pyr_x][pyr_y].tipo= 'J';
 int contador = 0;
 for (int a=0; a<anchoMV-1;a++ ){
     for (int w=0; w<altoMV-1; w++ ){
-        
         if ((a%6==0 && a > 0) && ((w==7)||(w==13)|| w==19)){
-            if (contador < nBuzones)
-            celdas[a][w].tipo= 'X';
-            celdas[a][w].priori= numeroAleatorio(1,100);
-            tmp = new Celda (a,w,'X');
-            buzon.add(tmp);
-            contador = contador +1;
+            if (contador < nBuzones){
+                celdas[a][w].tipo= 'X';
+                celdas[a][w].priori= numeroAleatorio(1,100);
+                contador = contador +1;
+            }
         }
     }
 }
@@ -140,11 +138,11 @@ public void update(Graphics g){
         }
         
            if( cartero.portal == true){
-                if(cartero.cartax==0){
-                    g.drawString("entregadas "+cartero.ultima+" se acabaron las cartas, Volviendo a la central ", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
+                if(cartero.cartax==0 ){
+                    g.drawString(" se acabaron las cartas, Volviendo a la central ", cartero.cartero.x *dimCelda, cartero.cartero.y*dimCelda);
                 }
                 else{
-                    g.drawString("Cartero en el Portal. entregadas:"+cartero.ultima + "quedan "+cartero.cartax+" cartas", cartero.cartero.x *dimCelda, (cartero.cartero.y+2)*dimCelda);
+                    g.drawString("Cartero en el Portal, quedan "+cartero.cartax+" cartas", cartero.cartero.x *dimCelda, (cartero.cartero.y+2)*dimCelda);
                 }
            }
            if(cartero.cartero.x == pyr_x && cartero.cartero.y == pyr_y && cartero.cartax ==0 ){
