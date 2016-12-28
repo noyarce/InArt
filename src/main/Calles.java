@@ -10,12 +10,9 @@ import javax.swing.JComponent;
 public class Calles extends JComponent implements Constantes {
 public int anchoCalle,altoCalle;     /*dimensiones del laberinto  */
 public Celda[][] celdas;            /* define las casillas n x m */
-public Celda celdaMovimiento;      /* declarada a celda a mover */
 public Lienzo lienzoPadre;    
 public Cartero cartero;
 public Bus bus;
-public Ladron ladron;
-public Celda tmp;
 
 public Peaton peatones[];
 public Automovil auto[];
@@ -72,8 +69,6 @@ for(int i=0; i < anchoMV; i++){
         }
     }
 
-celdas[pyr_x][pyr_y].tipo= 'J';
-
 int contador = 0;
 for (int a=0; a<anchoMV-1;a++ ){
     for (int w=0; w<altoMV-1; w++ ){
@@ -96,12 +91,9 @@ for (int z=0; z<anchoMV-1;z++ ){
 }
 celdas [0][0].tipo='G';
 
-celdaMovimiento=new Celda(pyr_x,pyr_y,'J');
-
 this.anchoCalle =anchoMV*dimCelda;
 this.altoCalle =altoMV*dimCelda;
 this.setSize(anchoCalle,altoCalle);
-
 }
 
 @Override

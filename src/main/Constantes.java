@@ -7,26 +7,14 @@ public interface Constantes {
     public final int dimCelda = 32;
     public final int anchoMV = 36;
     public final int altoMV = 21;
-    
-    public final char CARTA = 'G';
-    public final char CARTERO ='J';
-    public final char CAMINO ='C';
-    public final char PEATONES ='P';
-    public final char CASA ='M';
-    public final char PORTAL = 'X';
-    public final char OBSTACULO = 'O';
-    public final char CEBRA = 'Z';
-    public final char AUTOMOVIL = 'T';
-    public final char ACERA = 'V';
-      
-   
+       
     public final int pyr_x = 1; /* cartero vertical */
     public final int pyr_y = 0;  /*cartero horizontal*/
   
     public final int bus_x = 0;
     public final int bus_y = 3;
     
-    public int cartas = 8;
+    public int cartas = 4;
     public int nPasajeros = 3; 
     public int nPeatones = 5;
     public int nAutos = 5;

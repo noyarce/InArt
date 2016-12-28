@@ -93,7 +93,7 @@ private void moverArriba(Estado e, Estado x) {
        System.out.println(e.toString());
           if ( e.y > 0 ) {
             if ( calle.celdas[e.x][e.y-1].tipo == 'A'|| 
-                 calle.celdas[e.x][e.y-1].tipo == 'C'||
+//                 calle.celdas[e.x][e.y-1].tipo == 'C'||
                  calle.celdas[e.x][e.y-1].tipo == 'Z'||
                  calle.celdas[e.x][e.y-1].tipo=='X') {
                     double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
@@ -115,7 +115,7 @@ private void moverAbajo(Estado e, Estado x) {
         if ( e.y < altoMV-1 ) {
             if (calle.celdas[e.x][e.y+1].tipo=='Z'
                ||calle.celdas[e.x][e.y+1].tipo=='A'
-               ||calle.celdas[e.x][e.y+1].tipo=='C'
+//               ||calle.celdas[e.x][e.y+1].tipo=='C'
                ||calle.celdas[e.x][e.y+1].tipo=='X'){
                 double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
                 Estado abajo=new Estado(e.x,e.y+1,'D',e,priori);
@@ -135,7 +135,7 @@ private void moverIzquierda(Estado e, Estado x) {
     System.out.println(e.toString());
         if ( e.x > 0 ) {
             if (calle.celdas[e.x-1][e.y].tipo=='A'||
-                calle.celdas[e.x-1][e.y].tipo=='C'||
+//                calle.celdas[e.x-1][e.y].tipo=='C'||
                 calle.celdas[e.x-1][e.y].tipo=='X'||
                 calle.celdas[e.x-1][e.y].tipo=='Z') {
                     double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
@@ -157,7 +157,7 @@ System.out.println(e.toString());
         if ( e.x < anchoMV-1 ) {                      
             if (calle.celdas[e.x+1][e.y].tipo=='A'||
                 calle.celdas[e.x+1][e.y].tipo=='Z'||
-                calle.celdas[e.x+1][e.y].tipo=='C'||
+//                calle.celdas[e.x+1][e.y].tipo=='C'||
                 calle.celdas[e.x+1][e.y].tipo=='X') {
                     double priori = distancia (e,x)+ calle.celdas[x.x][x.y].priori;
                 Estado derecha=new Estado(e.x+1,e.y,'R',e, priori); 

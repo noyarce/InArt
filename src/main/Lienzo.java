@@ -37,7 +37,7 @@ addMouseListener(new MouseAdapter() {
         repaint();
         }
 });
-/*
+
 addKeyListener(new java.awt.event.KeyAdapter() {
 @Override
     public void keyPressed(KeyEvent e) {
@@ -45,7 +45,6 @@ addKeyListener(new java.awt.event.KeyAdapter() {
         repaint();
         }
 });
-*/
 }
 
 @Override
