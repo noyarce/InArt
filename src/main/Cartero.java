@@ -22,11 +22,15 @@ public Cartero(Calles calle) {
     cartax = cartas;
     this.mCartas= new Cartas[cartas]; 
       
-    for (int i = 0; i < cartax; i++){
-        int ds_x = calle.buzon.get(i).x;
-        int ds_y = calle.buzon.get(i).y;
-        mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4), ds_x, ds_y);
-    }
+    int i = 0; 
+        for (int ds_x=0 ; ds_x < anchoMV; ds_x ++){
+            for (int ds_y=0 ; ds_y< altoMV; ds_y++){
+                if( calle.celdas[ds_x][ds_y].tipo=='X' && i < cartax){  
+                    mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4),ds_x,ds_y);
+                    i++;
+                }
+            }
+        }
     
     this.portal = false;
     inteligencia=new SuperBusqueda(calle,this);  
@@ -63,7 +67,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         
         case('C'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azocvp(cartero);
             cartero.y=cartero.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             for(int i=0;i<cartax;i++){
@@ -77,7 +81,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         }
 
     case('A'):{
-        calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);               
+        calle.celdas[cartero.x][cartero.y].tipo=azochp(cartero);               
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x); 
@@ -89,7 +93,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
     }
     case('Z'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo =azocvp(cartero);
             cartero.y=cartero.y-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
@@ -107,6 +111,7 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         calle.celdas[cartero.x][cartero.y].tipo ='A';
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';   
+        calle.celdas[cartero.x][cartero.y].priori=0;
         cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
@@ -144,7 +149,7 @@ public void moverCrtAbajo(){
         }
     case('C'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azocvp(cartero);
             cartero.y=cartero.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             for(int i=0;i<cartax;i++){
@@ -162,8 +167,8 @@ public void moverCrtAbajo(){
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
+        calle.celdas[cartero.x][cartero.y].priori=0;
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
-        ultima= randomCarta(cartax);
         cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
@@ -186,7 +191,7 @@ public void moverCrtAbajo(){
         break;
         }
    case('A'):{
-        calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
+        calle.celdas[cartero.x][cartero.y].tipo=azochp(cartero);
         cartero.y=cartero.y+1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
 System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
@@ -198,7 +203,7 @@ for(int i=0;i<cartax;i++){
     }
     case('Z'): {
          if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo =azochp(cartero);
             cartero.y=cartero.y+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Arriba: "+ cartero.y+" - "+cartero.x);
@@ -228,7 +233,7 @@ public void moverCrtIzquierda(){
         }
     case('C'):{
             if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azochp(cartero);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             for(int i=0;i<cartax;i++){
@@ -247,6 +252,7 @@ public void moverCrtIzquierda(){
         calle.celdas[cartero.x][cartero.y].tipo='A';
         cartero.x=cartero.x-1;            
         calle.celdas[cartero.x][cartero.y].tipo='J';
+        calle.celdas[cartero.x][cartero.y].priori=0;
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
         cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
@@ -270,7 +276,7 @@ public void moverCrtIzquierda(){
         break;
         }
     case('A'):{
-         calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
+         calle.celdas[cartero.x][cartero.y].tipo=azocvp(cartero);
         cartero.x=cartero.x-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';
         System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x); 
@@ -282,7 +288,7 @@ public void moverCrtIzquierda(){
     }
     case('Z'): {
         if(vieneAuto(calle,cartero)==false){
-            calle.celdas[cartero.x][cartero.y].tipo =azocv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo =azocvp(cartero);
             cartero.x=cartero.x-1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Izquierda: "+ cartero.y+" - "+cartero.x);
@@ -316,6 +322,7 @@ public void moverCrtDerecha(){
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
+            calle.celdas[cartero.x][cartero.y].priori=0;
             cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
             for(int i=0;i<cartax;i++){
                    mCartas[i].x=(mCartas[i].x+dimCelda);
@@ -338,7 +345,7 @@ public void moverCrtDerecha(){
             break;
             }
         case('A'):{
-            calle.celdas[cartero.x][cartero.y].tipo=azocv(cartero);
+            calle.celdas[cartero.x][cartero.y].tipo=azocvp(cartero);
             cartero.x=cartero.x+1;
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x); 
@@ -349,7 +356,7 @@ public void moverCrtDerecha(){
             }
         case('Z'): {
             if(vieneAuto(calle,cartero)==false){
-                calle.celdas[cartero.x][cartero.y].tipo =azoch(cartero);
+                calle.celdas[cartero.x][cartero.y].tipo =azochp(cartero);
                 cartero.x=cartero.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 System.out.println("Mover Derecha: "+ cartero.y+" - "+cartero.x);
@@ -368,7 +375,7 @@ public void moverCrtDerecha(){
         
         case('C'): {
             if(vieneAuto(calle,cartero)==false){
-                calle.celdas[cartero.x][cartero.y].tipo=azoch(cartero);
+                calle.celdas[cartero.x][cartero.y].tipo=azochp(cartero);
                 cartero.x=cartero.x+1;
                 calle.celdas[cartero.x][cartero.y].tipo='J';
                 for(int i=0;i<cartax;i++){
@@ -400,8 +407,12 @@ private boolean vieneAuto(Calles calle , Celda cartero){
 }
 
 /*acera zebra o calle vertical */
-public char azocv(Celda cartero){
+public char azocvp(Celda cartero){
 char op='A';
+
+    if ((cartero.x%6==0) && ((cartero.y==7)||(cartero.y==13)||cartero.y==19)){
+        op='Y';
+    }
     if(((cartero.x%3==0)&&(cartero.x%6!=0))||((cartero.y%3==0)&&(cartero.y%6!=0))){
         op='C';
     }
@@ -412,8 +423,11 @@ char op='A';
 }
 
 /* acera, zebra, o calle  horizontal */
-public char azoch(Celda cartero){
+public char azochp(Celda cartero){
 char op='A';
+    if ((cartero.x%6==0) && ((cartero.y==7)||(cartero.y==13)||cartero.y==19)){
+        op='Y';
+    }
     if(((cartero.x%3==0)&&(cartero.x%6!=0))||((cartero.y%3==0)&&(cartero.y%6!=0))){
         op='C';
     }
