@@ -23,16 +23,18 @@ public interface Constantes {
     
     //Hilo de musica
     public final String RUTA="file:///"+System.getProperty( "user.dir" );
+
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();
 int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;
 return numero_aleatorio;  
 }
+
 default int randomPeaton(){
 boolean flag = false;
         int y = 0;
         while (flag == false){
-        y = numeroAleatorio(0,altoMV-1);
+        y = numeroAleatorio(8,altoMV-1);
             if ((y%2==0)&&(y%6!=0)){
                 flag = true;
             }
