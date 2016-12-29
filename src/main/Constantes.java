@@ -21,6 +21,8 @@ public interface Constantes {
     
     public int nBuzones = 15;
     
+    //Hilo de musica
+    public final String RUTA="file:///"+System.getProperty( "user.dir" );
 default int numeroAleatorio(int minimo, int maximo) {
 Random random = new Random();
 int numero_aleatorio = random.nextInt((maximo - minimo) + 1) + minimo;
