@@ -13,7 +13,10 @@ public Celda[][] celdas;            /* define las casillas n x m */
 public Lienzo lienzoPadre;    
 public Cartero cartero;
 public Bus bus;
+ public int destinos_X[];
+ public int destinos_Y[];
 
+ 
 public Peaton peatones[];
 public Automovil auto[];
 public Timer temporizador;
@@ -23,9 +26,11 @@ public ArrayList<Celda> buzon;
 
 public Calles(Lienzo lienzoPadre) {
  celdas=new Celda[anchoMV][altoMV];
- generarMapa();
  this.portales = nBuzones;
  this.lienzoPadre=lienzoPadre;
+ destinos_X = new int[nBuzones];
+ destinos_Y = new int[nBuzones];
+   generarMapa();
 
  this.peatones= new Peaton[nPeatones];
  this.auto = new Automovil [nAutos];
@@ -48,10 +53,23 @@ public final void generarMapa(){
 for(int i=0; i < anchoMV; i++){
         for ( int j=0 ; j < altoMV ; j++){
             celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M',0);
-            if(i % 6==0 && j % 6 == 0 )
-            celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M', numeroAleatorio(1,100));
-            
-        }
+            }
+}
+
+for (int a =5; a <anchoMV; a++){
+    for(int b=5; b<altoMV;b++){
+                if(a % 6==0 && b % 6 == 0 ){
+                celdas[a][b].priori= numeroAleatorio(1,100);
+                System.out.println(celdas[a][b].priori);
+                for(int x = -2; x < 2; x++){
+                    for(int y = -2; y < 2; y++){
+                            System.out.println(" x "+celdas[a][b].priori);
+                            celdas[a+x][b+y].priori= celdas[a][b].priori;
+                        
+                    }
+                }
+    }
+    }
 }
 
 for(int i=0; i < anchoMV; i++){
@@ -75,10 +93,11 @@ for(int i=0; i < anchoMV; i++){
 int contador = 0;
 for (int a=0; a<anchoMV-1;a++ ){
     for (int w=0; w<altoMV-1; w++ ){
-        if ((a%6==0 && a > 0) && ((w==7)||(w==13)|| w==19)){
+        if ((a%6==0 && a > 3) && ((w==7)||(w==13)|| w==19)){
             if (contador < nBuzones){
-                celdas[a][w].tipo= 'X';
-                celdas[a][w].priori= numeroAleatorio(1,100);
+                celdas[a][w].tipo= 'X';             
+                destinos_X[contador]= w;
+                destinos_Y[contador]= a;
                 contador = contador +1;
             }
         }

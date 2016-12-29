@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import static java.util.Collections.sort;
 import java.util.TimerTask;
 
 
@@ -14,6 +16,7 @@ public class Cartero extends TimerTask implements Constantes {
     public boolean portal;
     public int ultima;
     public boolean robo;
+    public ArrayList <Estado> estado;
 
 public Cartero(Calles calle) {
     this.calle=calle;
@@ -21,23 +24,31 @@ public Cartero(Calles calle) {
     calle.celdas[cartero.x][cartero.y].tipo='J';
     cartax = cartas;
     inteligencia=new SuperBusqueda(calle,this);  
-
+    estado = new ArrayList<>();
     this.mCartas= new Cartas[cartas]; 
       
     int i = 0; 
         for (int ds_x=0 ; ds_x < anchoMV; ds_x ++){
             for (int ds_y=0 ; ds_y< altoMV; ds_y++){
                 if( calle.celdas[ds_x][ds_y].tipo=='X' && i < cartax){  
-                    mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4),ds_x,ds_y);
-                    inteligencia.destinos.add(new Estado (ds_x,ds_y,'N',null,calle.celdas[ds_x][ds_y].priori)); 
-                    i++;
+                        mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), ((cartero.y*dimCelda)-(dimCelda/4)),ds_x,ds_y);
+                        estado.add(new Estado(ds_x,ds_y,'N',null,calle.celdas[ds_x][ds_y].priori)); 
+                        i++;
+                        }
+                    }
                 }
-            }
-        }
-    
-    this.portal = false;
+        sort(estado);
+        
+        do{
+        inteligencia.destinos.add(estado.get(0));
+        estado.remove(0);
+        }while(!estado.isEmpty());
+                
+        this.portal = false;
     robo = false;
 }
+
+
 
 public void moverCartero( KeyEvent evento ) {
 
@@ -114,8 +125,10 @@ char op =calle.celdas[cartero.x][cartero.y-1].tipo;
         cartero.y=cartero.y-1;
         calle.celdas[cartero.x][cartero.y].tipo='J';   
         calle.celdas[cartero.x][cartero.y].priori=0;
-        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
-        for(int i=0;i<cartax;i++){
+        
+      cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
+    
+            for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y-dimCelda);
                 }
         portal= true;
@@ -171,8 +184,14 @@ public void moverCrtAbajo(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         calle.celdas[cartero.x][cartero.y].priori=0;
         System.out.println("Mover Abajo: " +cartero.y+" - "+cartero.x+ " Cartero en Portal  ");
-        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
-        for(int i=0;i<cartax;i++){
+//        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
+        
+        for (int i =0; i < cartax; i++){
+        if(( mCartas[i].ds_y == cartero.y ) &&(mCartas[i].ds_x == cartero.x)){
+            cartax = cartax-1 ;
+            }
+        }
+for(int i=0;i<cartax;i++){
                     mCartas[i].y=(mCartas[i].y+dimCelda);
                 }
         portal= true;
@@ -256,7 +275,7 @@ public void moverCrtIzquierda(){
         calle.celdas[cartero.x][cartero.y].tipo='J';
         calle.celdas[cartero.x][cartero.y].priori=0;
         System.out.println("Mover Izquierda: "+cartero.y+" - "+cartero.x+ " Cartero en Portal ");
-        cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
+       cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
         for(int i=0;i<cartax;i++){
                     mCartas[i].x=(mCartas[i].x-dimCelda);
                 }
@@ -325,6 +344,7 @@ public void moverCrtDerecha(){
             calle.celdas[cartero.x][cartero.y].tipo='J';
             System.out.println("Mover Derecha: "+cartero.y+" - "+cartero.x + " Cartero en Portal ");
             calle.celdas[cartero.x][cartero.y].priori=0;
+            
             cartax= entregarCarta(mCartas,cartax, cartero.x,cartero.y);
             for(int i=0;i<cartax;i++){
                    mCartas[i].x=(mCartas[i].x+dimCelda);
@@ -440,10 +460,12 @@ char op='A';
 }
 
 public int entregarCarta(Cartas mCartas[], int cartax, int x, int y){
-    if (cartax >0)
-        return cartax-1 ;
-    else
-        return cartax;
+    if (cartax !=0){
+            cartax = cartax-1 ;
+            
+        }
+    
+    return cartax;
 }
 
 @Override

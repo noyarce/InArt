@@ -41,6 +41,7 @@ public void moverPeatonIzq(){
                 }
 }
 public void moverPeatonDer(){
+    
     if (peaton.x < anchoMV-1 ){
                 if (calle.celdas[peaton.x+1][peaton.y].tipo=='A'||
                     calle.celdas[peaton.x+1][peaton.y].tipo=='Z') {
