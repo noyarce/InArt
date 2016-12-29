@@ -84,8 +84,7 @@ public void moverBusDer(){
         bus.x=0;
         calle.celdas[bus.x][bus.y].tipo='B';
         for (int i =0 ; i< pasajerosInt; i++){
-             pasajeros[i].x = 0;
-            pasajeros [i].x = pasajeros [i].x + dimCelda; 
+             pasajeros[i].x = ((bus.x*dimCelda+i)-nPasajeros)*8;
         }
     }
 }
