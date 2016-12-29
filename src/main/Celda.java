@@ -18,10 +18,10 @@ public char tipo;
 public BufferedImage cartero,casa,camino, peaton, portal, obstaculo,acera, automovil,
         ladron,cebra, bus, paradero, pasajero, correos, tolis;
 
-public Celda(int x,int y,char tipo) {
+public Celda(int x,int y,char tipo, int priori) {
 this.x=x;
 this.y=y;
-this.priori=0;
+this.priori=priori;
 
 this.tipo=tipo;
 try {

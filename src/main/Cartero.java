@@ -17,9 +17,11 @@ public class Cartero extends TimerTask implements Constantes {
 
 public Cartero(Calles calle) {
     this.calle=calle;
-    cartero=new Celda(pyr_x, pyr_y,'J');
+    cartero=new Celda(pyr_x, pyr_y,'J',0);
     calle.celdas[cartero.x][cartero.y].tipo='J';
     cartax = cartas;
+    inteligencia=new SuperBusqueda(calle,this);  
+
     this.mCartas= new Cartas[cartas]; 
       
     int i = 0; 
@@ -27,13 +29,13 @@ public Cartero(Calles calle) {
             for (int ds_y=0 ; ds_y< altoMV; ds_y++){
                 if( calle.celdas[ds_x][ds_y].tipo=='X' && i < cartax){  
                     mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), (cartero.y*dimCelda)-(dimCelda/4),ds_x,ds_y);
+                    inteligencia.destinos.add(new Estado (ds_x,ds_y,'N',null,calle.celdas[ds_x][ds_y].priori)); 
                     i++;
                 }
             }
         }
     
     this.portal = false;
-    inteligencia=new SuperBusqueda(calle,this);  
     robo = false;
 }
 

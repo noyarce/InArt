@@ -11,7 +11,7 @@ public Celda peaton;
         this.calle=calle;
         int ptn_x= randomPeaton();
         int ptn_y= randomPeaton();
-    peaton=new Celda(ptn_x, ptn_y,'P');   
+    peaton=new Celda(ptn_x, ptn_y,'P',0);   
     calle.celdas[peaton.x][peaton.y].tipo='P';
     }
     

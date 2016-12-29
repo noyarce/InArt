@@ -12,7 +12,7 @@ public ArrayList<Character> movs;
 
 public Automovil(Calles calle) {
     this.calle=calle;
-    automovil=new Celda(randomAuto(),altoMV-1,'T');   
+    automovil=new Celda(randomAuto(),altoMV-1,'T',0);   
     calle.celdas[automovil.x][automovil.y].tipo='T';
     movs=new ArrayList<>();
     
@@ -31,7 +31,7 @@ public Automovil(Calles calle) {
             
         }
         dir= dir+1;
-        if (dir ==3){
+        if(dir ==3){
         dir = 0;
         }
     }
@@ -52,7 +52,7 @@ public void moverAutoIzq(){
                                 calle.celdas[automovil.x][automovil.y].tipo='T';
                     }
                     else{
-                        moverAutoUp();
+                        moverAutoDer();
                     }
                }
                 else{
@@ -105,7 +105,7 @@ public void moverAutoUp(){
                 automovil.y=automovil.y-1;
                 calle.celdas[automovil.x][automovil.y].tipo='T';
             }else{
-                moverAutoDer();
+                moverAutoIzq();
                 }
            }
            else{

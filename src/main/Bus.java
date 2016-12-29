@@ -12,7 +12,7 @@ public int pasajerosInt;
 
 public Bus(Calles calle) {
     this.calle=calle;
-    bus=new Celda(bus_x,bus_y,'B');   
+    bus=new Celda(bus_x,bus_y,'B',0);   
     calle.celdas[bus.x][bus.y].tipo='B';
     this.pasajeros = new Pasajero[nPasajeros]; 
     pasajerosInt = nPasajeros;
