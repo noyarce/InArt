@@ -198,8 +198,9 @@ System.out.println(e.toString());
                   }
               if ( destinos.isEmpty()) {
                  System.out.println("Se acabo a donde ir");
-                 this.cancel();
-              }
+                 temp= new Estado (pyr_x, pyr_y,'N',null,0);
+                  destinos.add(temp);
+                 }
               if (calle.cartero.cartax==0){
                   destinos.clear();
                   temp= new Estado (pyr_x, pyr_y,'N',null,0);

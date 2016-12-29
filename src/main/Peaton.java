@@ -35,8 +35,7 @@ public void moverPeatonIzq(){
                     }
                     else{
                         calle.celdas[peaton.x][peaton.y].tipo='A'; 
-                    }
-                
+                    } 
                 peaton.x=anchoMV-1;
                     calle.celdas[peaton.x][peaton.y].tipo='P';
                 }
@@ -56,15 +55,9 @@ public void moverPeatonDer(){
                 }
             }
             else{
-                if ((peaton.x%3==0)&&(peaton.x%6!=0)){
-                    calle.celdas[peaton.x][peaton.y].tipo='Z';
-                    }
-                    else{
-                    calle.celdas[peaton.x][peaton.y].tipo='A'; 
-                }        
-                peaton.x=0;
-                calle.celdas[peaton.x][peaton.y].tipo='P';
-                }    
+        moverPeatonIzq();
+        moverPeatonIzq();
+    }    
 }
 public void moverPeatonUp(){
            if (peaton.y > 0){
@@ -81,15 +74,10 @@ public void moverPeatonUp(){
             }
            }
            else{
-              if ((peaton.y%3==0)&&(peaton.y%6!=0)){
-                        calle.celdas[peaton.x][peaton.y].tipo='Z';
-                    }
-                    else{
-                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
-                    }
-                peaton.y=altoMV-1;
-                 calle.celdas[peaton.x][peaton.y].tipo='P';
-                }
+               
+           moverPeatonDwn();
+           moverPeatonDwn();
+           }
 }
 public void moverPeatonDwn(){
             if (peaton.y != altoMV-1){
@@ -106,16 +94,9 @@ public void moverPeatonDwn(){
                     }
             }
             else{
-                 if ((peaton.y%3!=0)&&(peaton.y%6==0)){
-                        calle.celdas[peaton.x][peaton.y].tipo='Z';
-                    }
-                    else{
-                        calle.celdas[peaton.x][peaton.y].tipo='A'; 
-                    }                    
-                    peaton.x=randomPeaton();
-                    peaton.y=0;
-                    calle.celdas[peaton.x][peaton.y].tipo='P';
-                }            
+            moverPeatonUp();     
+            moverPeatonUp();     
+            }            
 }
 
 @Override
