@@ -13,7 +13,7 @@ public class SuperBusqueda extends TimerTask implements Constantes{
     
     public ArrayList<Estado> historial;
     public ArrayList<Character> pasos;
-    public ArrayList<Estado> destinos;
+    public Queue<Estado> destinos;
     public int index_pasos;
     public Estado inicial;
     public Estado temp;
@@ -30,7 +30,7 @@ public class SuperBusqueda extends TimerTask implements Constantes{
         colaEstados=new PriorityQueue<>();
         historial=new ArrayList<>();
         pasos=new ArrayList<>();
-        destinos=new ArrayList<>();
+        destinos=new PriorityQueue<>();
         index_pasos=0;
             exito=false;
         parar=false;
@@ -85,7 +85,7 @@ private void moverArriba(Estado e, Estado x) {
 //                 calle.celdas[e.x][e.y-1].tipo == 'C'||
                  calle.celdas[e.x][e.y-1].tipo == 'Z'||
                  calle.celdas[e.x][e.y-1].tipo=='X') {
-                    double priori =calle.celdas[e.x][e.y].priori;
+                    double priori =distancia (e,x)+calle.celdas[e.x][e.y].priori;
                     Estado arriba=new Estado(e.x,e.y-1,'U',e, priori);
                  if ( !historial.contains(arriba)) {
                     colaEstados.add(arriba);
@@ -105,7 +105,7 @@ private void moverAbajo(Estado e, Estado x) {
                ||calle.celdas[e.x][e.y+1].tipo=='A'
 //               ||calle.celdas[e.x][e.y+1].tipo=='C'
                ||calle.celdas[e.x][e.y+1].tipo=='X'){
-                    double priori =calle.celdas[e.x][e.y].priori;
+                    double priori =distancia (e,x)+calle.celdas[e.x][e.y].priori;
                 Estado abajo=new Estado(e.x,e.y+1,'D',e,priori);
                  if ( !historial.contains(abajo)) {
                     colaEstados.add(abajo);
@@ -125,7 +125,7 @@ private void moverIzquierda(Estado e, Estado x) {
 //                calle.celdas[e.x-1][e.y].tipo=='C'||
                 calle.celdas[e.x-1][e.y].tipo=='X'||
                 calle.celdas[e.x-1][e.y].tipo=='Z') {
-                    double priori = calle.celdas[e.x][e.y].priori;
+                    double priori = distancia (e,x)+calle.celdas[e.x][e.y].priori;
                 Estado izquierda=new Estado(e.x-1,e.y,'L',e, priori);
                 if ( !historial.contains(izquierda)) {
                    colaEstados.add(izquierda);
@@ -145,7 +145,7 @@ private void moverDerecha(Estado e, Estado x) {
                 calle.celdas[e.x+1][e.y].tipo=='Z'||
 //                calle.celdas[e.x+1][e.y].tipo=='C'||
                 calle.celdas[e.x+1][e.y].tipo=='X') {
-                    double priori =calle.celdas[e.x][e.y].priori;
+                    double priori =distancia (e,x)+calle.celdas[e.x][e.y].priori;
                 Estado derecha=new Estado(e.x+1,e.y,'R',e, priori); 
                 if ( !historial.contains(derecha)){
                  colaEstados.add(derecha);
@@ -180,11 +180,11 @@ private void moverDerecha(Estado e, Estado x) {
           boolean resultado;
           do{
               subinicial=new Estado(calle.cartero.cartero.x,calle.cartero.cartero.y,'N',null,calle.celdas[calle.cartero.cartero.x][calle.cartero.cartero.y].priori);
-              subobjetivo=destinos.get(0);
+              subobjetivo=destinos.peek();
               resultado=this.buscar(subinicial,subobjetivo);
               
               if ( subinicial.equals(subobjetivo) ) 
-                  destinos.remove(subobjetivo);
+                  destinos.poll();
               else 
                   if ( !resultado) {
                       colaEstados.clear();
@@ -194,12 +194,12 @@ private void moverDerecha(Estado e, Estado x) {
                   }
               if ( destinos.isEmpty()) {
                  System.out.println("Se acabo a donde ir");
-                 temp= new Estado (pyr_x, pyr_y,'N',null,100);
+                 temp= new Estado (pyr_x, pyr_y,'N',null,0);
                   destinos.add(temp);
                  }
               if (calle.cartero.cartax==0){
                   destinos.clear();
-                  temp= new Estado (pyr_x, pyr_y,'N',null,100);
+                  temp= new Estado (pyr_x, pyr_y,'N',null,0);
                   destinos.add(temp);
                 }
           }while(!resultado && !destinos.isEmpty());
@@ -213,5 +213,5 @@ private void moverDerecha(Estado e, Estado x) {
             calle.lienzoPadre.repaint();  
           }
        }
-    }   
+    } 
 }

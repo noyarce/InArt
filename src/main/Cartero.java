@@ -30,20 +30,15 @@ public Cartero(Calles calle) {
     int i = 0; 
         for (int ds_x=0 ; ds_x < anchoMV; ds_x ++){
             for (int ds_y=0 ; ds_y< altoMV; ds_y++){
-                if( calle.celdas[ds_x][ds_y].tipo=='X' && i < cartax){  
+                if( calle.celdas[ds_x][ds_y].tipo=='X'){ 
+                    inteligencia.destinos.add(new Estado(ds_x,ds_y,'N',null,calle.celdas[ds_x][ds_y].priori)); 
+                    if(i<cartax){
                         mCartas[i]= new Cartas(((cartero.x*dimCelda+(i*16))-(cartax*16)), ((cartero.y*dimCelda)-(dimCelda/4)),ds_x,ds_y);
-                        estado.add(new Estado(ds_x,ds_y,'N',null,calle.celdas[ds_x][ds_y].priori)); 
                         i++;
                         }
                     }
-                }
-        sort(estado);
-        
-        do{
-        inteligencia.destinos.add(estado.get(0));
-        estado.remove(0);
-        }while(!estado.isEmpty());
-                
+            }
+        }
         this.portal = false;
     robo = false;
 }

@@ -14,7 +14,7 @@ public interface Constantes {
     public final int bus_x = 0;
     public final int bus_y = 3;
     
-    public int cartas = 8;
+    public int cartas = 4;
     public int nPasajeros = 2; 
     public int nPeatones = 5;
     public int nAutos = 5;

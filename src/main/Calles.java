@@ -52,7 +52,7 @@ bus= new Bus(this);
 public final void generarMapa(){
 for(int i=0; i < anchoMV; i++){
         for ( int j=0 ; j < altoMV ; j++){
-            celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M',0);
+            celdas[i][j]= new Celda(i+(i*dimCelda),j+(j*dimCelda),'M',1);
             }
 }
 
